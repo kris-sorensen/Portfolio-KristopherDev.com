@@ -1,38 +1,79 @@
-import { Canvas, useFrame } from "@react-three/fiber";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { useControls } from 'leva';
+import React, { useState, useRef, Suspense } from 'react';
+import { Sphere, useTexture } from "@react-three/drei";
+import { Html, useProgress } from '@react-three/drei'
+import StarsContainer from "./CanvasComponents/Stars";
+import CameraContainer from "./CanvasComponents/Camera";
+import Earth from "./CanvasComponents/Earth";
+import Atmosphere from "./CanvasComponents/Atmosphere";
 
+/* TODO
+ * add loading bar to Suspense 
+ * add shadow boundaries if needed
+ * 
+ */
 
-const parameters = {}
-parameters.radius = 8
-parameters.bumpScale = .05
-parameters.sheen = .4
-parameters.sheenRoughness = .75
-parameters.clearcoat = .5
-parameters.bumpScale = .05
-parameters.envMapIntensity = .4
-parameters.rotationSpeed = .08
-parameters.planeRad = 1.25
-parameters.planeSpeed = .4
-parameters.sunlightIntensity = 2
-parameters.numberOfPlanes = 8
+function Loader() {
+    const { progress } = useProgress()
+    return <Html center>{progress} % loaded</Html>
+}
 
 const CanvasContainer = () => {
-    console.log(parameters)
+
 
     return (
         <Canvas>
-            {/* <World /> */}
+            <Suspense fallback={<Loader />} >
+                <CameraContainer />
+                <Earth />
+                <Atmosphere />
+                {/* <Airplanes /> */}
+                <StarsContainer />
+                <Lights />
+            </Suspense >
+        </Canvas >
+    )
+}
 
-        </Canvas>
+
+
+const Planes = () => {
+    const planeParams = useControls({
+        planeSpeed: { value: .4, min: 0, max: 3, step: .01 },
+        numberOfPlanes: { value: 8, min: 0, max: 100, step: 1 },
+    })
+
+    const meshParams = useControls({
+        roughness: { value: .4, min: 0, max: 1, step: .01 },
+        metalness: { value: 0, min: 0, max: 1, step: .01 },
+        transmission: { value: 1, min: 0, max: 1, step: .01 },
+        opacity: { value: 1, min: 0, max: 1, step: .01 },
+    })
+    console.log('planeParams', planeParams)
+
+    return (
+        <mesh>
+            <planeGeometry recieveShadow castShadow>
+                <meshPhysicalMaterial {...meshParams} color={[1, 1, 1]} />
+            </planeGeometry>
+        </mesh>
     );
 }
 
-const World = () => {
-    return ( 
 
-    );
+const Lights = () => {
+    const lightParams = useControls({
+        intensity: { value: 2, min: 0, max: 5, step: .01 },
+        position: { value: [10, 20, 10], min: 0, max: 30, step: .1 }
+    })
+    return (
+        <directionalLight castShadow {...lightParams} />
+    )
 }
 
 
 
-export default CanvasContainer;
+
+
+export default CanvasContainer; 
