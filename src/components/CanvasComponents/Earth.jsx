@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useContext } from 'react';
 import * as THREE from "three";
 import { Texture } from "three";
 import { extend, useFrame, useThree } from '@react-three/fiber'
@@ -6,10 +6,9 @@ import { Sphere, useTexture, shaderMaterial } from "@react-three/drei";
 import { useControls } from 'leva';
 import glsl from 'babel-plugin-glsl/macro.js'
 import gsap from 'gsap'
-
+import radiusContext from '../../App'
 
 //todo: add shadows to all parts
-
 
 const AtmosphereMaterial = shaderMaterial(
     { map: new Texture(), color: new THREE.Color(0.2, 0.0, 0.1) },
@@ -27,7 +26,6 @@ const AtmosphereMaterial = shaderMaterial(
     // fragment shader
     glsl`
     uniform sampler2D map;
-
     varying vec2 vertexUV;
     varying vec3 vertexNormal;
 
@@ -40,53 +38,54 @@ const AtmosphereMaterial = shaderMaterial(
         gl_FragColor = vec4(atmosphere + texture2D(map, vertexUV).xyz, 1.0);
     }
   `
-
 )
 
 extend({ AtmosphereMaterial })
 
 const Earth = () => {
+    const [earthRadius, setEarthRadius] = useContext(radiusContext)
+
+    useThree(({ camera }) => {
+        camera.position.z = 50;
+        camera.fov = 45
+    });
+
+    // Texture
     const map = useTexture('/nasaEarth.jpg')
-
+    // UseThree for Mouse
     const mouse = useThree()
-
-    const shaderRef = useRef()
+    // Refs
     const earthRef = useRef()
     const meshRef = useRef()
-
-    const meshParams = useControls({
-        // radius: { value: 20, min: .05, max: 10, step: .5 },
-    })
+    // GUI
     const earthParams = useControls({
         radius: { value: 9.5, min: .05, max: 30, step: .5 },
-
+        rotateSpeed: { value: .001, min: 0, max: .01, step: .001 },
     })
-
+    console.log('controls', useControls)
+    console.log('context', earthRadius)
+    // Turn Earth to correct position Onload
     useEffect(() => {
-        earthRef.current.rotation.x = Math.PI * .2
-        earthRef.current.rotation.y = Math.PI * -.1
-        // console.log('hit useEffect')
-
-
+        // earthRef.current.rotation.x = Math.PI * .2
+        // earthRef.current.rotation.y = Math.PI * -.1
     }, [])
 
     useFrame(() => {
-        // console.log('hit useFrame')
-        meshRef.current.rotateY(.001)
+        //Move Earth based on mouse location
         gsap.to(meshRef.current.rotation, {
-            y: mouse.mouse.x * .3,
-            x: -mouse.mouse.y * .5,
+            y: mouse.mouse.x * 4.5,
+            x: -mouse.mouse.y * .7,
             duration: 3,
         })
 
+        // Slowly Rotate Earth
+        earthRef.current.rotateY(.0015)
     })
-
-
 
     return (
         <mesh ref={meshRef}>
-            <Sphere args={[earthParams.radius, 50, 50]} ref={earthRef}>
-                <atmosphereMaterial map={map} ref={shaderRef} />
+            <Sphere args={[earthParams.radius, 100, 100]} ref={earthRef}>
+                <atmosphereMaterial map={map} />
             </Sphere>
         </mesh>
     );

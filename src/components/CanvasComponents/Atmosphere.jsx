@@ -1,7 +1,7 @@
 import React from 'react';
 import * as THREE from "three";
-import { extend, useFrame, useThree } from '@react-three/fiber'
-import { Sphere, useTexture, shaderMaterial } from "@react-three/drei";
+import { extend } from '@react-three/fiber'
+import { Sphere, shaderMaterial } from "@react-three/drei";
 import { useControls } from 'leva';
 import glsl from 'babel-plugin-glsl/macro.js'
 
@@ -33,8 +33,6 @@ const OuterAtmosphereMaterial = shaderMaterial(
 )
 
 extend({ OuterAtmosphereMaterial })
-
-
 
 const Atmosphere = () => {
 
