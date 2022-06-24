@@ -1,15 +1,13 @@
-import { Canvas } from "@react-three/fiber";
+import { Canvas, useFrame } from "@react-three/fiber";
 import { useControls } from 'leva';
-import React, { Suspense, createContext, useState } from 'react';
-import { Html, useProgress, OrbitControls } from '@react-three/drei'
+import React, { Suspense, createContext, useState, useRef } from 'react';
+import { Html, useProgress, OrbitControls, useGLTF } from '@react-three/drei'
 // Components
 import StarsContainer from "./CanvasComponents/Stars";
-import CameraContainer from "./CanvasComponents/Camera";
+// import CameraContainer from "./CanvasComponents/Camera";
 import Earth from "./CanvasComponents/Earth";
 import Atmosphere from "./CanvasComponents/Atmosphere";
-// import Airplanes from "./CanvasComponents/Airplanes";
 const Airplanes = React.lazy(() => import("./CanvasComponents/Airplanes"));
-// import Airplane from "./CanvasComponents/models/Airplane";
 
 /* TODO
 //  * add loading bar to Suspense 
@@ -27,11 +25,13 @@ function Loader() {
 
 const CanvasContainer = () => {
     const [earthRadius, setEarthRadius] = useState(9.5);
+
     // Airplane Model
-    // const { nodes, materials } = useGLTF('/models/airplane-transformed.glb')
+    // const model = useGLTF('/models/airplane-transformed.glb')
+
 
     return (
-        <Canvas>
+        <Canvas >
             <OrbitControls />
             <RadiusContext.Provider value={[earthRadius, setEarthRadius]} >
                 <Suspense fallback={<Loader />} >
@@ -41,6 +41,8 @@ const CanvasContainer = () => {
                     <StarsContainer />
                     <Lights />
                 </Suspense >
+                <Airplanes />
+                <Airplanes />
                 <Airplanes />
             </RadiusContext.Provider>
         </Canvas >
