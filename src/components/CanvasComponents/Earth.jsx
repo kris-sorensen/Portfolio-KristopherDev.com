@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useContext } from 'react';
+import React, { useRef, useContext } from 'react';
 import * as THREE from "three";
 import { Texture } from "three";
 import { extend, useFrame, useThree } from '@react-three/fiber'
@@ -45,11 +45,6 @@ extend({ AtmosphereMaterial })
 const Earth = () => {
     const [earthRadius, setEarthRadius] = useContext(RadiusContext)
 
-    useThree(({ camera }) => {
-        camera.position.z = 50;
-        camera.fov = 45
-    });
-
     // Texture
     const map = useTexture('/nasaEarth.jpg')
     // UseThree for Mouse
@@ -62,13 +57,7 @@ const Earth = () => {
         radius: { value: earthRadius, min: .05, max: 30, step: .5 },
         rotateSpeed: { value: .001, min: 0, max: .01, step: .001 },
     })
-    // console.log('controls', useControls)
-    // console.log('context', earthRadius)
-    // Turn Earth to correct position Onload
-    useEffect(() => {
-        // earthRef.current.rotation.x = Math.PI * .2
-        // earthRef.current.rotation.y = Math.PI * -.1
-    }, [])
+
 
     useFrame(() => {
         //Move Earth based on mouse location

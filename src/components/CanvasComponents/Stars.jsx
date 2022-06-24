@@ -1,12 +1,10 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { Stars } from '@react-three/drei'
 
 const StarsContainer = () => {
-    const star = useRef();
-    console.log(star.current)
     return (
         <mesh>
-            <Stars ref={star} />
+            <Stars />
         </mesh>
     );
 }

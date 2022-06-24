@@ -1,10 +1,10 @@
-import { Canvas, useFrame } from "@react-three/fiber";
+import * as THREE from 'three'
+import { Canvas, useThree } from "@react-three/fiber";
 import { useControls } from 'leva';
-import React, { Suspense, createContext, useState, useRef } from 'react';
-import { Html, useProgress, OrbitControls, useGLTF } from '@react-three/drei'
+import React, { Suspense, createContext, useState } from 'react';
+import { Html, useProgress, OrbitControls } from '@react-three/drei'
 // Components
 import StarsContainer from "./CanvasComponents/Stars";
-// import CameraContainer from "./CanvasComponents/Camera";
 import Earth from "./CanvasComponents/Earth";
 import Atmosphere from "./CanvasComponents/Atmosphere";
 const Airplanes = React.lazy(() => import("./CanvasComponents/Airplanes"));
@@ -26,21 +26,24 @@ function Loader() {
 const CanvasContainer = () => {
     const [earthRadius, setEarthRadius] = useState(9.5);
 
-    // Airplane Model
-    // const model = useGLTF('/models/airplane-transformed.glb')
 
 
     return (
-        <Canvas >
-            <OrbitControls />
+        <Canvas gl={{ antialias: true, toneMapping: THREE.NoToneMapping }}
+            linear>
+            {/* <OrbitControls /> */}
             <RadiusContext.Provider value={[earthRadius, setEarthRadius]} >
+                <CameraContainer />
                 <Suspense fallback={<Loader />} >
-                    {/* <CameraContainer /> */}
                     <Earth />
                     <Atmosphere />
                     <StarsContainer />
                     <Lights />
                 </Suspense >
+
+                <Airplanes />
+                <Airplanes />
+                <Airplanes />
                 <Airplanes />
                 <Airplanes />
                 <Airplanes />
@@ -49,15 +52,37 @@ const CanvasContainer = () => {
     )
 }
 
+const CameraContainer = () => {
+    const cameraParams = useControls({
+        zPosition: { value: 50, min: 5, max: 300, step: 1 },
+        fov: { value: 45, min: 5, max: 135, step: 1 },
 
+    })
+
+
+    useThree(({ camera }) => {
+        camera.fov = cameraParams.fov
+        camera.position.z = cameraParams.zPosition;
+        camera.updateProjectionMatrix()
+    });
+
+
+
+
+    return (
+        <>
+
+        </>
+    )
+}
 
 const Lights = () => {
     const lightParams = useControls({
         intensity: { value: 2, min: 0, max: 5, step: .01 },
-        position: { value: [10, 20, 10], min: 0, max: 30, step: .1 }
+        position: { value: [0, 0, 10], min: 0, max: 30, step: .1 }
     })
     return (
-        <directionalLight castShadow {...lightParams} />
+        <directionalLight castShadow {...lightParams} color={"#fffce9"} />
     )
 }
 

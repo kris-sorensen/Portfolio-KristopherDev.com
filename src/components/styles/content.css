@@ -1,0 +1,51 @@
+@font-face {
+    font-family: galaxus;
+    src: url("../../fonts/galaxus.regular.otf") format("opentype");
+}
+
+.textContainer {
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    z-index: 1000;
+    position: absolute;
+    width: 100%;
+    margin-left: .5rem;
+    margin-right: .5rem;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-shadow: .5px .5px 2px rgb(0, 0, 0), 0 0 1em #2568b4, 0 0 0.8em #2568b4;
+}
+
+
+
+#name {
+    z-index: 1000;
+    /* color: rgb(0, 183, 134); */
+    color: white;
+    font-size: 8rem;
+    margin-bottom: 0;
+    font-family: galaxus, 'Gill Sans',
+        'Gill Sans MT',
+        Calibri,
+        'Trebuchet MS',
+        sans-serif;
+
+    ;
+    letter-spacing: .3rem;
+    line-height: 1;
+    text-align: center;
+}
+
+#title {
+    margin-top: 1rem;
+    color: rgb(10, 10, 10);
+    /* color: rgb(0, 183, 134); */
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-shadow: 1px 1px #000000;
+    /* text-shadow: none; */
+    text-align: center;
+    font-weight: 400;
+    font-size: 2.8rem;
+}
