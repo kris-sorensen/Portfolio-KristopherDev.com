@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import * as THREE from "three";
 import { extend } from '@react-three/fiber'
 import { Sphere, shaderMaterial } from "@react-three/drei";
 import { useControls } from 'leva';
 import glsl from 'babel-plugin-glsl/macro.js'
+import { RadiusContext } from '../CanvasContainer'
 
 const OuterAtmosphereMaterial = shaderMaterial(
     { blending: THREE.AdditiveBlending, side: THREE.BackSide },
@@ -35,9 +36,10 @@ const OuterAtmosphereMaterial = shaderMaterial(
 extend({ OuterAtmosphereMaterial })
 
 const Atmosphere = () => {
+    const [earthRadius, setEarthRadius] = useContext(RadiusContext)
 
     const atmosphereParams = useControls({
-        radius: { value: 9.5, min: .05, max: 30, step: .5 },
+        radius: { value: earthRadius, min: .05, max: 30, step: .5 },
         scale: { value: 1.4, min: 0, max: 2, step: .01 }
 
     })

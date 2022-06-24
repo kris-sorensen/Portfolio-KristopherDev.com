@@ -6,7 +6,7 @@ import { Sphere, useTexture, shaderMaterial } from "@react-three/drei";
 import { useControls } from 'leva';
 import glsl from 'babel-plugin-glsl/macro.js'
 import gsap from 'gsap'
-import radiusContext from '../../App'
+import { RadiusContext } from '../CanvasContainer'
 
 //todo: add shadows to all parts
 
@@ -43,7 +43,7 @@ const AtmosphereMaterial = shaderMaterial(
 extend({ AtmosphereMaterial })
 
 const Earth = () => {
-    const [earthRadius, setEarthRadius] = useContext(radiusContext)
+    const [earthRadius, setEarthRadius] = useContext(RadiusContext)
 
     useThree(({ camera }) => {
         camera.position.z = 50;
@@ -59,11 +59,11 @@ const Earth = () => {
     const meshRef = useRef()
     // GUI
     const earthParams = useControls({
-        radius: { value: 9.5, min: .05, max: 30, step: .5 },
+        radius: { value: earthRadius, min: .05, max: 30, step: .5 },
         rotateSpeed: { value: .001, min: 0, max: .01, step: .001 },
     })
-    console.log('controls', useControls)
-    console.log('context', earthRadius)
+    // console.log('controls', useControls)
+    // console.log('context', earthRadius)
     // Turn Earth to correct position Onload
     useEffect(() => {
         // earthRef.current.rotation.x = Math.PI * .2
@@ -77,10 +77,11 @@ const Earth = () => {
             x: -mouse.mouse.y * .7,
             duration: 3,
         })
-
         // Slowly Rotate Earth
         earthRef.current.rotateY(.0015)
     })
+
+
 
     return (
         <mesh ref={meshRef}>

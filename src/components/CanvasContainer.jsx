@@ -1,20 +1,24 @@
 import { Canvas } from "@react-three/fiber";
 import { useControls } from 'leva';
-import React, { Suspense } from 'react';
-import { Html, useProgress } from '@react-three/drei'
+import React, { Suspense, createContext, useState } from 'react';
+import { Html, useProgress, OrbitControls } from '@react-three/drei'
 // Components
 import StarsContainer from "./CanvasComponents/Stars";
 import CameraContainer from "./CanvasComponents/Camera";
 import Earth from "./CanvasComponents/Earth";
 import Atmosphere from "./CanvasComponents/Atmosphere";
-import Airplanes from "./CanvasComponents/Airplanes";
+// import Airplanes from "./CanvasComponents/Airplanes";
+const Airplanes = React.lazy(() => import("./CanvasComponents/Airplanes"));
+// import Airplane from "./CanvasComponents/models/Airplane";
 
 /* TODO
- * add loading bar to Suspense 
+//  * add loading bar to Suspense 
  * add shadow boundaries if needed
  * add sharpness to earth texture (reading list)
  */
 //sfc, imr
+
+export const RadiusContext = createContext()
 
 function Loader() {
     const { progress } = useProgress()
@@ -22,20 +26,28 @@ function Loader() {
 }
 
 const CanvasContainer = () => {
+    const [earthRadius, setEarthRadius] = useState(9.5);
+    // Airplane Model
+    // const { nodes, materials } = useGLTF('/models/airplane-transformed.glb')
 
     return (
         <Canvas>
-            <Suspense fallback={<Loader />} >
-                {/* <CameraContainer /> */}
-                <Earth />
-                <Atmosphere />
+            <OrbitControls />
+            <RadiusContext.Provider value={[earthRadius, setEarthRadius]} >
+                <Suspense fallback={<Loader />} >
+                    {/* <CameraContainer /> */}
+                    <Earth />
+                    <Atmosphere />
+                    <StarsContainer />
+                    <Lights />
+                </Suspense >
                 <Airplanes />
-                <StarsContainer />
-                <Lights />
-            </Suspense >
+            </RadiusContext.Provider>
         </Canvas >
     )
 }
+
+
 
 const Lights = () => {
     const lightParams = useControls({
