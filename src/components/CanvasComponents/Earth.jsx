@@ -1,14 +1,16 @@
 import React, { useRef, useContext } from 'react';
 import * as THREE from "three";
 import { Texture } from "three";
-import { extend, useFrame, useThree } from '@react-three/fiber'
+import { extend, useFrame } from '@react-three/fiber'
 import { Sphere, useTexture, shaderMaterial } from "@react-three/drei";
 import { useControls } from 'leva';
 import glsl from 'babel-plugin-glsl/macro.js'
 import gsap from 'gsap'
 import { RadiusContext } from '../CanvasContainer'
+import { useMousePosition } from '../../hooks/useMousePosition'
 
 //todo: add shadows to all parts
+//todoL memo() useMousePosition
 
 const AtmosphereMaterial = shaderMaterial(
     { map: new Texture(), color: new THREE.Color(0.2, 0.0, 0.1) },
@@ -44,11 +46,10 @@ extend({ AtmosphereMaterial })
 
 const Earth = () => {
     const [earthRadius, setEarthRadius] = useContext(RadiusContext)
-
+    //Custom Hooks
+    const position = useMousePosition();
     // Texture
     const map = useTexture('/nasaEarth.jpg')
-    // UseThree for Mouse
-    const mouse = useThree()
     // Refs
     const earthRef = useRef()
     const meshRef = useRef()
@@ -58,19 +59,17 @@ const Earth = () => {
         rotateSpeed: { value: .001, min: 0, max: .01, step: .001 },
     })
 
-
     useFrame(() => {
         //Move Earth based on mouse location
         gsap.to(meshRef.current.rotation, {
-            y: mouse.mouse.x * 4.5,
-            x: -mouse.mouse.y * .7,
+            y: ((position.x / window.innerWidth) * 2 - 1) * 3.5, // Convert pixel location of mouse into Canvas location
+            x: (-(position.y / window.innerHeight) * 2 + 1),
             duration: 3,
+
         })
         // Slowly Rotate Earth
         earthRef.current.rotateY(.0015)
-    })
-
-
+    }, -2)
 
     return (
         <mesh ref={meshRef}>

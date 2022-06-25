@@ -30,7 +30,6 @@ const OuterAtmosphereMaterial = shaderMaterial(
         gl_FragColor = vec4(0.3,0.6,1.0,1.0) * intensity;
     }
   `
-
 )
 
 extend({ OuterAtmosphereMaterial })
@@ -41,8 +40,8 @@ const Atmosphere = () => {
     const atmosphereParams = useControls({
         radius: { value: earthRadius, min: .05, max: 30, step: .5 },
         scale: { value: 1.4, min: 0, max: 2, step: .01 }
-
     })
+
     return (
         <mesh>
             <Sphere args={[atmosphereParams.radius, 30, 30]} scale={atmosphereParams.scale} >
