@@ -42,6 +42,7 @@ const AtmosphereMaterial = shaderMaterial(
   `
 )
 
+
 extend({ AtmosphereMaterial })
 
 const Earth = () => {

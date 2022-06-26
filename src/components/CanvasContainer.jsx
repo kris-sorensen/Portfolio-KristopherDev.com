@@ -2,7 +2,7 @@ import * as THREE from 'three'
 import { Canvas, useThree } from "@react-three/fiber";
 import { useControls, Leva } from 'leva';
 import React, { Suspense, createContext, useState } from 'react';
-import { Html, useProgress, OrbitControls } from '@react-three/drei'
+import { Html, useProgress } from '@react-three/drei'
 // Components
 import StarsContainer from "./CanvasComponents/Stars";
 import Earth from "./CanvasComponents/Earth";
@@ -31,7 +31,6 @@ const CanvasContainer = () => {
     return (
         <Canvas gl={{ antialias: true, toneMapping: THREE.NoToneMapping }}
             linear >
-            <OrbitControls />
             < Leva hidden />
             <RadiusContext.Provider value={[earthRadius, setEarthRadius]} >
                 <CameraContainer />
@@ -42,6 +41,8 @@ const CanvasContainer = () => {
                     <Lights />
                 </Suspense >
 
+                <Airplanes />
+                <Airplanes />
                 <Airplanes />
                 <Airplanes />
                 <Airplanes />
