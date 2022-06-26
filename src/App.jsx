@@ -2,7 +2,7 @@ import React from 'react';
 
 import './App.css';
 import ContentContainer from './components/ContentContainer'
-import CanvasContainer from './Components/CanvasContainer'
+import CanvasContainer from './components/CanvasContainer'
 
 function App() {
 
