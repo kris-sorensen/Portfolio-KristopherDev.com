@@ -2,11 +2,12 @@ import * as THREE from 'three'
 import { Canvas, useThree } from "@react-three/fiber";
 import { useControls, Leva } from 'leva';
 import React, { Suspense, createContext, useState } from 'react';
-import { Html, useProgress } from '@react-three/drei'
+import { Html, useProgress, OrbitControls } from '@react-three/drei'
 // Components
 import StarsContainer from "./CanvasComponents/Stars";
 import Earth from "./CanvasComponents/Earth";
 import Atmosphere from "./CanvasComponents/Atmosphere";
+const SocialLinks = React.lazy(() => import('./CanvasComponents/SocialLinks'));
 const Airplanes = React.lazy(() => import("./CanvasComponents/Airplanes"));
 
 /* TODO
@@ -16,6 +17,7 @@ const Airplanes = React.lazy(() => import("./CanvasComponents/Airplanes"));
  * Add dynamic font adjust
  * Make subtile text more visable
  * change name font
+ * Ocular?
  */
 
 export const RadiusContext = createContext()
@@ -31,7 +33,8 @@ const CanvasContainer = () => {
     return (
         <Canvas gl={{ antialias: true, toneMapping: THREE.NoToneMapping }}
             linear >
-            < Leva hidden />
+            {/* < Leva hidden /> */}
+            {/* <OrbitControls /> */}
             <RadiusContext.Provider value={[earthRadius, setEarthRadius]} >
                 <CameraContainer />
                 <Suspense fallback={<Loader />} >
@@ -39,6 +42,7 @@ const CanvasContainer = () => {
                     <Atmosphere />
                     <StarsContainer />
                     <Lights />
+                    <SocialLinks />
                 </Suspense >
 
                 <Airplanes />
@@ -77,7 +81,10 @@ const Lights = () => {
         position: { value: [0, 0, 10], min: 0, max: 30, step: .1 }
     })
     return (
-        <directionalLight castShadow {...lightParams} color={"#fff"} />
+        <>
+            <directionalLight castShadow {...lightParams} color={"#fff"} />
+            <pointLight position={[0, 0, 40]} color={0xffffff} intensity={0.8} />
+        </>
     )
 }
 

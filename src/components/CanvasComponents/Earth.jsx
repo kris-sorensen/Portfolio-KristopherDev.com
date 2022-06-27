@@ -11,6 +11,7 @@ import { useMousePosition } from '../../hooks/useMousePosition'
 
 //todo: add shadows to all parts
 //todoL memo() useMousePosition
+// add glowing point light like ghosts on haunted house that follows mouse?
 
 const AtmosphereMaterial = shaderMaterial(
     { map: new Texture(), color: new THREE.Color(0.2, 0.0, 0.1) },
@@ -68,11 +69,16 @@ const Earth = () => {
             duration: 3,
 
         })
-        // Slowly Rotate Earth
-        earthRef.current.rotateY(.0015)
     }, -2)
 
+    useFrame(() => {
+        // Slowly Rotate Earth
+        earthRef.current.rotateY(.0015)
+    }, -1)
+
     return (
+
+
         <mesh ref={meshRef}>
             <Sphere args={[earthParams.radius, 100, 100]} ref={earthRef}>
                 <atmosphereMaterial map={map} />
@@ -80,5 +86,7 @@ const Earth = () => {
         </mesh>
     );
 }
+
+const ghost1 = new THREE.PointLight('#ff00ff', 2, 3)
 
 export default Earth;

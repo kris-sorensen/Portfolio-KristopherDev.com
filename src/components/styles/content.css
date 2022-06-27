@@ -1,6 +1,7 @@
 @font-face {
     font-family: galaxus;
     src: url("../../fonts/galaxus.regular.otf") format("opentype");
+    font-display: swap;
 }
 
 .textContainer {
