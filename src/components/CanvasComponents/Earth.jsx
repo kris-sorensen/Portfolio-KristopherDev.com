@@ -87,6 +87,6 @@ const Earth = () => {
     );
 }
 
-const ghost1 = new THREE.PointLight('#ff00ff', 2, 3)
+
 
 export default Earth;

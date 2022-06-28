@@ -1,13 +1,13 @@
 import * as THREE from 'three'
 import { Canvas, useThree } from "@react-three/fiber";
 import { useControls, Leva } from 'leva';
-import React, { Suspense, createContext, useState } from 'react';
+import React, { Suspense, createContext, useState, useEffect } from 'react';
 import { Html, useProgress, OrbitControls } from '@react-three/drei'
+import useWindowSize from '../hooks/useWindowSize'
 // Components
 import StarsContainer from "./CanvasComponents/Stars";
 import Earth from "./CanvasComponents/Earth";
 import Atmosphere from "./CanvasComponents/Atmosphere";
-const SocialLinks = React.lazy(() => import('./CanvasComponents/SocialLinks'));
 const Airplanes = React.lazy(() => import("./CanvasComponents/Airplanes"));
 
 /* TODO
@@ -28,12 +28,21 @@ function Loader() {
 }
 
 const CanvasContainer = () => {
-    const [earthRadius, setEarthRadius] = useState(9.5);
+    const { earthSize } = useWindowSize();
+    const [earthRadius, setEarthRadius] = useState();
+
+    useEffect(() => {
+        function handleEarthSize() {
+            setEarthRadius(earthSize)
+        }
+
+        handleEarthSize()
+    })
 
     return (
         <Canvas gl={{ antialias: true, toneMapping: THREE.NoToneMapping }}
             linear >
-            {/* < Leva hidden /> */}
+            <Leva hidden />
             {/* <OrbitControls /> */}
             <RadiusContext.Provider value={[earthRadius, setEarthRadius]} >
                 <CameraContainer />
@@ -42,7 +51,7 @@ const CanvasContainer = () => {
                     <Atmosphere />
                     <StarsContainer />
                     <Lights />
-                    <SocialLinks />
+                    {/* <SocialLinks /> */}
                 </Suspense >
 
                 <Airplanes />
