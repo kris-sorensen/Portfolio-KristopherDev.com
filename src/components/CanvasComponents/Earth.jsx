@@ -9,6 +9,7 @@ import gsap from 'gsap'
 import { RadiusContext } from '../CanvasContainer'
 import { useMousePosition } from '../../hooks/useMousePosition'
 
+
 //todo: add shadows to all parts
 //todoL memo() useMousePosition
 // add glowing point light like ghosts on haunted house that follows mouse?

@@ -24,7 +24,7 @@
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
     "babel-plugin-glsl": "^1.0.0",
-    "framer-motion-3d": "^6.3.16",
+    "framer-motion": "^6.3.16",
     "glsl-noise": "^0.0.0",
     "glslify": "^7.1.1",
     "gsap": "^3.10.4",

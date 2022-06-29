@@ -1,8 +1,12 @@
+/* Typography */
+
 @font-face {
     font-family: galaxus;
     src: url("../../fonts/galaxus.regular.otf") format("opentype");
     font-display: swap;
 }
+
+/* Main Content */
 
 .textContainer {
     /* display: flex;
@@ -51,14 +55,19 @@
     font-size: 2.8rem;
 }
 
+
+
+
+/* Social Links */
+
 .social {
-    z-index: 2000;
-    position: relative;
+    z-index: 2010;
+    position: absolute;
     width: 100%;
     height: 100%;
     /* margin-left: .5rem;
     margin-right: .5rem; */
-    top: calc(80% - 3rem);
+    top: calc(90% - 3rem);
     left: calc(90% - 3rem);
     /* transform: translate(-50%, -50%); */
     /* text-shadow: .5px .5px 2px rgb(0, 0, 0), 0 0 1em #2568b4, 0 0 0.8em #2568b4; */
@@ -67,8 +76,59 @@
 #plus {
     width: 6rem;
     height: 6rem;
-    opacity: .95;
+    opacity: 1;
 }
+
+.socialGit {
+    z-index: 2009;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: calc(90% - 3rem);
+    left: calc(90% - 3rem);
+}
+
+#git {
+    width: 6rem;
+    height: 6rem;
+    opacity: 0;
+}
+
+.socialLI {
+    z-index: 2008;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: calc(90% - 3rem);
+    left: calc(90% - 3rem);
+}
+
+#linkedIn {
+    width: 6rem;
+    height: 6rem;
+    opacity: 0;
+}
+
+.socialEmail {
+    z-index: 2007;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: calc(90% - 3rem);
+    left: calc(90% - 3rem);
+}
+
+#email {
+    width: 6rem;
+    height: 6rem;
+    opacity: 0;
+}
+
+
+
+
+
+/* Nav Bar */
 
 nav {
     z-index: 3000;
@@ -96,6 +156,8 @@ li {
 
 
 
+
+/* Media Queries */
 
 @media screen and (max-width: 1410px) {
     #title {
@@ -227,7 +289,7 @@ li {
 
 @media screen and (max-height: 730px) {
     #title {
-        font-size: 2.2rem;
+        font-size: 2.4rem;
     }
 
     #name {
@@ -237,7 +299,7 @@ li {
 
 @media screen and (max-height: 660px) {
     #title {
-        font-size: 2.0rem;
+        font-size: 2.4rem;
     }
 
     #name {
@@ -247,7 +309,7 @@ li {
 
 @media screen and (max-height: 570px) {
     #title {
-        font-size: 1.8rem;
+        font-size: 2.4rem;
     }
 
     #name {
@@ -257,7 +319,7 @@ li {
 
 @media screen and (max-height: 535px) {
     #title {
-        font-size: 1.6rem;
+        font-size: 2.3rem;
     }
 
     #name {
@@ -267,7 +329,7 @@ li {
 
 @media screen and (max-height: 460px) {
     #title {
-        font-size: 1.3rem;
+        font-size: 1.8rem;
     }
 
     #name {
