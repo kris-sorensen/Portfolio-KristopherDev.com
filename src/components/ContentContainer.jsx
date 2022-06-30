@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import gsap from 'gsap'
 import { motion } from "framer-motion";
 
@@ -7,7 +7,6 @@ import './styles/content.css'
 
 const ContentContainer = () => {
     //Hooks
-    const [isHovered, setIsHovered] = useState(false);
     const [isClicked, setIsClicked] = useState(true);
 
     //Refs
@@ -88,7 +87,9 @@ const ContentContainer = () => {
     const handleLinkedInClick = () => {
         window.open("https://www.linkedin.com/in/kris-sorensen/");
     }
-
+    const handleEmailClick = () => {
+        window.open('mailto:krismsorensen@gmail.com?')
+    }
 
 
 
@@ -99,12 +100,12 @@ const ContentContainer = () => {
                 <h2 id="title">Creative Software Developer</h2>
 
             </div>
-            <nav >
+            {/* <nav >
                 <ol className="navContainer">
                     <li className="about">About</li>
                     <li className="work">Work</li>
                 </ol>
-            </nav>
+            </nav> */}
             <div className="social" >
                 <motion.img id="plus" onHoverStart={handleHover} onHoverEnd={handleHoverExit} src="add.png" ref={plusRef} alt="Social Links" onClick={() => handleClick()} />
             </div>
@@ -115,7 +116,7 @@ const ContentContainer = () => {
                 <img id="linkedIn" ref={linkedInRef} src="linkedIn.png" alt="LinkedIn" onClick={() => handleLinkedInClick()} />
             </div>
             <div className="socialEmail" >
-                <img id="email" ref={emailRef} src="email.png" alt="Email" />
+                <img id="email" ref={emailRef} src="email.png" alt="Email" onClick={() => handleEmailClick()} />
             </div>
         </>
 
