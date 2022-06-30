@@ -81,7 +81,7 @@ const Earth = () => {
 
 
         <mesh ref={meshRef}>
-            <Sphere args={[9.0, 100, 100]} ref={earthRef}>
+            <Sphere args={[9.5, 100, 100]} ref={earthRef}>
                 <atmosphereMaterial map={map} />
             </Sphere>
         </mesh>

@@ -38,13 +38,13 @@ const Atmosphere = () => {
     const [earthRadius, setEarthRadius] = useContext(RadiusContext)
 
     const atmosphereParams = useControls({
-        radius: { value: earthRadius, min: .05, max: 30, step: .5 },
+        // radius: { value: earthRadius, min: .05, max: 30, step: .5 },
         scale: { value: 1.4, min: 0, max: 2, step: .01 }
     })
 
     return (
         <mesh>
-            <Sphere args={[atmosphereParams.radius, 30, 30]} scale={atmosphereParams.scale} >
+            <Sphere args={[9.5, 30, 30]} scale={atmosphereParams.scale} >
                 <outerAtmosphereMaterial />
             </Sphere>
         </mesh>
