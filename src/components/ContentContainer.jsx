@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import gsap from 'gsap'
 import { motion } from "framer-motion";
@@ -23,13 +22,12 @@ const ContentContainer = () => {
      * Animations
      */
 
-    // Hover Effect Scale Svg on Hover
+    // Hover Effect Scale Img on Hover
     const handleHover = (el) => {
         gsap.to(el, {
             scale: 1.2,
         })
     }
-
 
     const handleHoverExit = (el) => {
         gsap.to(el, {
