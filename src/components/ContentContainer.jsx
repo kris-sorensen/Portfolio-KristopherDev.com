@@ -1,5 +1,5 @@
 
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import gsap from 'gsap'
 import { motion } from "framer-motion";
 
@@ -8,7 +8,11 @@ import './styles/content.css'
 const ContentContainer = () => {
     //Hooks
     const [isClicked, setIsClicked] = useState(true);
-
+    // Auto Lauch Social Links Animation
+    useEffect(() => {
+        const timer = setTimeout(() => handleClick(), 5000);
+        return () => clearTimeout(timer);
+    }, []);
     //Refs
     const plusRef = useRef()
     const gitRef = useRef()
