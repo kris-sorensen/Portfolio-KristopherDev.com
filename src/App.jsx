@@ -1,15 +1,12 @@
 import React from 'react';
-
 import './App.css';
-import ContentContainer from './components/ContentContainer'
-import CanvasContainer from './components/CanvasContainer'
+import RouteHandler from './Routes';
 
 function App() {
 
   return (
     <div className="App" >
-      <ContentContainer />
-      <CanvasContainer />
+      <RouteHandler />
     </div>
   );
 }
