@@ -27,7 +27,6 @@ const ContentContainer = () => {
     const handleHover = (el) => {
         gsap.to(el, {
             scale: 1.2,
-            duration: .2,
         })
     }
 
@@ -35,7 +34,6 @@ const ContentContainer = () => {
     const handleHoverExit = (el) => {
         gsap.to(el, {
             scale: 1,
-            duration: .1,
         })
     }
 
