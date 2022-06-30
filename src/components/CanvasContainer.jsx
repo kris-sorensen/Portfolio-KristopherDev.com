@@ -1,7 +1,7 @@
 import * as THREE from 'three'
 import { Canvas, useThree } from "@react-three/fiber";
 import { useControls, Leva } from 'leva';
-import React, { Suspense, createContext, useState, useEffect } from 'react';
+import React, { Suspense, createContext, useState, useEffect, useLayoutEffect } from 'react';
 import { Html, useProgress, OrbitControls } from '@react-three/drei'
 import useWindowSize from '../hooks/useWindowSize'
 // Components
@@ -28,16 +28,17 @@ function Loader() {
 }
 
 const CanvasContainer = () => {
+    // Hooks
     const { earthSize } = useWindowSize();
     const [earthRadius, setEarthRadius] = useState();
 
+    // Set Earth Size
     useEffect(() => {
         function handleEarthSize() {
             setEarthRadius(earthSize)
         }
-
         handleEarthSize()
-    })
+    }, [])
 
     return (
         <Canvas gl={{ antialias: true, toneMapping: THREE.NoToneMapping }}
@@ -51,7 +52,6 @@ const CanvasContainer = () => {
                     <Atmosphere />
                     <StarsContainer />
                     <Lights />
-                    {/* <SocialLinks /> */}
                 </Suspense >
 
                 <Airplanes />
