@@ -188,7 +188,7 @@ li {
         top: 5%
     }
 
-    .social {
+    /* .social {
         top: calc(85% - 2.75rem);
     }
 
@@ -196,7 +196,7 @@ li {
         width: 5.5rem;
         height: 5.5rem;
 
-    }
+    } */
 }
 
 @media screen and (max-width: 825px) {
