@@ -33,12 +33,12 @@ const CanvasContainer = () => {
     const [earthRadius, setEarthRadius] = useState();
 
     // Set Earth Size
-    useLayoutEffect(() => {
+    useEffect(() => {
         function handleEarthSize() {
             setEarthRadius(earthSize)
         }
         handleEarthSize()
-    })
+    }, [])
 
     return (
         <Canvas gl={{ antialias: true, toneMapping: THREE.NoToneMapping }}
