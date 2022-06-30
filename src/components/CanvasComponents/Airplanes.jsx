@@ -28,7 +28,7 @@ const Airplanes = () => {
     })
 
     const moveParams = useControls({
-        yOff: { value: (earthRadius + .2) + Math.random() * 1.0, min: -30, max: 30, step: .1 },
+        yOff: { value: (9.5 + .2) + Math.random() * 1.0, min: -30, max: 30, step: .1 },
     })
 
     let rot = Math.random() * Math.PI * 2.0
