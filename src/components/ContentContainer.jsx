@@ -23,16 +23,17 @@ const ContentContainer = () => {
      * Animations
      */
 
-    // Hover Effect for Plus SVG
-    const handleHover = () => {
-        gsap.to(plusRef.current, {
+    // Hover Effect Scale Svg on Hover
+    const handleHover = (el) => {
+        gsap.to(el, {
             scale: 1.2,
             duration: .2,
         })
     }
 
-    const handleHoverExit = () => {
-        gsap.to(plusRef.current, {
+
+    const handleHoverExit = (el) => {
+        gsap.to(el, {
             scale: 1,
             duration: .1,
         })
@@ -111,16 +112,16 @@ const ContentContainer = () => {
                 </ol>
             </nav> */}
             <div className="social" >
-                <motion.img id="plus" onHoverStart={handleHover} onHoverEnd={handleHoverExit} src="add.png" ref={plusRef} alt="Social Links" onClick={() => handleClick()} />
+                <motion.img id="plus" onHoverStart={() => handleHover(plusRef.current)} onHoverEnd={() => handleHoverExit(plusRef.current)} src="add.png" ref={plusRef} alt="Social Links" onClick={() => handleClick()} />
             </div>
             <div className="socialGit">
-                <img id="git" ref={gitRef} src="git.png" alt="Github" onClick={() => handleGitClick()} />
+                <motion.img id="git" ref={gitRef} src="git.png" alt="Github" onHoverStart={() => handleHover(gitRef.current)} onHoverEnd={() => handleHoverExit(gitRef.current)} onClick={() => handleGitClick()} />
             </div>
             <div className="socialLI" >
-                <img id="linkedIn" ref={linkedInRef} src="linkedIn.png" alt="LinkedIn" onClick={() => handleLinkedInClick()} />
+                <motion.img id="linkedIn" ref={linkedInRef} src="linkedIn.png" alt="LinkedIn" onHoverStart={() => handleHover(linkedInRef.current)} onHoverEnd={() => handleHoverExit(linkedInRef.current)} onClick={() => handleLinkedInClick()} />
             </div>
             <div className="socialEmail" >
-                <img id="email" ref={emailRef} src="email.png" alt="Email" onClick={() => handleEmailClick()} />
+                <motion.img id="email" ref={emailRef} src="email.png" alt="Email" onHoverStart={() => handleHover(emailRef.current)} onHoverEnd={() => handleHoverExit(emailRef.current)} onClick={() => handleEmailClick()} />
             </div>
         </>
 
