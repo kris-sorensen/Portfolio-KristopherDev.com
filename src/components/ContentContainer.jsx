@@ -98,10 +98,8 @@ const ContentContainer = () => {
     return (
         <>
             <header>
-                <text>
-                    <h1 id="name">Software Developer</h1>
-                    <h2 id="title">Kristopher Sorensen</h2>
-                </text>
+                <h1 id="name">Software Developer</h1>
+                <h2 id="title">Kristopher Sorensen</h2>
             </header>
             {/* <nav >
                 <ol className="navContainer">

@@ -171,13 +171,15 @@ li {
 @media screen and (max-width: 490px) {
     #title {
         font-size: 1rem;
+        letter-spacing: 0.7rem;
     }
 
     #name {
         font-size: 1.3rem;
+        margin-top: 2rem;
     }
 
     header {
-        height: 7rem;
+        height: 8rem;
     }
 }
