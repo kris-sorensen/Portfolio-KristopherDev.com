@@ -6,11 +6,17 @@ const getElementSizes = () => {
     if (window.innerWidth <= 490) return {
         earthSize: 7,
         yOff: 7 + .4 + Math.random() * 1.0,
-        scale: 1.8,
+        scale: 1.6,
         mobile: true,
-
     };
-    else return {
+    else if (window.innerWidth <= 765) {
+        return {
+            earthSize: 9.5,
+            yOff: 9.5 + .2 + Math.random() * 1.0,
+            scale: 1.5,
+            mobile: true,
+        }
+    } else return {
         earthSize: 9.5,
         yOff: 9.5 + .2 + Math.random() * 1.0,
         scale: 1.4,
