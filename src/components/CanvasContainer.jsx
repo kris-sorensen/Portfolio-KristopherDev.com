@@ -1,7 +1,7 @@
 import * as THREE from 'three'
 import { Canvas, useThree } from "@react-three/fiber";
 import { useControls, Leva } from 'leva';
-import React, { Suspense, createContext, useState, useEffect, useLayoutEffect } from 'react';
+import React, { Suspense } from 'react';
 import { Html, useProgress, OrbitControls } from '@react-three/drei'
 import useWindowSize from '../hooks/useWindowSize'
 // Components
@@ -20,7 +20,6 @@ const Airplanes = React.lazy(() => import("./CanvasComponents/Airplanes"));
  * Ocular?
  */
 
-export const RadiusContext = createContext()
 
 function Loader() {
     const { progress } = useProgress()
@@ -28,40 +27,27 @@ function Loader() {
 }
 
 const CanvasContainer = () => {
-    // Hooks
-    const { earthSize } = useWindowSize();
-    const [earthRadius, setEarthRadius] = useState();
-
-    // Set Earth Size
-    useEffect(() => {
-        function handleEarthSize() {
-            setEarthRadius(earthSize)
-        }
-        handleEarthSize()
-    }, [])
 
     return (
         <Canvas gl={{ antialias: true, toneMapping: THREE.NoToneMapping }}
             linear >
             <Leva hidden />
             {/* <OrbitControls /> */}
-            <RadiusContext.Provider value={[earthRadius, setEarthRadius]} >
-                <CameraContainer />
-                <Suspense fallback={<Loader />} >
-                    <Earth />
-                    <Atmosphere />
-                    <StarsContainer />
-                    <Lights />
-                </Suspense >
+            <CameraContainer />
+            <Suspense fallback={<Loader />} >
+                <Earth />
+                <Atmosphere />
+                <StarsContainer />
+                <Lights />
+            </Suspense >
 
-                <Airplanes />
-                <Airplanes />
-                <Airplanes />
-                <Airplanes />
-                <Airplanes />
-                <Airplanes />
+            <Airplanes />
+            <Airplanes />
+            <Airplanes />
+            <Airplanes />
+            <Airplanes />
+            <Airplanes />
 
-            </RadiusContext.Provider>
         </Canvas >
     )
 }

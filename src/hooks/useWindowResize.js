@@ -3,8 +3,19 @@ import React, { useState, useEffect } from 'react';
 
 const getElementSizes = () => {
     console.log(window.innerWidth)
-    if (window.innerWidth <= 490) return { earthSize: 7, yOff: 7 + .4 + Math.random() * 1.0 };
-    else return { earthSize: 9.5, yOff: 9.5 + .2 + Math.random() * 1.0 }
+    if (window.innerWidth <= 490) return {
+        earthSize: 7,
+        yOff: 7 + .4 + Math.random() * 1.0,
+        scale: 1.8,
+        mobile: true,
+
+    };
+    else return {
+        earthSize: 9.5,
+        yOff: 9.5 + .2 + Math.random() * 1.0,
+        scale: 1.4,
+        mobile: false,
+    }
 }
 
 

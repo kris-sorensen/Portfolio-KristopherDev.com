@@ -2,10 +2,22 @@ import React, { useContext } from 'react';
 import * as THREE from "three";
 import { extend } from '@react-three/fiber'
 import { Sphere, shaderMaterial } from "@react-three/drei";
-import { useControls } from 'leva';
 import glsl from 'babel-plugin-glsl/macro.js'
-import { RadiusContext } from '../CanvasContainer'
 import useWindowResize from '../../hooks/useWindowResize'
+
+
+
+const Atmosphere = () => {
+    const elementSize = useWindowResize();
+
+    return (
+        <mesh>
+            <Sphere args={[elementSize.earthSize, 30, 30]} scale={elementSize.scale} >
+                <outerAtmosphereMaterial />
+            </Sphere>
+        </mesh>
+    );
+}
 
 const OuterAtmosphereMaterial = shaderMaterial(
     { blending: THREE.AdditiveBlending, side: THREE.BackSide },
@@ -34,23 +46,5 @@ const OuterAtmosphereMaterial = shaderMaterial(
 )
 
 extend({ OuterAtmosphereMaterial })
-
-const Atmosphere = () => {
-    const [earthRadius, setEarthRadius] = useContext(RadiusContext)
-    const elementSize = useWindowResize();
-
-    const atmosphereParams = useControls({
-        // radius: { value: elementSize.earthSize, min: .05, max: 30, step: .5 },
-        scale: { value: 1.4, min: 0, max: 2, step: .01 }
-    })
-
-    return (
-        <mesh>
-            <Sphere args={[elementSize.earthSize, 30, 30]} scale={atmosphereParams.scale} >
-                <outerAtmosphereMaterial />
-            </Sphere>
-        </mesh>
-    );
-}
 
 export default Atmosphere;

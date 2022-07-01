@@ -1,12 +1,10 @@
-import React, { useRef, useContext, useEffect } from 'react';
+import React, { useRef } from 'react';
 import * as THREE from "three";
 import { Texture } from "three";
 import { extend, useFrame } from '@react-three/fiber'
-import { Sphere, useTexture, shaderMaterial } from "@react-three/drei";
-import { useControls } from 'leva';
+import { Sphere, useTexture, shaderMaterial, PresentationControls } from "@react-three/drei";
 import glsl from 'babel-plugin-glsl/macro.js'
 import gsap from 'gsap'
-import { RadiusContext } from '../CanvasContainer'
 import { useMousePosition } from '../../hooks/useMousePosition'
 import useWindowResize from '../../hooks/useWindowResize'
 
@@ -17,7 +15,6 @@ import useWindowResize from '../../hooks/useWindowResize'
 
 
 const Earth = () => {
-    const [earthRadius, setEarthRadius] = useContext(RadiusContext)
     //Custom Hooks
     const position = useMousePosition();
     const elementSize = useWindowResize();
@@ -26,19 +23,14 @@ const Earth = () => {
     // Refs
     const earthRef = useRef()
     const meshRef = useRef()
-    // GUI
-    const earthParams = useControls({
-        radius: { value: earthRadius, min: .05, max: 30, step: .5 },
-        rotateSpeed: { value: .001, min: 0, max: .01, step: .001 },
-    })
 
     useFrame(() => {
         //Move Earth based on mouse location
+        if (elementSize.mobile) return
         gsap.to(meshRef.current.rotation, {
             y: ((position.x / window.innerWidth) * 2 - 1) * 3.5, // Convert pixel location of mouse into Canvas location
             x: (-(position.y / window.innerHeight) * 2 + 1),
             duration: 3,
-
         })
     }, -2)
 
@@ -49,12 +41,13 @@ const Earth = () => {
 
     return (
 
-
-        <mesh ref={meshRef}>
-            <Sphere args={[elementSize.earthSize, 100, 100]} ref={earthRef}>
-                <atmosphereMaterial map={map} />
-            </Sphere>
-        </mesh>
+        <PresentationControls polar={[-Math.PI * .5, Math.PI * .5]} snap={!elementSize.mobile} config={{ mass: 5, tension: 150, friction: 20 }} speed={2}>
+            <mesh ref={meshRef}>
+                <Sphere args={[elementSize.earthSize, 100, 100]} ref={earthRef}>
+                    <atmosphereMaterial map={map} />
+                </Sphere>
+            </mesh>
+        </PresentationControls >
     );
 }
 

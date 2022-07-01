@@ -3,7 +3,6 @@ import * as THREE from "three";
 import { useControls } from 'leva'
 import { useFrame } from '@react-three/fiber'
 import { useTexture, useGLTF, Plane } from "@react-three/drei";
-import { RadiusContext } from '../CanvasContainer'
 import useWindowResize from '../../hooks/useWindowResize'
 
 const Airplanes = () => {
@@ -19,8 +18,6 @@ const Airplanes = () => {
     // Airplane Model
     const { nodes, materials } = useGLTF('/models/airplane-transformed.glb')
 
-    const [earthRadius, setEarthRadius] = useContext(RadiusContext)
-
     const trailParams = useControls({
         roughness: { value: .4, min: 0, max: 1, step: .01 },
         transparent: true,
@@ -29,9 +26,6 @@ const Airplanes = () => {
         color: new THREE.Color(1.0, 1.0, 1.0)
     })
 
-    // const moveParams = useControls({
-    //     yOff: { value: (elementSize.earthSize + .2) + Math.random() * 1.0, min: -30, max: 30, step: .1 },
-    // })
 
     let rot = Math.random() * Math.PI * 2.0
     let rad = Math.random() * Math.PI * .45 + .2
