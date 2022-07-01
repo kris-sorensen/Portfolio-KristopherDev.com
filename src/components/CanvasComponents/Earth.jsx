@@ -8,11 +8,56 @@ import glsl from 'babel-plugin-glsl/macro.js'
 import gsap from 'gsap'
 import { RadiusContext } from '../CanvasContainer'
 import { useMousePosition } from '../../hooks/useMousePosition'
+import useWindowResize from '../../hooks/useWindowResize'
 
 
 //todo: add shadows to all parts
 //todoL memo() useMousePosition
 // add glowing point light like ghosts on haunted house that follows mouse?
+
+
+const Earth = () => {
+    const [earthRadius, setEarthRadius] = useContext(RadiusContext)
+    //Custom Hooks
+    const position = useMousePosition();
+    const elementSize = useWindowResize();
+    // Texture
+    const map = useTexture('/nasaEarth.jpg')
+    // Refs
+    const earthRef = useRef()
+    const meshRef = useRef()
+    // GUI
+    const earthParams = useControls({
+        radius: { value: earthRadius, min: .05, max: 30, step: .5 },
+        rotateSpeed: { value: .001, min: 0, max: .01, step: .001 },
+    })
+
+    useFrame(() => {
+        //Move Earth based on mouse location
+        gsap.to(meshRef.current.rotation, {
+            y: ((position.x / window.innerWidth) * 2 - 1) * 3.5, // Convert pixel location of mouse into Canvas location
+            x: (-(position.y / window.innerHeight) * 2 + 1),
+            duration: 3,
+
+        })
+    }, -2)
+
+    useFrame(() => {
+        // Slowly Rotate Earth
+        earthRef.current.rotateY(.0015)
+    }, -1)
+
+    return (
+
+
+        <mesh ref={meshRef}>
+            <Sphere args={[elementSize.earthSize, 100, 100]} ref={earthRef}>
+                <atmosphereMaterial map={map} />
+            </Sphere>
+        </mesh>
+    );
+}
+
 
 const AtmosphereMaterial = shaderMaterial(
     { map: new Texture(), color: new THREE.Color(0.2, 0.0, 0.1) },
@@ -46,48 +91,5 @@ const AtmosphereMaterial = shaderMaterial(
 
 
 extend({ AtmosphereMaterial })
-
-const Earth = () => {
-    const [earthRadius, setEarthRadius] = useContext(RadiusContext)
-    //Custom Hooks
-    const position = useMousePosition();
-    // Texture
-    const map = useTexture('/nasaEarth.jpg')
-    // Refs
-    const earthRef = useRef()
-    const meshRef = useRef()
-    // GUI
-    const earthParams = useControls({
-        radius: { value: earthRadius, min: .05, max: 30, step: .5 },
-        rotateSpeed: { value: .001, min: 0, max: .01, step: .001 },
-    })
-
-    useFrame(() => {
-        //Move Earth based on mouse location
-        gsap.to(meshRef.current.rotation, {
-            y: ((position.x / window.innerWidth) * 2 - 1) * 3.5, // Convert pixel location of mouse into Canvas location
-            x: (-(position.y / window.innerHeight) * 2 + 1),
-            duration: 3,
-
-        })
-    }, -2)
-
-    useFrame(() => {
-        // Slowly Rotate Earth
-        earthRef.current.rotateY(.0015)
-    }, -1)
-
-    return (
-
-
-        <mesh ref={meshRef}>
-            <Sphere args={[9.5, 100, 100]} ref={earthRef}>
-                <atmosphereMaterial map={map} />
-            </Sphere>
-        </mesh>
-    );
-}
-
-
 
 export default Earth;

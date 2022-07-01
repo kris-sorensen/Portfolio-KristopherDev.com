@@ -4,9 +4,15 @@ import { useControls } from 'leva'
 import { useFrame } from '@react-three/fiber'
 import { useTexture, useGLTF, Plane } from "@react-three/drei";
 import { RadiusContext } from '../CanvasContainer'
-
+import useWindowResize from '../../hooks/useWindowResize'
 
 const Airplanes = () => {
+    const elementSize = useWindowResize();
+
+    const trailRef = useRef()
+    const trailMesh = useRef()
+    const group = useRef()
+
     // Airplane Trail Texture
     const airplaneTrail = useTexture('/planeTrails.png')
 
@@ -14,10 +20,6 @@ const Airplanes = () => {
     const { nodes, materials } = useGLTF('/models/airplane-transformed.glb')
 
     const [earthRadius, setEarthRadius] = useContext(RadiusContext)
-
-    const trailRef = useRef()
-    const trailMesh = useRef()
-    const group = useRef()
 
     const trailParams = useControls({
         roughness: { value: .4, min: 0, max: 1, step: .01 },
@@ -27,9 +29,9 @@ const Airplanes = () => {
         color: new THREE.Color(1.0, 1.0, 1.0)
     })
 
-    const moveParams = useControls({
-        yOff: { value: (9.5 + .2) + Math.random() * 1.0, min: -30, max: 30, step: .1 },
-    })
+    // const moveParams = useControls({
+    //     yOff: { value: (elementSize.earthSize + .2) + Math.random() * 1.0, min: -30, max: 30, step: .1 },
+    // })
 
     let rot = Math.random() * Math.PI * 2.0
     let rad = Math.random() * Math.PI * .45 + .2
@@ -56,7 +58,7 @@ const Airplanes = () => {
         group.current.rotateOnAxis(randomAxis, randomAxisRot)
         group.current.rotateOnAxis(new THREE.Vector3(0, 1, 0), rot)
         group.current.rotateOnAxis(new THREE.Vector3(0, 0, 1), rad)
-        group.current.translateY(moveParams.yOff)
+        group.current.translateY(elementSize.yOff)
         group.current.rotateOnAxis(new THREE.Vector3(1, 0, 0), Math.PI * .5)
     })
 

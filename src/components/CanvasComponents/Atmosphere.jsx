@@ -5,6 +5,7 @@ import { Sphere, shaderMaterial } from "@react-three/drei";
 import { useControls } from 'leva';
 import glsl from 'babel-plugin-glsl/macro.js'
 import { RadiusContext } from '../CanvasContainer'
+import useWindowResize from '../../hooks/useWindowResize'
 
 const OuterAtmosphereMaterial = shaderMaterial(
     { blending: THREE.AdditiveBlending, side: THREE.BackSide },
@@ -36,15 +37,16 @@ extend({ OuterAtmosphereMaterial })
 
 const Atmosphere = () => {
     const [earthRadius, setEarthRadius] = useContext(RadiusContext)
+    const elementSize = useWindowResize();
 
     const atmosphereParams = useControls({
-        // radius: { value: earthRadius, min: .05, max: 30, step: .5 },
+        // radius: { value: elementSize.earthSize, min: .05, max: 30, step: .5 },
         scale: { value: 1.4, min: 0, max: 2, step: .01 }
     })
 
     return (
         <mesh>
-            <Sphere args={[9.5, 30, 30]} scale={atmosphereParams.scale} >
+            <Sphere args={[elementSize.earthSize, 30, 30]} scale={atmosphereParams.scale} >
                 <outerAtmosphereMaterial />
             </Sphere>
         </mesh>
