@@ -41,7 +41,7 @@ const Earth = () => {
 
     return (
 
-        <PresentationControls polar={[-Math.PI * .5, Math.PI * .5]} snap={!elementSize.mobile} config={{ mass: 5, tension: 150, friction: 20 }} speed={2}>
+        <PresentationControls polar={[-Math.PI * .5, Math.PI * .5]} snap={!elementSize.mobile} config={{ mass: 5, tension: elementSize.tension, friction: elementSize.friction }} speed={elementSize.speed}>
             <mesh ref={meshRef}>
                 <Sphere args={[elementSize.earthSize, 100, 100]} ref={earthRef}>
                     <atmosphereMaterial map={map} />

@@ -8,6 +8,9 @@ const getElementSizes = () => {
         yOff: 7 + .4 + Math.random() * 1.0,
         scale: 1.6,
         mobile: true,
+        tension: 0,
+        friction: 0,
+        speed: 1,
     };
     else if (window.innerWidth <= 765) {
         return {
@@ -15,12 +18,18 @@ const getElementSizes = () => {
             yOff: 9.5 + .2 + Math.random() * 1.0,
             scale: 1.5,
             mobile: true,
+            tension: 0,
+            friction: 0,
+            speed: 1,
         }
     } else return {
         earthSize: 9.5,
         yOff: 9.5 + .2 + Math.random() * 1.0,
         scale: 1.4,
         mobile: false,
+        tension: 150,
+        friction: 20,
+        speed: 2,
     }
 }
 
