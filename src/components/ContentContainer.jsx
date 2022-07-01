@@ -12,6 +12,7 @@ const ContentContainer = () => {
         const timer = setTimeout(() => handleClick(), 4000);
         return () => clearTimeout(timer);
     }, []);
+
     //Refs
     const plusRef = useRef()
     const gitRef = useRef()
@@ -96,11 +97,12 @@ const ContentContainer = () => {
 
     return (
         <>
-            <div className="textContainer">
-                <h1 id="name">Kristopher Sorensen</h1>
-                <h2 id="title">Creative Software Developer</h2>
-
-            </div>
+            <header>
+                <text>
+                    <h1 id="name">Software Developer</h1>
+                    <h2 id="title">Kristopher Sorensen</h2>
+                </text>
+            </header>
             {/* <nav >
                 <ol className="navContainer">
                     <li className="about">About</li>
