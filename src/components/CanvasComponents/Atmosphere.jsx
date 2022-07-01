@@ -11,8 +11,8 @@ const Atmosphere = () => {
     const elementSize = useWindowResize();
 
     return (
-        <mesh>
-            <Sphere args={[elementSize.earthSize, 30, 30]} scale={elementSize.scale} >
+        <mesh position={[0, elementSize.y, 0]}>
+            <Sphere args={[elementSize.earthSize, 30, 30]} scale={elementSize.scale}>
                 <outerAtmosphereMaterial />
             </Sphere>
         </mesh>

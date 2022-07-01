@@ -11,6 +11,7 @@ const getElementSizes = () => {
         tension: 0,
         friction: 0,
         speed: 1,
+        y: 5,
     };
     else if (window.innerWidth <= 765) {
         return {
@@ -21,6 +22,8 @@ const getElementSizes = () => {
             tension: 0,
             friction: 0,
             speed: 1,
+            y: 0,
+
         }
     } else return {
         earthSize: 9.5,
@@ -30,6 +33,7 @@ const getElementSizes = () => {
         tension: 150,
         friction: 20,
         speed: 2,
+        y: 0
     }
 }
 

@@ -42,7 +42,7 @@ const Airplanes = () => {
     let deltaTime = 0
 
     useFrame(() => {
-        group.current.position.set(0, 0, 0)
+        group.current.position.set(0, elementSize.y, 0)
         group.current.rotation.set(0, 0, 0)
 
         deltaTime = time.getDelta();
@@ -59,7 +59,7 @@ const Airplanes = () => {
     return (
         <Suspense fallback={null}>
             <group ref={group} dispose={null}>
-                <group scale={.0015} >
+                <group scale={.0018} >
                     <mesh geometry={nodes.Cube_2_2_Body_0_1.geometry} material={materials.Body} />
                     <mesh geometry={nodes.Cube_2_2_Body_0_2.geometry} material={materials.material} />
                     <mesh geometry={nodes.Cube_2_2_Body_0_3.geometry} material={materials.Glass} />
