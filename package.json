@@ -23,6 +23,10 @@
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
+    "@types/jest": "^28.1.4",
+    "@types/node": "^18.0.0",
+    "@types/react": "^18.0.14",
+    "@types/react-dom": "^18.0.5",
     "babel-plugin-glsl": "^1.0.0",
     "framer-motion": "^6.3.16",
     "glsl-noise": "^0.0.0",
@@ -35,6 +39,7 @@
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "three": "^0.141.0",
+    "typescript": "^4.7.4",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -60,5 +65,12 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.30.0",
+    "@typescript-eslint/parser": "^5.30.0",
+    "eslint": "^8.18.0",
+    "@types/eslint": "8.4.3",
+    "eslint-plugin-react": "^7.30.1"
   }
 }

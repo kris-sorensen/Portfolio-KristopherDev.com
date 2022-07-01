@@ -9,7 +9,7 @@ const ContentContainer = () => {
     const [isClicked, setIsClicked] = useState(true);
     // Auto Lauch Social Links Animation
     useEffect(() => {
-        const timer = setTimeout(() => handleClick(), 5000);
+        const timer = setTimeout(() => handleClick(), 4000);
         return () => clearTimeout(timer);
     }, []);
     //Refs
