@@ -27,9 +27,10 @@ function Loader() {
 }
 
 const CanvasContainer = () => {
+    const elementSize = useWindowResize();
 
     return (
-        <Canvas gl={{ antialias: true, toneMapping: THREE.NoToneMapping }}
+        <Canvas position={[0, elementSize.y, 0]} gl={{ antialias: true, toneMapping: THREE.NoToneMapping }}
             linear >
             <Leva hidden />
             {/* <OrbitControls /> */}
@@ -53,7 +54,6 @@ const CanvasContainer = () => {
 }
 
 const CameraContainer = () => {
-    const elementSize = useWindowResize();
 
     const cameraParams = useControls({
         zPosition: { value: 50, min: 5, max: 300, step: 1 },
@@ -63,7 +63,7 @@ const CameraContainer = () => {
     useThree(({ camera }) => {
         camera.fov = cameraParams.fov
         camera.position.z = cameraParams.zPosition;
-        camera.lookAt(0, elementSize.y, 0)
+        // camera.lookAt(0, elementSize.y, 0)
         camera.updateProjectionMatrix()
     });
 
