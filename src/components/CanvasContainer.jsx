@@ -63,7 +63,7 @@ const CameraContainer = () => {
     useThree(({ camera }) => {
         camera.fov = cameraParams.fov
         camera.position.z = cameraParams.zPosition;
-        camera.position.y = elementSize.y;
+        camera.lookAt(0, elementSize.y, 0)
         camera.updateProjectionMatrix()
     });
 
