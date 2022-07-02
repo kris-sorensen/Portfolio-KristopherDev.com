@@ -11,7 +11,7 @@ const getElementSizes = () => {
         tension: 0,
         friction: 0,
         speed: 1,
-        y: 4,
+        y: 4.5,
     };
     else if (window.innerWidth <= 765) {
         return {
