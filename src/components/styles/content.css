@@ -196,7 +196,7 @@ li {
     }
 
     .socialContainer {
-        position: absolute;
+        /* position: absolute; */
         top: calc(82% - 3rem);
     }
 }
