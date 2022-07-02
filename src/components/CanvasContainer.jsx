@@ -2,8 +2,8 @@ import * as THREE from 'three'
 import { Canvas, useThree } from "@react-three/fiber";
 import { useControls, Leva } from 'leva';
 import React, { Suspense } from 'react';
-import { Html, useProgress, OrbitControls } from '@react-three/drei'
-import useWindowSize from '../hooks/useWindowSize'
+import { Html, useProgress } from '@react-three/drei'
+import useWindowResize from '../hooks/useWindowResize'
 // Components
 import StarsContainer from "./CanvasComponents/Stars";
 import Earth from "./CanvasComponents/Earth";
@@ -53,6 +53,8 @@ const CanvasContainer = () => {
 }
 
 const CameraContainer = () => {
+    const elementSize = useWindowResize();
+
     const cameraParams = useControls({
         zPosition: { value: 50, min: 5, max: 300, step: 1 },
         fov: { value: 45, min: 5, max: 135, step: 1 },
@@ -61,6 +63,7 @@ const CameraContainer = () => {
     useThree(({ camera }) => {
         camera.fov = cameraParams.fov
         camera.position.z = cameraParams.zPosition;
+        camera.position.y = elementSize.y;
         camera.updateProjectionMatrix()
     });
 
