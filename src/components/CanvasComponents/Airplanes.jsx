@@ -42,7 +42,7 @@ const Airplanes = () => {
     let deltaTime = 0
 
     useFrame(() => {
-        group.current.position.set(0, elementSize.y, 0)
+        group.current.position.set(0, 0, 0)
         group.current.rotation.set(0, 0, 0)
 
         deltaTime = time.getDelta();
