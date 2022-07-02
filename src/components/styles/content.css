@@ -3,6 +3,12 @@
 @import url("https://use.typekit.net/wez5tme.css");
 /* Main Content */
 
+.page {
+    /* position: relative; */
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
 header {
     height: 11rem;
     width: 100%;

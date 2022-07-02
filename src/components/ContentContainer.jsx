@@ -96,7 +96,7 @@ const ContentContainer = () => {
 
 
     return (
-        <>
+        <div className="page">
             <header>
                 <h1 id="name">Software Developer</h1>
                 <h2 id="title">Kristopher Sorensen</h2>
@@ -119,7 +119,7 @@ const ContentContainer = () => {
             <div className="socialEmail" >
                 <motion.img id="email" ref={emailRef} src="email.png" alt="Email" onHoverStart={() => handleHover(emailRef.current)} onHoverEnd={() => handleHoverExit(emailRef.current)} onClick={() => handleEmailClick()} />
             </div>
-        </>
+        </div>
 
     );
 }
