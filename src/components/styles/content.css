@@ -198,6 +198,5 @@ li {
     .socialContainer {
         position: absolute;
         top: calc(82% - 3rem);
-        left: calc(82% - 3rem);
     }
 }
