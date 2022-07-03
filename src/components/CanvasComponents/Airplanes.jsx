@@ -18,13 +18,6 @@ const Airplanes = () => {
     // Airplane Model
     const { nodes, materials } = useGLTF('/models/airplane-transformed.glb')
 
-    const trailParams = useControls({
-        roughness: { value: .4, min: 0, max: 1, step: .01 },
-        transparent: true,
-        metalness: { value: 0, min: 0, max: 1, step: 0.01 },
-        opacity: { value: 1, min: 0, max: 1, step: .01 },
-        color: new THREE.Color(1.0, 1.0, 1.0)
-    })
 
 
     let rot = Math.random() * Math.PI * 2.0
@@ -66,7 +59,7 @@ const Airplanes = () => {
                 </group>
                 <mesh ref={trailRef}   >
                     <Plane args={[1, 2]} >
-                        <meshBasicMaterial ref={trailMesh} alphaMap={airplaneTrail} {...trailParams} />
+                        <meshBasicMaterial ref={trailMesh} alphaMap={airplaneTrail} transparent={true} /> {'// todo: change to meshStandardMaterial when do shadows'}
                     </Plane>
                 </mesh>
             </group>

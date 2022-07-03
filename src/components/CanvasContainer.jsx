@@ -56,15 +56,19 @@ const CanvasContainer = () => {
 }
 
 const CameraContainer = () => {
-
+    const elementSize = useWindowResize();
     const cameraParams = useControls({
         zPosition: { value: 50, min: 5, max: 300, step: 1 },
         fov: { value: 45, min: 5, max: 135, step: 1 },
+        yPosition: { value: 0, min: -40, max: 40, step: .001 },
+        xPosition: { value: 0, min: -40, max: 40, step: .001 },
     })
 
     useThree(({ camera }) => {
         camera.fov = cameraParams.fov
         camera.position.z = cameraParams.zPosition;
+        camera.position.y = elementSize.cameraY;
+        camera.position.x = cameraParams.xPosition;
         // camera.lookAt(0, elementSize.y, 0)
         camera.updateProjectionMatrix()
     });

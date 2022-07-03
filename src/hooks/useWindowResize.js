@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 
 
 const getElementSizes = () => {
-    console.log(window.innerWidth)
     if (window.innerWidth <= 490) return {
         earthSize: 7,
         yOff: 7 + .4 + Math.random() * 1.0,
@@ -12,8 +11,9 @@ const getElementSizes = () => {
         friction: 0,
         speed: 1,
         y: 11,
+        cameraY: -1.5,
     };
-    else if (window.innerWidth <= 765) {
+    else if (window.innerWidth <= 1180) {
         return {
             earthSize: 9.5,
             yOff: 9.5 + .2 + Math.random() * 1.0,
@@ -23,6 +23,7 @@ const getElementSizes = () => {
             friction: 0,
             speed: 1,
             y: 0,
+            cameraY: -1,
 
         }
     } else return {
@@ -33,7 +34,8 @@ const getElementSizes = () => {
         tension: 150,
         friction: 20,
         speed: 2,
-        y: 0
+        y: 0,
+        cameraY: 0,
     }
 }
 
