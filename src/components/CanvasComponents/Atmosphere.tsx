@@ -2,7 +2,6 @@ import React, {useContext} from 'react';
 import * as THREE from "three";
 import {extend, MeshProps, Object3DNode} from '@react-three/fiber';
 import {Sphere, shaderMaterial} from "@react-three/drei";
-import useTabActive from '../../hooks/useTabActive';
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore: Unreachable code error
@@ -20,7 +19,6 @@ declare global {
 
 const Atmosphere: React.FC<MeshProps>=() => {
     const elementSize=useWindowResize();
-    const needsPageReload=useTabActive();
     return (
         <mesh position={[0, 0, 0]}>
             <Sphere args={[elementSize.earthSize, 30, 30]} scale={elementSize.scale}>

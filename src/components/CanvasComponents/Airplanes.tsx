@@ -64,7 +64,7 @@ const Airplanes=() => {
 
     return (
         <Suspense fallback={null}>
-            <group ref={group} dispose={null}>
+            <group ref={group} >
                 <group scale={.0018} >
                     <mesh geometry={nodes.Cube_2_2_Body_0_1.geometry} material={materials.Body} />
                     <mesh geometry={nodes.Cube_2_2_Body_0_2.geometry} material={materials.material} />
