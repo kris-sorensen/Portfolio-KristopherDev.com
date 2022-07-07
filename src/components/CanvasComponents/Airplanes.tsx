@@ -8,10 +8,12 @@ import {useFrame} from '@react-three/fiber';
 import {useTexture, useGLTF, Plane} from "@react-three/drei";
 import useWindowResize from '../../hooks/useWindowResize';
 import {Mesh} from 'three';
+import useTabActive from '../../hooks/useTabActive';
 
 
 const Airplanes=() => {
     const elementSize=useWindowResize();
+    const needsPageReload=useTabActive();
 
     const trailRef=useRef<Mesh>();
     const trailMesh=useRef<Mesh>();
@@ -22,8 +24,6 @@ const Airplanes=() => {
 
     // Airplane Model
     const {nodes, materials}=useGLTF('/models/airplane-transformed.glb');
-
-
 
     let rot: number=Math.random()*Math.PI*2.0;
     const rad: number=Math.random()*Math.PI*.45+.2;
