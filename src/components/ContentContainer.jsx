@@ -12,6 +12,7 @@ const ContentContainer = () => {
         const timer = setTimeout(() => handleClick(), 4000);
         return () => clearTimeout(timer);
     }, []);
+    //type todo: : ReturnType<typeof setTimeout>
 
     //Refs
     const plusRef = useRef()

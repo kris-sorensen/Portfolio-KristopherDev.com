@@ -21,17 +21,17 @@ const Airplanes = () => {
 
 
     let rot = Math.random() * Math.PI * 2.0
-    let rad = Math.random() * Math.PI * .45 + .2
-    let randomAxis = new THREE.Vector3(random(), random(), random()).normalize()
-    let randomAxisRot = Math.random() * Math.PI * 2
-    let planeSpeed = .4
+    const rad = Math.random() * Math.PI * .45 + .2
+    const randomAxis = new THREE.Vector3(random(), random(), random()).normalize()
+    const randomAxisRot = Math.random() * Math.PI * 2
+    const planeSpeed = .4
 
     useEffect(() => {
         trailRef.current.rotateX(Math.PI)
         trailRef.current.translateY(1, 1)
     }, [])
 
-    let time = new THREE.Clock();
+    const time = new THREE.Clock();
     let deltaTime = 0
 
     useFrame(() => {
