@@ -19,8 +19,8 @@ const Earth = () => {
     const position = useMousePosition();
     const elementSize = useWindowResize();
     // Texture
-    // const map = useTexture('/nasaEarth.jpg')
-    const map = useTexture('/nasaEarthSharp.jpg')
+    const map = useTexture('/nasaEarth.jpg')
+    // const map = useTexture('/nasaEarthSharp.jpg')
     // Refs
     const earthRef = useRef()
     const meshRef = useRef()
