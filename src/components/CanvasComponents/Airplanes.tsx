@@ -13,6 +13,7 @@ import useTabActive from '../../hooks/useTabActive';
 
 const Airplanes=() => {
     const elementSize=useWindowResize();
+    // Triggers hook when browser tab is left and returned to
     const needsPageReload=useTabActive();
     // const [ignored, forceUpdate]=useReducer(x => x+1, 0);
 
@@ -64,7 +65,7 @@ const Airplanes=() => {
 
     return (
         <Suspense fallback={null}>
-            <group ref={group} >
+            <group ref={group} dispose={null}>
                 <group scale={.0018} >
                     <mesh geometry={nodes.Cube_2_2_Body_0_1.geometry} material={materials.Body} />
                     <mesh geometry={nodes.Cube_2_2_Body_0_2.geometry} material={materials.material} />
