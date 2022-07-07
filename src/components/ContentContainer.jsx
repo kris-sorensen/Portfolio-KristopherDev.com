@@ -108,18 +108,20 @@ const ContentContainer = () => {
                     <li className="work">Work</li>
                 </ol>
             </nav> */}
-            <div className="socialContainer">
-                <div className="social" >
-                    <motion.img id="plus" onHoverStart={() => handleHover(plusRef.current)} onHoverEnd={() => handleHoverExit(plusRef.current)} src="add.png" ref={plusRef} alt="Social Links" onClick={() => handleClick()} />
-                </div>
-                <div className="socialGit">
-                    <motion.img id="git" ref={gitRef} src="git.png" alt="Github" onHoverStart={() => handleHover(gitRef.current)} onHoverEnd={() => handleHoverExit(gitRef.current)} onClick={() => handleGitClick()} />
-                </div>
-                <div className="socialLI" >
-                    <motion.img id="linkedIn" ref={linkedInRef} src="linkedIn.png" alt="LinkedIn" onHoverStart={() => handleHover(linkedInRef.current)} onHoverEnd={() => handleHoverExit(linkedInRef.current)} onClick={() => handleLinkedInClick()} />
-                </div>
-                <div className="socialEmail" >
-                    <motion.img id="email" ref={emailRef} src="email.png" alt="Email" onHoverStart={() => handleHover(emailRef.current)} onHoverEnd={() => handleHoverExit(emailRef.current)} onClick={() => handleEmailClick()} />
+            <div className="container">
+                <div className="socialContainer">
+                    <div className="social" >
+                        <motion.img id="plus" onHoverStart={() => handleHover(plusRef.current)} onHoverEnd={() => handleHoverExit(plusRef.current)} src="add.png" ref={plusRef} alt="Social Links" onClick={() => handleClick()} />
+                    </div>
+                    <div className="socialGit">
+                        <motion.img id="git" ref={gitRef} src="git.png" alt="Github" onHoverStart={() => handleHover(gitRef.current)} onHoverEnd={() => handleHoverExit(gitRef.current)} onClick={() => handleGitClick()} />
+                    </div>
+                    <div className="socialLI" >
+                        <motion.img id="linkedIn" ref={linkedInRef} src="linkedIn.png" alt="LinkedIn" onHoverStart={() => handleHover(linkedInRef.current)} onHoverEnd={() => handleHoverExit(linkedInRef.current)} onClick={() => handleLinkedInClick()} />
+                    </div>
+                    <div className="socialEmail" >
+                        <motion.img id="email" ref={emailRef} src="email.png" alt="Email" onHoverStart={() => handleHover(emailRef.current)} onHoverEnd={() => handleHoverExit(emailRef.current)} onClick={() => handleEmailClick()} />
+                    </div>
                 </div>
             </div>
         </div>
