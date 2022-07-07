@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 //@ts-nocheck
 // todo: delete above code when done typing file
-import React, {useContext, useRef, useEffect, Suspense} from 'react';
+import React, {useContext, useRef, useEffect, Suspense, useLayoutEffect, useReducer} from 'react';
 import * as THREE from "three";
 import {useControls} from 'leva';
 import {useFrame} from '@react-three/fiber';
@@ -14,6 +14,14 @@ import useTabActive from '../../hooks/useTabActive';
 const Airplanes=() => {
     const elementSize=useWindowResize();
     const needsPageReload=useTabActive();
+    // const [ignored, forceUpdate]=useReducer(x => x+1, 0);
+
+    // useLayoutEffect((): void => {
+
+    //     if(needsPageReload) forceUpdate();
+    //     if(!needsPageReload) console.log('tab change false');
+
+    // }, [needsPageReload]);
 
     const trailRef=useRef<Mesh>();
     const trailMesh=useRef<Mesh>();
