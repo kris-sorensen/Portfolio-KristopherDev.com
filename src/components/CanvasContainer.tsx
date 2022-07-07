@@ -10,6 +10,7 @@ import StarsContainer from "./CanvasComponents/Stars";
 import Earth from "./CanvasComponents/Earth";
 import Atmosphere from "./CanvasComponents/Atmosphere";
 const Airplanes=React.lazy(() => import("./CanvasComponents/Airplanes"));
+import useTabActive from '../hooks/useTabActive';
 
 
 /* TODO
@@ -30,6 +31,7 @@ function Loader() {
 
 const CanvasContainer=() => {
     const elementSize=useWindowResize();
+    const needsPageReload=useTabActive();
 
     return (
         <Canvas gl={{antialias: true, toneMapping: THREE.NoToneMapping}}
