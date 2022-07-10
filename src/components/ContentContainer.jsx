@@ -45,17 +45,17 @@ const ContentContainer = () => {
                 rotation: 45,
             })
             gsap.to(gitRef.current, {
-                x: -90,
+                x: -60,
                 opacity: 1,
                 duration: .5,
             })
             gsap.to(linkedInRef.current, {
-                x: -180,
+                x: -120,
                 opacity: 1,
                 duration: 1,
             })
             gsap.to(emailRef.current, {
-                x: -270,
+                x: -180,
                 opacity: 1,
                 duration: 1.5,
             })
@@ -110,16 +110,16 @@ const ContentContainer = () => {
             </nav> */}
             <div className="container">
                 <div className="socialContainer">
-                    <div className="social" >
+                    <div className="social icon" >
                         <motion.img id="plus" onHoverStart={() => handleHover(plusRef.current)} onHoverEnd={() => handleHoverExit(plusRef.current)} src="add.png" ref={plusRef} alt="Social Links" onClick={() => handleClick()} />
                     </div>
-                    <div className="socialGit">
+                    <div className="socialGit icon invis-icon">
                         <motion.img id="git" ref={gitRef} src="git.png" alt="Github" onHoverStart={() => handleHover(gitRef.current)} onHoverEnd={() => handleHoverExit(gitRef.current)} onClick={() => handleGitClick()} />
                     </div>
-                    <div className="socialLI" >
+                    <div className="socialLI icon invis-icon" >
                         <motion.img id="linkedIn" ref={linkedInRef} src="linkedIn.png" alt="LinkedIn" onHoverStart={() => handleHover(linkedInRef.current)} onHoverEnd={() => handleHoverExit(linkedInRef.current)} onClick={() => handleLinkedInClick()} />
                     </div>
-                    <div className="socialEmail" >
+                    <div className="socialEmail icon invis-icon" >
                         <motion.img id="email" ref={emailRef} src="email.png" alt="Email" onHoverStart={() => handleHover(emailRef.current)} onHoverEnd={() => handleHoverExit(emailRef.current)} onClick={() => handleEmailClick()} />
                     </div>
                 </div>

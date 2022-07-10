@@ -11,7 +11,7 @@ const getElementSizes = () => {
         friction: 0,
         speed: 1,
         y: 11,
-        cameraY: -1.5,
+        cameraY: -1.0,
     };
     else if (window.innerWidth <= 1180) {
         return {
@@ -23,7 +23,7 @@ const getElementSizes = () => {
             friction: 0,
             speed: 1,
             y: 0,
-            cameraY: -1,
+            cameraY: 2,
 
         }
     } else return {
