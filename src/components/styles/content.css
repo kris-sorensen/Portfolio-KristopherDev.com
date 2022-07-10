@@ -86,8 +86,6 @@ header {
 }
 
 
-
-
 /* Nav Bar */
 
 nav {
@@ -132,14 +130,11 @@ li {
     }
 
     .socialContainer {
-        /* position: absolute; */
-        /* top: calc(82% - 3rem); */
         height: 100%;
         width: 100%;
         position: fixed;
         top: calc(100% - 9rem);
         width: 100%;
-
     }
 
     .icon img {
@@ -148,7 +143,7 @@ li {
     }
 }
 
-@media screen and (max-width: 490px) {
+@media screen and (orientation: portrait) and (max-width: 490px) {
     #title {
         font-size: 1.3rem;
         letter-spacing: 0.7rem;
