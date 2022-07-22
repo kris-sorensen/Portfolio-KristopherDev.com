@@ -6,7 +6,7 @@ import {Sphere, shaderMaterial} from "@react-three/drei";
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore: Unreachable code error
 import glsl from 'babel-plugin-glsl/macro.js';
-import useWindowResize from '../../hooks/useWindowResize';
+import useWindowResize from '../../../hooks/useWindowResize';
 
 declare global {
     namespace JSX {

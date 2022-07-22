@@ -3,14 +3,14 @@ import {Canvas, useThree} from "@react-three/fiber";
 import {useControls, Leva} from 'leva';
 import React, {Suspense} from 'react';
 import {Html, useProgress} from '@react-three/drei';
-import useWindowResize from '../hooks/useWindowResize';
-import '../App.css';
+import useWindowResize from '../../hooks/useWindowResize';
+import '../../App.css';
 // Components
 import StarsContainer from "./CanvasComponents/Stars";
 import Earth from "./CanvasComponents/Earth";
 import Atmosphere from "./CanvasComponents/Atmosphere";
 const Airplanes=React.lazy(() => import("./CanvasComponents/Airplanes"));
-import Loader from '../utils/loader';
+import Loader from '../../utils/loader';
 
 
 /* TODO
@@ -23,11 +23,6 @@ import Loader from '../utils/loader';
  * Ocular?
  */
 
-
-// function Loader() {
-//     const {progress}=useProgress();
-//     return <Html center>{progress} % loaded</Html>;
-// }
 
 const CanvasContainer=() => {
     const elementSize=useWindowResize();

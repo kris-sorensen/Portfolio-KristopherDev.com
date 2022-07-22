@@ -1,7 +1,7 @@
 import React from 'react';
-import '../App.css';
-import ContentContainer from './ContentContainer'
-import CanvasContainer from './CanvasContainer'
+import '../../App.css';
+import ContentContainer from './ContentContainer';
+import CanvasContainer from './CanvasContainer';
 
 function Home() {
 

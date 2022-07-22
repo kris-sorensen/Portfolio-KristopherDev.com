@@ -5,8 +5,8 @@ import { extend, useFrame } from '@react-three/fiber';
 import { Sphere, useTexture, shaderMaterial, PresentationControls } from "@react-three/drei";
 import glsl from 'babel-plugin-glsl/macro.js';
 import gsap from 'gsap';
-import { useMousePosition } from '../../hooks/useMousePosition';
-import useWindowResize from '../../hooks/useWindowResize';
+import { useMousePosition } from '../../../hooks/useMousePosition';
+import useWindowResize from '../../../hooks/useWindowResize';
 
 
 //todo: add shadows to all parts

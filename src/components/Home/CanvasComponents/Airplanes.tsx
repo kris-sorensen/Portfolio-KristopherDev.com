@@ -6,9 +6,9 @@ import * as THREE from "three";
 import {useControls} from 'leva';
 import {useFrame} from '@react-three/fiber';
 import {useTexture, useGLTF, Plane} from "@react-three/drei";
-import useWindowResize from '../../hooks/useWindowResize';
+import useWindowResize from '../../../hooks/useWindowResize';
 import {Mesh} from 'three';
-import useTabActive from '../../hooks/useTabActive';
+import useTabActive from '../../../hooks/useTabActive';
 
 
 const Airplanes=() => {
