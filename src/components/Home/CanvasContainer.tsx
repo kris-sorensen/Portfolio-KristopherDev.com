@@ -2,15 +2,15 @@ import * as THREE from 'three';
 import {Canvas, useThree} from "@react-three/fiber";
 import {useControls, Leva} from 'leva';
 import React, {Suspense} from 'react';
-import {Html, useProgress} from '@react-three/drei';
 import useWindowResize from '../../hooks/useWindowResize';
 import '../../App.css';
+import {Loader} from "@react-three/drei";
 // Components
 import StarsContainer from "./CanvasComponents/Stars";
 import Earth from "./CanvasComponents/Earth";
 import Atmosphere from "./CanvasComponents/Atmosphere";
 const Airplanes=React.lazy(() => import("./CanvasComponents/Airplanes"));
-import Loader from '../../utils/loader';
+// import Loader from '../../utils/loader';
 
 
 /* TODO
@@ -28,26 +28,29 @@ const CanvasContainer=() => {
     const elementSize=useWindowResize();
 
     return (
-        <Canvas gl={{antialias: true, toneMapping: THREE.NoToneMapping}}
-            linear >
-            <Leva hidden />
-            {/* <OrbitControls /> */}
-            <CameraContainer />
-            <Suspense fallback={<Loader />} >
-                <Earth />
-                <Atmosphere />
-                <StarsContainer />
-                <Lights />
-            </Suspense >
+        <>
+            <Canvas gl={{antialias: true, toneMapping: THREE.NoToneMapping}}
+                linear >
+                <Leva hidden />
+                {/* <OrbitControls /> */}
+                <CameraContainer />
+                <Suspense fallback={null} >
+                    <Earth />
+                    <Atmosphere />
+                    <StarsContainer />
+                    <Lights />
+                </Suspense >
 
-            <Airplanes />
-            <Airplanes />
-            <Airplanes />
-            <Airplanes />
-            <Airplanes />
-            <Airplanes />
+                <Airplanes />
+                <Airplanes />
+                <Airplanes />
+                <Airplanes />
+                <Airplanes />
+                <Airplanes />
 
-        </Canvas >
+            </Canvas >
+            <Loader />
+        </>
     );
 };
 

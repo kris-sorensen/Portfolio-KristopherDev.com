@@ -1,22 +1,22 @@
-import * as THREE from 'three';
-import {Canvas, useThree} from "@react-three/fiber";
-import {useControls, Leva} from 'leva';
-import React, {Suspense} from 'react';
-import {Html, useProgress} from '@react-three/drei';
+
+import React from 'react';
+import '../../App.css';
+import AboutCanvas from './AboutCanvas';
 
 
-interface AboutProps {
-    hello: number;
-    goodbye?: string;
-}
 
-
-const About=({hello, goodbye}: AboutProps) => {
+const About=() => {
 
     return (
-        <div>{hello}</div>
+        <div className="App" >
+            <AboutCanvas />
+            {/* <AboutContent /> */}
+        </div>
     );
 };
+
+
+
 
 
 export default About;
