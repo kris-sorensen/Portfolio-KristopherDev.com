@@ -10,6 +10,7 @@ import StarsContainer from "./CanvasComponents/Stars";
 import Earth from "./CanvasComponents/Earth";
 import Atmosphere from "./CanvasComponents/Atmosphere";
 const Airplanes=React.lazy(() => import("./CanvasComponents/Airplanes"));
+import Loader from '../utils/loader';
 
 
 /* TODO
@@ -23,10 +24,10 @@ const Airplanes=React.lazy(() => import("./CanvasComponents/Airplanes"));
  */
 
 
-function Loader() {
-    const {progress}=useProgress();
-    return <Html center>{progress} % loaded</Html>;
-}
+// function Loader() {
+//     const {progress}=useProgress();
+//     return <Html center>{progress} % loaded</Html>;
+// }
 
 const CanvasContainer=() => {
     const elementSize=useWindowResize();

@@ -1,98 +1,98 @@
-import React, { useState, useRef, useEffect } from 'react';
-import gsap from 'gsap'
-import { motion } from "framer-motion";
+import React, {useState, useRef, useEffect} from 'react';
+import gsap from 'gsap';
+import {motion} from "framer-motion";
 
-import './styles/content.css'
+import './styles/content.css';
 
-const ContentContainer = () => {
+const ContentContainer=() => {
     //Hooks
-    const [isClicked, setIsClicked] = useState(true);
+    const [isClicked, setIsClicked]=useState(true);
     // Auto Lauch Social Links Animation
     useEffect(() => {
-        const timer = setTimeout(() => handleClick(), 4000);
+        const timer=setTimeout(() => handleClick(), 4000);
         return () => clearTimeout(timer);
     }, []);
-    //type todo: : ReturnType<typeof setTimeout>
 
     //Refs
-    const plusRef = useRef()
-    const gitRef = useRef()
-    const linkedInRef = useRef()
-    const emailRef = useRef()
+
+    const plusRef=useRef(null);
+    const gitRef=useRef(null);
+    const linkedInRef=useRef(null);
+    const emailRef=useRef(null);
 
     /**
      * Animations
      */
 
     // Hover Effect Scale Img on Hover
-    const handleHover = (el) => {
+    const handleHover=(el: gsap.TweenTarget) => {
         gsap.to(el, {
             scale: 1.2,
-        })
-    }
+        });
+    };
 
-    const handleHoverExit = (el) => {
+    const handleHoverExit=(el: gsap.TweenTarget) => {
         gsap.to(el, {
             scale: 1,
-        })
-    }
+        });
+    };
 
     // onClick Animation for Plus svg
-    const handleClick = () => {
-        setIsClicked(!isClicked)
-        if (isClicked) {
+    const handleClick=() => {
+        setIsClicked(!isClicked);
+        if(isClicked) {
             gsap.to(plusRef.current, {
                 rotation: 45,
-            })
+            });
             gsap.to(gitRef.current, {
                 x: -60,
                 opacity: 1,
                 duration: .5,
-            })
+            });
             gsap.to(linkedInRef.current, {
                 x: -120,
                 opacity: 1,
                 duration: 1,
-            })
+            });
             gsap.to(emailRef.current, {
                 x: -180,
                 opacity: 1,
                 duration: 1.5,
-            })
+            });
 
         }
         else {
             gsap.to(plusRef.current, {
                 rotation: 0,
-            })
+            });
             gsap.to(gitRef.current, {
                 x: 0,
                 opacity: 0,
                 duration: .5,
-            })
+            });
             gsap.to(linkedInRef.current, {
                 x: 0,
                 opacity: 0,
                 duration: 1,
-            })
+            });
             gsap.to(emailRef.current, {
                 x: 0,
                 opacity: 0,
                 duration: 1.5,
-            })
+            });
         }
-    }
+    };
 
     // Onclick events for social Icons
-    const handleGitClick = () => {
+    const handleGitClick=() => {
         window.open("https://github.com/kris-sorensen");
-    }
-    const handleLinkedInClick = () => {
+    };
+    const handleLinkedInClick=() => {
         window.open("https://www.linkedin.com/in/kris-sorensen/");
-    }
-    const handleEmailClick = () => {
-        window.open('mailto:krismsorensen@gmail.com?')
-    }
+    };
+    const handleEmailClick=() => {
+        window.open('mailto:krismsorensen@gmail.com?');
+    };
 
 
 
@@ -127,6 +127,7 @@ const ContentContainer = () => {
         </div>
 
     );
-}
+};
+
 
 export default ContentContainer;

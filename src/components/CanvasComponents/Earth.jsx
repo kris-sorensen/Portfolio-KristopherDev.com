@@ -1,12 +1,12 @@
 import React, { useRef } from 'react';
 import * as THREE from "three";
 import { Texture } from "three";
-import { extend, useFrame } from '@react-three/fiber'
+import { extend, useFrame } from '@react-three/fiber';
 import { Sphere, useTexture, shaderMaterial, PresentationControls } from "@react-three/drei";
-import glsl from 'babel-plugin-glsl/macro.js'
-import gsap from 'gsap'
-import { useMousePosition } from '../../hooks/useMousePosition'
-import useWindowResize from '../../hooks/useWindowResize'
+import glsl from 'babel-plugin-glsl/macro.js';
+import gsap from 'gsap';
+import { useMousePosition } from '../../hooks/useMousePosition';
+import useWindowResize from '../../hooks/useWindowResize';
 
 
 //todo: add shadows to all parts
@@ -19,26 +19,26 @@ const Earth = () => {
     const position = useMousePosition();
     const elementSize = useWindowResize();
     // Texture
-    const map = useTexture('/nasaEarth.jpg')
+    const map = useTexture('/nasaEarth.jpg');
     // const map = useTexture('/nasaEarthSharp.jpg')
     // Refs
-    const earthRef = useRef()
-    const meshRef = useRef()
+    const earthRef = useRef();
+    const meshRef = useRef();
 
     useFrame(() => {
         //Move Earth based on mouse location
-        if (elementSize.mobile) return
+        if (elementSize.mobile) return;
         gsap.to(meshRef.current.rotation, {
             y: ((position.x / window.innerWidth) * 2 - 1) * 3.5, // Convert pixel location of mouse into Canvas location
             x: (-(position.y / window.innerHeight) * 2 + 1),
             duration: 3,
-        })
-    }, -2)
+        });
+    }, -2);
 
     useFrame(() => {
         // Slowly Rotate Earth
-        earthRef.current.rotateY(.0015)
-    }, -1)
+        earthRef.current.rotateY(.0015);
+    }, -1);
 
     return (
 
@@ -50,7 +50,7 @@ const Earth = () => {
             </mesh>
         </PresentationControls >
     );
-}
+};
 
 
 const AtmosphereMaterial = shaderMaterial(
@@ -81,9 +81,9 @@ const AtmosphereMaterial = shaderMaterial(
         gl_FragColor = vec4(atmosphere + texture2D(map, vertexUV).xyz, 1.0);
     }
   `
-)
+);
 
 
-extend({ AtmosphereMaterial })
+extend({ AtmosphereMaterial });
 
 export default Earth;
