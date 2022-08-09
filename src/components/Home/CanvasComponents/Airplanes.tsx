@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 //@ts-nocheck
 // todo: delete above code when done typing file
-import React, {useContext, useRef, useEffect, Suspense, useLayoutEffect, useReducer} from 'react';
+import React, {useContext, useState, useRef, useEffect, Suspense, useLayoutEffect, useReducer} from 'react';
 import * as THREE from "three";
 import {useControls} from 'leva';
 import {useFrame} from '@react-three/fiber';
@@ -12,17 +12,17 @@ import useTabActive from '../../../hooks/useTabActive';
 
 
 const Airplanes=() => {
+    const [hovered, setHovered]=useState(false);
+
     const elementSize=useWindowResize();
     // Triggers hook when browser tab is left and returned to
     const needsPageReload=useTabActive();
     // const [ignored, forceUpdate]=useReducer(x => x+1, 0);
 
-    // useLayoutEffect((): void => {
-
-    //     if(needsPageReload) forceUpdate();
-    //     if(!needsPageReload) console.log('tab change false');
-
-    // }, [needsPageReload]);
+    useLayoutEffect((): void => {
+        // document.body.style.cursor=hovered? 'pointer':'auto';
+        // return () => document.body.style.cursor='auto';
+    }, [hovered]);
 
     const trailRef=useRef<Mesh>();
     const trailMesh=useRef<Mesh>();
@@ -61,11 +61,29 @@ const Airplanes=() => {
         group.current.rotateOnAxis(new THREE.Vector3(0, 0, 1), rad);
         group.current.translateY(elementSize.yOff);
         group.current.rotateOnAxis(new THREE.Vector3(1, 0, 0), Math.PI*.5);
+
+
     });
+
+    // Airplane explode
+    const handleHover=() => {
+        console.log('everyday we hover');
+        // setHovered(!hovered);
+        // console.log();
+        // group.current.visible=!group.current.visible;
+        // // $('html,body').css('cursor', 'pointer');
+    };
+    const handleClick=() => {
+
+        group.current.visible=!group.current.visible;
+        //todo: destroy object instead 
+
+    };
 
     return (
         <Suspense fallback={null}>
-            <group ref={group} dispose={null}>
+
+            <group ref={group} onClick={handleClick} onPointerOut={handleHover} onPointerOver={handleHover} >
                 <group scale={.0018} >
                     <mesh geometry={nodes.Cube_2_2_Body_0_1.geometry} material={materials.Body} />
                     <mesh geometry={nodes.Cube_2_2_Body_0_2.geometry} material={materials.material} />
