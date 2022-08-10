@@ -48,7 +48,7 @@ const Earth = () => {
                     <atmosphereMaterial map={map} />
                 </Sphere>
             </mesh>
-        </PresentationControls >
+        </PresentationControls>
     );
 };
 
