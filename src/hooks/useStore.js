@@ -4,9 +4,9 @@ import Fireworks from '../components/About/Fireworks'
 
 const useStore = create((set) => ({
     power: 5,
-    gravity: .0025,
+    gravity: .004,
     opacity: .0025,
-    count: 150,
+    count: 400,
     friction: .99,
     particleSize: 4.5,
     expendedFireworks: 0,

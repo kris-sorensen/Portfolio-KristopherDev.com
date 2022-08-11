@@ -19,7 +19,7 @@ import useStore from '../../hooks/useStore'
 */
 
 
-const Fireworks = ({ color }) => {
+const Fireworks = ({ color, explodeHere }) => {
 
 
     const { power, gravity, particleSize, count, friction, opacity } = useStore()
@@ -33,10 +33,7 @@ const Fireworks = ({ color }) => {
 
     useEffect(() => {
         const dismountInterval = setInterval(() => {
-            console.log(`interval`);
             if (!runFrame.current && !stopEverything.current) {
-                console.log('add expend')
-                // addExpendedFirework()
                 stopEverything.current = true
                 clearInterval(dismountInterval);
             }
@@ -46,12 +43,25 @@ const Fireworks = ({ color }) => {
         };
     }, []);
 
-    const positions = Array.from({ length: count }, (i) => [
-        // Get Spot of Mouse Click
-        (mouse.x * viewport.width) / 2,
-        (mouse.y * viewport.height) / 2,
-        0
-    ])
+    let positions = [];
+
+    if (explodeHere instanceof Array) {
+        positions = Array.from({ length: count }, (i) => [
+            explodeHere[0],
+            explodeHere[1],
+            0
+        ])
+    }
+    else {
+        positions = Array.from({ length: count }, (i) => [
+            // Get Spot of Mouse Click
+            (mouse.x * viewport.width) / 2,
+            (mouse.y * viewport.height) / 2,
+            0
+        ])
+        console.log('mouse explode here', positions)
+    }
+
 
     // Create an array of random Velocities
     const velocities = Array.from({ length: count }, (i) => [Math.random() * power])
@@ -59,6 +69,7 @@ const Fireworks = ({ color }) => {
     const angleIncrement = (Math.PI * 2) / count
 
     let runFrame = useRef(true)
+    let colorWhite = useRef(true)
 
     useFrame(() => {
         if (!stopEverything.current) {
@@ -68,8 +79,9 @@ const Fireworks = ({ color }) => {
                 meshRef.current.visible = false
             }
             else if (runFrame.current) {
-
+                // console.log(meshRef.current)
                 matRef.current.opacity -= opacity
+                if (matRef.current.opacity < .960) colorWhite.current = false
                 // Move Points
                 for (let i = 0; i < count; i++) {
                     //Add friction to slowdown fireworks over time
@@ -79,7 +91,28 @@ const Fireworks = ({ color }) => {
                     //Move x and y of points
                     point.position.x += ((Math.cos(angleIncrement * i)) * .01) * velocities[i]
                     point.position.y += ((Math.sin(angleIncrement * i)) * .01) * velocities[i] - gravity
+
+                    // Change Firework from white to colors after initial flash of white. 
+                    if (colorWhite.current) {
+                        if (matRef.current.opacity <= .965) {
+                            if (i % 10 === 0) {
+                                point.children[0].color.setHex(0xffffff)
+                            }
+                            if (i % 6 === 0) {
+                                point.children[0].color.setHex(0x504DF4)
+                            }
+                            if (i % 7 === 0) {
+                                point.children[0].color.setHex(0x1738B7)
+                            }
+                            else {
+                                point.children[0].color.setHex(color)
+                            }
+                        }
+                    }
+
+
                 }
+
             }
         }
     })
@@ -93,7 +126,7 @@ const Fireworks = ({ color }) => {
                 <Points >
                     <PointMaterial blending={1} ref={matRef} vertexColors transparent size={particleSize} />
                     {positions.map((position, i) => (
-                        <PointEvent key={i} color={color} position={position} />
+                        <PointEvent key={i} color={'white'} position={position} />
                     ))}
                 </Points>
             </mesh>
@@ -102,19 +135,16 @@ const Fireworks = ({ color }) => {
 };
 
 function PointEvent(props) {
-
-
     return (
-        <>
-            <mesh>
-                <Point {...props} />
-            </mesh>
-        </>
+        <mesh>
+            <Point {...props} />
+        </mesh>
     )
 }
 
 Fireworks.propTypes = {
-    color: PropTypes.string.isRequired,
+    color: PropTypes.any.isRequired,
+    explodeHere: PropTypes.any,
 };
 
 export default Fireworks;
