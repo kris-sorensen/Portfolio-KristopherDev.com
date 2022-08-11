@@ -6,7 +6,7 @@ const SemiTransparentLayer = () => {
     return (
         <mesh position={[0, 0, -.1]} >
             <planeGeometry args={[60, 60, 1, 1]} />
-            <meshBasicMaterial color='#000000' transparent={true} opacity={.1} />
+            <meshBasicMaterial color='#000000' transparent={true} opacity={.06} />
         </mesh>
     )
 }

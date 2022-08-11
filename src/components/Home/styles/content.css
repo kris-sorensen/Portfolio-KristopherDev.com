@@ -12,7 +12,7 @@ header {
     height: 11rem;
     width: 100%;
     background-color: rgba(255, 255, 255, 0.01);
-    z-index: 4001;
+    z-index: 3000;
     position: absolute;
 }
 
@@ -185,7 +185,7 @@ li {
         height: 9rem;
         width: 100%;
         background-color: rgba(255, 255, 255, 0.01);
-        z-index: 4001;
+        z-index: 3000;
         position: fixed;
         top: 0;
     }

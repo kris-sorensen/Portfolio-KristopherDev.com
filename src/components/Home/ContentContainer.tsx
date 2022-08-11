@@ -1,12 +1,14 @@
 import React, {useState, useRef, useEffect} from 'react';
 import gsap from 'gsap';
 import {motion} from "framer-motion";
+import {useNavigate} from "react-router-dom";
 
 import './styles/content.css';
 
 const ContentContainer=() => {
     //Hooks
     const [isClicked, setIsClicked]=useState(true);
+    const navigate=useNavigate();
     // Auto Lauch Social Links Animation
     useEffect(() => {
         const timer=setTimeout(() => handleClick(), 4000);
@@ -14,7 +16,6 @@ const ContentContainer=() => {
     }, []);
 
     //Refs
-
     const plusRef=useRef(null);
     const gitRef=useRef(null);
     const linkedInRef=useRef(null);
@@ -102,12 +103,13 @@ const ContentContainer=() => {
                 <h1 id="name">Software Developer</h1>
                 <h2 id="title">Kristopher Sorensen</h2>
             </header>
-            {/* <nav >
+            <nav >
                 <ol className="navContainer">
-                    <li className="about">About</li>
-                    <li className="work">Work</li>
+                    <li className="about" onClick={() => navigate('/about')}>About</li>
+
+                    {/* <li className="work">Work</li> */}
                 </ol>
-            </nav> */}
+            </nav>
             <div className="container">
                 <div className="socialContainer">
                     <div className="social icon" >

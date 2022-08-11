@@ -67,7 +67,7 @@ const Airplanes=() => {
 
     // Airplane explode
     const handleHover=() => {
-        console.log('everyday we hover');
+        // console.log('everyday we hover');
         // setHovered(!hovered);
         // console.log();
         // group.current.visible=!group.current.visible;

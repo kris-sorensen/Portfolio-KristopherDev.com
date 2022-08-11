@@ -1,34 +1,10 @@
-import { useControls, Leva } from 'leva';
-import React, { Suspense } from 'react';
-import { Sphere, useTexture, shaderMaterial, Plane, Text } from "@react-three/drei";
-import { extend, useFrame, useThree } from '@react-three/fiber'
+import React from 'react';
+import { shaderMaterial, Text } from "@react-three/drei";
+import { extend } from '@react-three/fiber'
 import * as THREE from "three";
-import { Texture } from "three";
 import glsl from 'babel-plugin-glsl/macro.js'
 
 
-
-// const AtmosphereMaterial = shaderMaterial(
-//     {},// vertex shader
-//     glsl`
-//     varying vec2 vUv;
-
-//     void main(){
-//          gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-//         vUv = uv;
-//     }
-//   `,
-//     // fragment shader
-//     glsl`
-//     varying vec2 vUv;
-
-//     void main() {
-//         float strength = step(.5,vUv.x);
-//         float strength1 = step(.5,vUv.y );
-//         gl_FragColor = vec4(strength, strength, strength, 1.0);
-//     }
-//   `
-// )
 const SplitMaterial = shaderMaterial(
     {},// vertex shader
     glsl`
@@ -61,7 +37,6 @@ vec2 rotateUv = rotate(vUv, 1.0, vec2(0.5));
 )
 
 
-// extend({ AtmosphereMaterial })
 extend({ SplitMaterial })
 
 function Title() {
