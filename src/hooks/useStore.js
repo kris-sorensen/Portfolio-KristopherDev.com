@@ -3,9 +3,9 @@ import React from 'react'
 import Fireworks from '../components/About/Fireworks'
 
 const useStore = create((set) => ({
-    power: 5.5,
-    gravity: .009,
-    opacity: .002,
+    power: 5,
+    gravity: .0025,
+    opacity: .0025,
     count: 150,
     friction: .99,
     particleSize: 4.5,

@@ -8,18 +8,18 @@ import useStore from '../../hooks/useStore'
 
 
 /* TODO:
- * Different colors of fireworks 
+//  * Different colors of fireworks 
 //  * fireworks spawn at mouse location
 //  * add gravity
 //  * add opacity--
- * dismount object when opacity hits zero (either pass a function and dismount or setup array in bear state library*this would be the best way)
+//  * dismount object when opacity hits zero (either pass a function and dismount or setup array in bear state library*this would be the best way)
 //  * add Randomness to movement of points
  * firework flashes white before turning color
  * add click me button text that only shows itself after the 3 fireworks have had there go
 */
 
 
-const Fireworks = () => {
+const Fireworks = ({ color }) => {
 
 
     const { power, gravity, particleSize, count, friction, opacity } = useStore()
@@ -82,9 +82,6 @@ const Fireworks = () => {
                 }
             }
         }
-
-
-
     })
 
 
@@ -94,9 +91,9 @@ const Fireworks = () => {
         <>
             <mesh ref={meshRef}>
                 <Points >
-                    <PointMaterial blending={2} ref={matRef} vertexColors transparent size={particleSize} />
+                    <PointMaterial blending={1} ref={matRef} vertexColors transparent size={particleSize} />
                     {positions.map((position, i) => (
-                        <PointEvent key={i} color={'blue'} position={position} />
+                        <PointEvent key={i} color={color} position={position} />
                     ))}
                 </Points>
             </mesh>
@@ -116,13 +113,9 @@ function PointEvent(props) {
     )
 }
 
-// Fireworks.propTypes = {
-//     gravity: PropTypes.number.isRequired,
-//     opacity: PropTypes.number.isRequired,
-//     count: PropTypes.number.isRequired,
-//     friction: PropTypes.number.isRequired,
-//     particleSize: PropTypes.number.isRequired,
-// };
+Fireworks.propTypes = {
+    color: PropTypes.string.isRequired,
+};
 
 export default Fireworks;
 

@@ -39,8 +39,15 @@ function AboutCanvas() {
 
     // when opacity reaches 0 I want to trigger its removal from the array
 
+    const [colorArr] = useState(['#504DF4', '#1738B7', "#A76BFE"])
+    const [color, setColor] = useState(0)
+
     const handleClick = () => {
-        setFireworks([...fireworks, <Fireworks key={Date.now()} />])
+
+        setFireworks([...fireworks, <Fireworks color={colorArr[color]} key={Date.now()} />])
+        if (color >= colorArr.length - 1) {
+            setColor(0)
+        } else setColor(color + 1)
     }
 
     return (
