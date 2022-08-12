@@ -4,6 +4,24 @@ import { extend } from '@react-three/fiber'
 import * as THREE from "three";
 import glsl from 'babel-plugin-glsl/macro.js'
 
+function Title() {
+    return (
+        <mesh position={[0, 0, 1]}>
+            <Text
+                fontSize={1.8}
+                maxWidth={400}
+                lineHeight={1}
+                letterSpacing={0.02}
+                textAlign={'center'}
+                font="https://fonts.gstatic.com/s/raleway/v14/1Ptrg8zYS_SKggPNwK4vaqI.woff"
+                anchorX="center"
+                anchorY="middle"
+            >
+                <splitMaterial />hello!</Text>
+        </mesh>
+    );
+}
+
 
 const SplitMaterial = shaderMaterial(
     {},// vertex shader
@@ -39,31 +57,6 @@ vec2 rotateUv = rotate(vUv, 1.0, vec2(0.5));
 
 extend({ SplitMaterial })
 
-function Title() {
-    return (
-        <>
-            {/* <mesh>
-                <Plane position={[0, 0, -1]} args={[16, 8, 1, 1]}>
-                    <atmosphereMaterial />
-                
-                </Plane>
-            </mesh> */}
-            <mesh position={[0, 0, 1]}>
-                <Text
 
-                    fontSize={1.8}
-                    maxWidth={400}
-                    lineHeight={1}
-                    letterSpacing={0.02}
-                    textAlign={'center'}
-                    font="https://fonts.gstatic.com/s/raleway/v14/1Ptrg8zYS_SKggPNwK4vaqI.woff"
-                    anchorX="center"
-                    anchorY="middle"
-                >
-                    <splitMaterial />hello!</Text>
-            </mesh>
-        </>
-    );
-}
 
 export default Title;

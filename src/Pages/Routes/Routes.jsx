@@ -1,8 +1,8 @@
 import React, { Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import Home from './components/Home/Home';
-import Loader from './utils/loader'
-const About = React.lazy(() => import("./components/About/About"));
+import Home from '../Home/Home';
+import Loader from '../../utils/loader'
+const About = React.lazy(() => import("../About/About"));
 
 
 const RouteHandler = () => {

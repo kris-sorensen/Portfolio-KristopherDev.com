@@ -12,7 +12,6 @@ const SemiTransparentLayer = ({ opacity }) => {
     )
 }
 
-
 SemiTransparentLayer.propTypes = {
     opacity: PropTypes.number.isRequired,
 };

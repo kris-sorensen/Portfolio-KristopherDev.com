@@ -1,14 +1,13 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 //@ts-nocheck
 // todo: delete above code when done typing file
-import React, {useContext, useState, useRef, useEffect, Suspense, useLayoutEffect, useReducer} from 'react';
+import React, {useState, useRef, useEffect, Suspense} from 'react';
 import * as THREE from "three";
-import {useControls} from 'leva';
 import {useFrame} from '@react-three/fiber';
 import {useTexture, useGLTF, Plane} from "@react-three/drei";
-import useWindowResize from '../../../hooks/useWindowResize';
+import useWindowResize from '../../hooks/useWindowResize';
 import {Mesh} from 'three';
-import useTabActive from '../../../hooks/useTabActive';
+import useTabActive from '../../hooks/useTabActive';
 
 
 const Airplanes=() => {
@@ -17,12 +16,11 @@ const Airplanes=() => {
     const elementSize=useWindowResize();
     // Triggers hook when browser tab is left and returned to
     const needsPageReload=useTabActive();
-    // const [ignored, forceUpdate]=useReducer(x => x+1, 0);
 
-    useLayoutEffect((): void => {
-        // document.body.style.cursor=hovered? 'pointer':'auto';
-        // return () => document.body.style.cursor='auto';
-    }, [hovered]);
+    // useLayoutEffect((): void => {
+    // document.body.style.cursor=hovered? 'pointer':'auto';
+    // return () => document.body.style.cursor='auto';
+    // }, [hovered]);
 
     const trailRef=useRef<Mesh>();
     const trailMesh=useRef<Mesh>();
@@ -66,24 +64,25 @@ const Airplanes=() => {
     });
 
     // Airplane explode
-    const handleHover=() => {
-        // console.log('everyday we hover');
-        // setHovered(!hovered);
-        // console.log();
-        // group.current.visible=!group.current.visible;
-        // // $('html,body').css('cursor', 'pointer');
-    };
-    const handleClick=() => {
+    // const handleHover=() => {
+    // console.log('everyday we hover');
+    // setHovered(!hovered);
+    // console.log();
+    // group.current.visible=!group.current.visible;
+    // // $('html,body').css('cursor', 'pointer');
+    // };
+    // const handleClick=() => {
 
-        group.current.visible=!group.current.visible;
-        //todo: destroy object instead 
+    //     group.current.visible=!group.current.visible;
+    //     //todo: destroy object instead 
 
-    };
+    // };
 
     return (
         <Suspense fallback={null}>
-
-            <group ref={group} onClick={handleClick} onPointerOut={handleHover} onPointerOver={handleHover} >
+            {/* onClick={handleClick} */}
+            {/* onPointerOut={handleHover} onPointerOver={handleHover} */}
+            <group ref={group}  >
                 <group scale={.0018} >
                     <mesh geometry={nodes.Cube_2_2_Body_0_1.geometry} material={materials.Body} />
                     <mesh geometry={nodes.Cube_2_2_Body_0_2.geometry} material={materials.material} />

@@ -20,15 +20,10 @@ import useStore from '../../hooks/useStore'
 
 
 const Fireworks = ({ color, explodeHere }) => {
-
-
     const { power, gravity, particleSize, count, friction, opacity } = useStore()
-    // const addExpendedFirework = useStore((state) => state.addExpendedFirework)
-
     const { mouse, viewport } = useThree()
     const meshRef = useRef()
     const matRef = useRef()
-
     const stopEverything = useRef(false)
 
     useEffect(() => {
@@ -59,11 +54,11 @@ const Fireworks = ({ color, explodeHere }) => {
             (mouse.y * viewport.height) / 2,
             0
         ])
-        console.log('mouse explode here', positions)
+        // console.log('mouse explode here', positions)
     }
 
 
-    // Create an array of random Velocities
+    // Creates an array of random Velocities
     const velocities = Array.from({ length: count }, (i) => [Math.random() * power])
     //todo: add to useStore
     const angleIncrement = (Math.PI * 2) / count
@@ -109,10 +104,7 @@ const Fireworks = ({ color, explodeHere }) => {
                             }
                         }
                     }
-
-
                 }
-
             }
         }
     })

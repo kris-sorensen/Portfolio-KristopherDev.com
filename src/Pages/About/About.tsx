@@ -1,10 +1,7 @@
 
 import React from 'react';
-import '../../App.css';
 import './styles/about.css';
 import AboutCanvas from './AboutCanvas';
-
-
 
 const About=() => {
 
@@ -15,9 +12,5 @@ const About=() => {
         </div>
     );
 };
-
-
-
-
 
 export default About;

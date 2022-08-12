@@ -105,7 +105,7 @@ const ContentContainer=() => {
             </header>
             <nav >
                 <ol className="navContainer">
-                    <li className="about" onClick={() => navigate('/about')}>About</li>
+                    {/* <li className="about" onClick={() => navigate('/about')}>About</li> */}
 
                     {/* <li className="work">Work</li> */}
                 </ol>

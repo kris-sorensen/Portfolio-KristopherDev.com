@@ -3,13 +3,12 @@ import {Canvas, useThree} from "@react-three/fiber";
 import {useControls, Leva} from 'leva';
 import React, {Suspense} from 'react';
 import useWindowResize from '../../hooks/useWindowResize';
-import '../../App.css';
-import {Loader, CameraShake} from '@react-three/drei';
+import {Loader} from '@react-three/drei';
 // Components
-import StarsContainer from "./CanvasComponents/Stars";
-import Earth from "./CanvasComponents/Earth";
-import Atmosphere from "./CanvasComponents/Atmosphere";
-const Airplanes=React.lazy(() => import("./CanvasComponents/Airplanes"));
+import StarsContainer from "./Stars";
+import Earth from "./Earth";
+import OuterAtmosphere from "./OuterAtmosphere";
+const Airplanes=React.lazy(() => import("./Airplanes"));
 // import Loader from '../../utils/loader';
 
 
@@ -32,24 +31,13 @@ const CanvasContainer=() => {
             <Canvas gl={{antialias: true, toneMapping: THREE.NoToneMapping}}
                 linear >
                 <Leva hidden />
-                {/* <CameraShake
-                    maxYaw={0.03} // Max amount camera can yaw in either direction
-                    maxPitch={0.03} // Max amount camera can pitch in either direction
-                    maxRoll={0} // Max amount camera can roll in either direction
-                    yawFrequency={0.1} // Frequency of the the yaw rotation
-                    pitchFrequency={0.1} // Frequency of the pitch rotation
-                    rollFrequency={0.1} // Frequency of the roll rotation
-                    intensity={1} // initial intensity of the shake
-                    decayRate={0.65} // if decay = true this is the rate at which intensity will reduce at />
-                /> */}
                 {/* <OrbitControls /> */}
                 <CameraContainer />
                 <Suspense fallback={null} >
                     <Earth />
-                    <Atmosphere />
+                    <OuterAtmosphere />
                     <StarsContainer />
                     <Lights />
-                    {/* <THREE.Raycaster normalize /> */}
                 </Suspense >
 
                 <Airplanes />
@@ -88,10 +76,7 @@ const CameraContainer=() => {
         camera.updateProjectionMatrix();
     });
 
-    return ( // todo: return null here instead
-        <>
-        </>
-    );
+    return null;
 };
 
 const Lights=() => {
