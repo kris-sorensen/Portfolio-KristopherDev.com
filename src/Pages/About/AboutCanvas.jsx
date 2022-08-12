@@ -62,9 +62,10 @@ function AboutCanvas() {
     return (
         <div style={{ height: '95%', width: '100%' }} className="canvas-container">
             <Canvas onClick={handleClick} gl={{ autoClearColor: false, }} orthographic camera={{ zoom: 100, position: [0, 0, 5] }}>
+                <Leva hidden />
                 {/* <OrbitControls /> */}
                 <PreExplodedFirework />
-                <Leva hidden />
+
                 {/* <SemiTransparentLayer opacity={transparentLayerParams.opacity} /> */}
                 <Effects multisamping={8} renderIndex={1} disableGamma={false} disableRenderPass={false} disableRender={false}>
                 </Effects>
