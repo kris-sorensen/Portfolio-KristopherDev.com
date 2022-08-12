@@ -65,8 +65,7 @@ function AboutCanvas() {
                 <Leva hidden />
                 {/* <OrbitControls /> */}
                 <PreExplodedFirework />
-
-                {/* <SemiTransparentLayer opacity={transparentLayerParams.opacity} /> */}
+                <SemiTransparentLayer opacity={transparentLayerParams.opacity} />
                 <Effects multisamping={8} renderIndex={1} disableGamma={false} disableRenderPass={false} disableRender={false}>
                 </Effects>
                 <Title />
