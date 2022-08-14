@@ -176,7 +176,7 @@ const Fireworks = ({ color, explodeHere }) => {
             points.current.material.uniforms.uOpacity.value = 0
             points.current.visible = false;
         } else {
-            points.current.material.uniforms.uOpacity.value -= .005;
+            points.current.material.uniforms.uOpacity.value -= .0035;
         }
 
         // console.log(points.current)
@@ -212,7 +212,7 @@ const Fireworks = ({ color, explodeHere }) => {
                             usage={THREE.DynamicDrawUsage}
                         />
                     </bufferGeometry>
-                    <fireworkMaterial vertexColors transparent uSize={8 * gl.getPixelRatio()} uAngleIncrement={angleIncrement} uFriction={friction} uGravity={gravity} />
+                    <fireworkMaterial vertexColors transparent uSize={6 * gl.getPixelRatio()} uAngleIncrement={angleIncrement} uFriction={friction} uGravity={gravity} />
                     {/* <pointsMaterial attach="material" vertexColors size={10} sizeAttenuation={false} /> */}
                 </points>
                 {/* <points position={[-4, 3, 0]} /> */}
@@ -312,7 +312,7 @@ const FireworkMaterial =
             */
             vec4 modelPosition = modelMatrix * vec4(position, 1.0);
                 vVelocity = aVelocities;
-                vVelocity *= (uFriction - (uTime *.7));
+                vVelocity *= (uFriction - (uTime *.01));
                 // modelPosition.xyz = modelPosition.xyz * vVelocity;
                 modelPosition.x += (cos(uAngleIncrement * aIndex) * .5) * vVelocity;
                 modelPosition.y += (sin(uAngleIncrement * aIndex) * .5) * vVelocity - (uGravity * uTime *.7);

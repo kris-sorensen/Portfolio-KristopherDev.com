@@ -8,10 +8,10 @@ import Title from './Title';
 import useInterval from '../../hooks/useInteveral'
 import { useControls, Leva } from 'leva';
 import PreExplodedFirework from './PreExplodedFirework'
-import { AfterimagePass } from "three-stdlib"
-
+import { AfterimagePass, UnrealBloomPass } from "three-stdlib"
 
 extend({ AfterimagePass });
+extend({ UnrealBloomPass });
 
 // TODO:
 /*
@@ -70,6 +70,7 @@ function AboutCanvas() {
                 <Effects multisamping={0} renderIndex={-1} disableGamma={false} depthBuffer={true}>
                     <afterimagePass />
                 </Effects>
+
                 {/* <Title /> */}
                 {fireworks}
             </Canvas>

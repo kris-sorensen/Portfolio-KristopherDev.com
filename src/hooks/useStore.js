@@ -5,8 +5,8 @@ import create from 'zustand'
 const useStore = create((set) => ({
     power: 5,
     gravity: .004,
-    opacity: .0025,
-    count: 100,
+    opacity: .001,
+    count: 500,
     friction: .99,
     particleSize: 4.5,
     // expendedFireworks: 0,
