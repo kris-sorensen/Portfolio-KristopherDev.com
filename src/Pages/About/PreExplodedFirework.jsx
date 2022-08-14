@@ -13,7 +13,7 @@ function PreExplodedFirework(props) {
 
     useFrame(() => {
         if (meshRef.current.position.y >= explodeAtThisY) {
-            console.log('we have arrived')
+            // console.log('we have arrived')
         } else meshRef.current.position.y += .03
     })
 

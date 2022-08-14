@@ -1,5 +1,5 @@
 import { Loader, Effects } from "@react-three/drei";
-import { Canvas } from '@react-three/fiber';
+import { Canvas, extend } from '@react-three/fiber';
 import React, { useState } from 'react';
 import Fireworks from "./Fireworks";
 import './styles/about.css';
@@ -8,10 +8,10 @@ import Title from './Title';
 import useInterval from '../../hooks/useInteveral'
 import { useControls, Leva } from 'leva';
 import PreExplodedFirework from './PreExplodedFirework'
+import { AfterimagePass } from "three-stdlib"
 
 
-
-
+extend({ AfterimagePass });
 
 // TODO:
 /*
@@ -29,7 +29,8 @@ function AboutCanvas() {
     const [isPlaying, setIsPlaying] = useState(true)
     const [delay] = useState(2000)
     //Gui
-    const transparentLayerParams = useControls({ opacity: { value: .12, min: 0.001, max: 1, step: .0001 } });
+    const transparentLayerParams = useControls({ opacity: { value: .1, min: 0.001, max: 1, step: .0001 } });
+
     //.12
     // onLoad setoff 3 firworks on interval with specific cordinates. if param is defined (position) I ignore mouse location and use param position instead. will launch in left right corner and under black of hello.
     // will need to send up light eventually that will go to firework spot and explode.
@@ -40,17 +41,17 @@ function AboutCanvas() {
 
 
     // onLoad launch 3 fireworks on interval
-    useInterval(
-        () => {
-            if (launchPosition >= launchPositionsArr.length) setIsPlaying(false)
-            else {
-                handleClick(launchPositionsArr[launchPosition])
-                setLaunchPosition(launchPosition + 1)
-            }
-        },
-        // Delay in milliseconds or null to stop it
-        isPlaying ? delay : null,
-    )
+    // useInterval(
+    //     () => {
+    //         if (launchPosition >= launchPositionsArr.length) setIsPlaying(false)
+    //         else {
+    //             handleClick(launchPositionsArr[launchPosition])
+    //             setLaunchPosition(launchPosition + 1)
+    //         }
+    //     },
+    //     // Delay in milliseconds or null to stop it
+    //     isPlaying ? delay : null,
+    // )
 
     const handleClick = (explodeHere) => {
         setFireworks([...fireworks, <Fireworks explodeHere={explodeHere} color={colorArr[color]} key={Date.now()} />])
@@ -62,11 +63,12 @@ function AboutCanvas() {
     return (
         <div style={{ height: '95%', width: '100%' }} className="canvas-container">
             <Canvas onClick={handleClick} gl={{ autoClearColor: false, }} orthographic camera={{ zoom: 100, position: [0, 0, 5] }}>
+                <SemiTransparentLayer opacity={transparentLayerParams.opacity} />
                 <Leva hidden />
                 {/* <OrbitControls /> */}
-                <PreExplodedFirework />
-                <SemiTransparentLayer opacity={transparentLayerParams.opacity} />
-                <Effects multisamping={8} renderIndex={1} disableGamma={false} disableRenderPass={false} disableRender={false}>
+                {/* <PreExplodedFirework /> */}
+                <Effects multisamping={0} renderIndex={-1} disableGamma={false} depthBuffer={true}>
+                    <afterimagePass />
                 </Effects>
                 <Title />
                 {fireworks}
