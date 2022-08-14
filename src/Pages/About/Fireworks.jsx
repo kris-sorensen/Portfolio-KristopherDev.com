@@ -212,7 +212,7 @@ const Fireworks = ({ color, explodeHere }) => {
                             usage={THREE.DynamicDrawUsage}
                         />
                     </bufferGeometry>
-                    <fireworkMaterial vertexColors transparent uSize={8 * gl.getPixelRatio()} uAngleIncrement={angleIncrement} uFriction={friction} uGravity={gravity} />
+                    <fireworkMaterial vertexColors transparent uSize={4 * gl.getPixelRatio()} uAngleIncrement={angleIncrement} uFriction={friction} uGravity={gravity} />
                     {/* <pointsMaterial attach="material" vertexColors size={10} sizeAttenuation={false} /> */}
                 </points>
                 {/* <points position={[-4, 3, 0]} /> */}
@@ -302,6 +302,7 @@ const FireworkMaterial =
             attribute float aVelocities;
             attribute float aIndex;
             varying float vVelocity;
+            varying vec2 vUv;
 
             varying vec3 vColor;
 
@@ -311,12 +312,12 @@ const FireworkMaterial =
             */
             vec4 modelPosition = modelMatrix * vec4(position, 1.0);
                 vVelocity = aVelocities;
-                vVelocity *= uFriction;
+                vVelocity *= (uFriction * (uTime *.9));
                 // modelPosition.xyz = modelPosition.xyz * vVelocity;
                 modelPosition.x += (cos(uAngleIncrement * aIndex) * .5) * vVelocity;
-                modelPosition.y += (sin(uAngleIncrement * aIndex) * .5) * vVelocity - uGravity;
+                modelPosition.y += (sin(uAngleIncrement * aIndex) * .5) * vVelocity - (uGravity * uTime);
 
-                modelPosition.xy *= uTime;
+                modelPosition.xy *= (uTime * .9);
 
             vec4 viewPosition = viewMatrix * modelPosition;
             vec4 projectedPosition = projectionMatrix * viewPosition;
@@ -332,13 +333,16 @@ const FireworkMaterial =
             * Color
             */
             vColor = color;
+            vUv = uv;
 
             }
   `,
         // fragment shader
         glsl`
             varying vec3 vColor;
+            varying vec2 vUv;
             uniform float uOpacity;
+
 
 
             void main(){
@@ -350,10 +354,17 @@ const FireworkMaterial =
                 strength = pow(strength, 10.);
 
                 //Final
-                vec3 color = mix(vec3(1., 0., 0.), vColor, strength);
+                //Blue
+                // vec3 color = mix(vec3(0., 0., 1.), vColor, strength);
+                //Red
+                // vec3 color = mix(vec3(1., 0., 0.), vColor, strength);
+                //Purple
+                vec3 color = mix(vec3(1., 0., 1.), vColor, strength);
 
                 // gl_FragColor= vec4(color, 1.);
                 gl_FragColor= vec4(color, uOpacity);
+                // gl_FragColor= vec4(vec3(1.,0.,0.),vec3(0.,0.,1) uOpacity);
+                // gl_FragColor = vec4(vUv, 1.0, uOpacity);
                         
             }`
     );
