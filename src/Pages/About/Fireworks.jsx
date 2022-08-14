@@ -212,7 +212,7 @@ const Fireworks = ({ color, explodeHere }) => {
                             usage={THREE.DynamicDrawUsage}
                         />
                     </bufferGeometry>
-                    <fireworkMaterial vertexColors transparent uSize={4 * gl.getPixelRatio()} uAngleIncrement={angleIncrement} uFriction={friction} uGravity={gravity} />
+                    <fireworkMaterial vertexColors transparent uSize={8 * gl.getPixelRatio()} uAngleIncrement={angleIncrement} uFriction={friction} uGravity={gravity} />
                     {/* <pointsMaterial attach="material" vertexColors size={10} sizeAttenuation={false} /> */}
                 </points>
                 {/* <points position={[-4, 3, 0]} /> */}
@@ -312,12 +312,12 @@ const FireworkMaterial =
             */
             vec4 modelPosition = modelMatrix * vec4(position, 1.0);
                 vVelocity = aVelocities;
-                vVelocity *= (uFriction * (uTime *.9));
+                vVelocity *= (uFriction - (uTime *.7));
                 // modelPosition.xyz = modelPosition.xyz * vVelocity;
                 modelPosition.x += (cos(uAngleIncrement * aIndex) * .5) * vVelocity;
-                modelPosition.y += (sin(uAngleIncrement * aIndex) * .5) * vVelocity - (uGravity * uTime);
+                modelPosition.y += (sin(uAngleIncrement * aIndex) * .5) * vVelocity - (uGravity * uTime *.7);
 
-                modelPosition.xy *= (uTime * .9);
+                modelPosition.xy *= uTime;
 
             vec4 viewPosition = viewMatrix * modelPosition;
             vec4 projectedPosition = projectionMatrix * viewPosition;

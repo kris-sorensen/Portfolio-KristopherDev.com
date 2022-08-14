@@ -62,15 +62,15 @@ function AboutCanvas() {
 
     return (
         <div style={{ height: '95%', width: '100%' }} className="canvas-container">
-            <Canvas onClick={handleClick} gl={{}} orthographic camera={{ zoom: 100, position: [0, 0, 5] }}>
-                <SemiTransparentLayer opacity={transparentLayerParams.opacity} />
+            <Canvas onClick={handleClick} gl={{ autoClearColor: false, }} orthographic camera={{ zoom: 100, position: [0, 0, 5] }}>
+                <SemiTransparentLayer renderIndex={-2} opacity={transparentLayerParams.opacity} />
                 <Leva hidden />
                 {/* <OrbitControls /> */}
                 {/* <PreExplodedFirework /> */}
                 <Effects multisamping={0} renderIndex={-1} disableGamma={false} depthBuffer={true}>
                     <afterimagePass />
                 </Effects>
-                <Title />
+                {/* <Title /> */}
                 {fireworks}
             </Canvas>
             <Loader />
