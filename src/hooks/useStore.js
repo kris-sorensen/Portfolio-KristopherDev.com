@@ -4,14 +4,11 @@ import create from 'zustand'
 
 const useStore = create((set) => ({
     power: 10,
-    gravity: 4,
+    gravity: 2,
     opacity: .001,
     count: 1000,
     friction: .99,
-    particleSize: 4.5,
-    // expendedFireworks: 0,
-    // addExpendedFirework: () => set((state) => ({ expendedFireworks: state.expendedFireworks + 1 })),
-    // resetExpendedFireworks: () => set(({ expendedFireworks: 0 })),
+    particleSize: 4,
 }))
 
 
