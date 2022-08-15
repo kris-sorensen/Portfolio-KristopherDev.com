@@ -109,8 +109,9 @@ nav {
     z-index: 3000;
     position: relative;
     width: 100%;
-    left: 5%;
-    top: 10%;
+    height: 10rem;
+    /* left: 5%;
+    top: 10%; */
     font-size: 3rem;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-weight: 500;
@@ -119,7 +120,10 @@ nav {
 
 .navContainer {
     display: flex;
-    list-style: none
+    list-style: none;
+    height: 100%;
+    align-items: center;
+    margin-left: 5rem;
 }
 
 li {

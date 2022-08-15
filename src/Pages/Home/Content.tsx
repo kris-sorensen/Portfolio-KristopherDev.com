@@ -20,6 +20,7 @@ const ContentContainer=() => {
     const gitRef=useRef(null);
     const linkedInRef=useRef(null);
     const emailRef=useRef(null);
+    const aboutRef=useRef(null);
 
     /**
      * Animations
@@ -105,7 +106,7 @@ const ContentContainer=() => {
             </header>
             <nav >
                 <ol className="navContainer">
-                    {/* <li className="about" onClick={() => navigate('/about')}>About</li> */}
+                    <motion.li ref={aboutRef} onHoverStart={() => handleHover(aboutRef.current)} onHoverEnd={() => handleHoverExit(aboutRef.current)} className="about" onClick={() => navigate('/about')}>About</motion.li>
 
                     {/* <li className="work">Work</li> */}
                 </ol>
