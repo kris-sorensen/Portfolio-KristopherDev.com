@@ -1,12 +1,22 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState, useLayoutEffect } from 'react';
 import { shaderMaterial, Text } from "@react-three/drei";
 import { extend, useFrame } from '@react-three/fiber'
 import * as THREE from "three";
 import glsl from 'babel-plugin-glsl/macro.js'
+import useWindowSize from '../../hooks/useWindowSize';
 
 function Title() {
 
+    const [titleFontSize, setTitleFontSize] = useState(1.8)
     const splitMaterial = useRef()
+    const { width, height } = useWindowSize()
+
+    useLayoutEffect(() => {
+        console.log(width)
+        if (width < 1147) setTitleFontSize(1.0)
+        else setTitleFontSize(1.8)
+    }, [width])
+
     useFrame(({ clock }) => {
         splitMaterial.current.uniforms.uTime.value = clock.getElapsedTime()
     })
@@ -15,7 +25,7 @@ function Title() {
         <>
             <mesh position={[0, 0, 1]}>
                 <Text
-                    fontSize={1.8}
+                    fontSize={titleFontSize}
                     maxWidth={400}
                     lineHeight={1}
                     letterSpacing={0.02}
