@@ -238,12 +238,16 @@ const FireworkMaterial =
 
                 //Color
                 //Blue
-                vec3 color = mix(vec3(transitionColor, transitionColor, 1.), vColor, strength);
+                // vec3 color = mix(vec3(transitionColor, transitionColor, 1.), vColor, strength);
                 
                 //Red
-                // vec3 color = mix(vec3(1., 0., 0.), vColor, strength);
+                vec3 color = mix(vec3(1., transitionColor, transitionColor), vColor, strength);
                 //Purple
-                // vec3 color = mix(vec3(1., 0., 1.), vColor, strength);
+                // vec3 color = mix(vec3(1., transitionColor, 1.), vColor, strength);
+
+
+                // glow color
+                
 
                 // gl_FragColor= vec4(color, 1.);
                 gl_FragColor= vec4(color, uOpacity);

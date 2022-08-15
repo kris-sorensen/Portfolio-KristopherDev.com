@@ -6,7 +6,7 @@ const useStore = create((set) => ({
     power: 10,
     gravity: 4,
     opacity: .001,
-    count: 500,
+    count: 1000,
     friction: .99,
     particleSize: 4.5,
     // expendedFireworks: 0,
