@@ -68,7 +68,7 @@ function AboutCanvas() {
                 {/* <OrbitControls /> */}
                 {/* <PreExplodedFirework /> */}
                 <Effects multisamping={0} renderIndex={-1} disableGamma={false} depthBuffer={true}>
-                    {/* <afterimagePass /> */}
+                    <afterimagePass />
                 </Effects>
 
                 <Title />

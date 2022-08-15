@@ -3,7 +3,7 @@ import create from 'zustand'
 // import Fireworks from '../Pages/About/Fireworks'
 
 const useStore = create((set) => ({
-    power: 5,
+    power: 10,
     gravity: 4,
     opacity: .001,
     count: 500,
