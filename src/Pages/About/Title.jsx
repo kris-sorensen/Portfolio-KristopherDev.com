@@ -8,6 +8,7 @@ import useWindowSize from '../../hooks/useWindowSize';
 function Title() {
 
     const [titleFontSize, setTitleFontSize] = useState(1.8)
+
     const splitMaterial = useRef()
     const { width, height } = useWindowSize()
 
@@ -103,7 +104,7 @@ const SplitMaterial = shaderMaterial(
         
         float strength = smoothstep( sinTime, fade, vUv.x);
         // float strength1 = 1.0 - step(.5,vUv.y);
-        gl_FragColor = vec4(strength, strength, strength, 1.0);
+        gl_FragColor = vec4(strength, strength, strength, strength);
     }
   `
 )
