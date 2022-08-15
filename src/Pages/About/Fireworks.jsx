@@ -77,7 +77,7 @@ const Fireworks = ({ color, explodeHere }) => {
     useFrame((state) => {
 
         points.current.material.uniforms.uTime.value = state.clock.getElapsedTime() - clockOffset;
-        console.log(state.clock.getElapsedTime() - clockOffset)
+        // console.log(state.clock.getElapsedTime() - clockOffset)
         if (points.current.material.uniforms.uOpacity.value <= 0) {
             points.current.material.uniforms.uOpacity.value = 0
             points.current.visible = false;
