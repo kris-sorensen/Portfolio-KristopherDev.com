@@ -29,7 +29,7 @@ function AboutCanvas() {
     const [isPlaying, setIsPlaying] = useState(true)
     const [delay] = useState(2000)
     //Gui
-    const transparentLayerParams = useControls({ opacity: { value: .1, min: 0.001, max: 1, step: .0001 } });
+    const transparentLayerParams = useControls({ opacity: { value: .1, min: 0.01, max: 1, step: .0001 } });
 
     //.12
     // onLoad setoff 3 firworks on interval with specific cordinates. if param is defined (position) I ignore mouse location and use param position instead. will launch in left right corner and under black of hello.
@@ -71,7 +71,7 @@ function AboutCanvas() {
                     <afterimagePass />
                 </Effects>
 
-                {/* <Title /> */}
+                <Title />
                 {fireworks}
             </Canvas>
             <Loader />

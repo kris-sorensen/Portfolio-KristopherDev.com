@@ -4,7 +4,7 @@ import create from 'zustand'
 
 const useStore = create((set) => ({
     power: 5,
-    gravity: .004,
+    gravity: 4,
     opacity: .001,
     count: 500,
     friction: .99,
