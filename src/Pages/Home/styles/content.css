@@ -123,7 +123,8 @@ nav {
     list-style: none;
     height: 100%;
     align-items: center;
-    margin-left: 5rem;
+    margin-left: 9rem;
+    font-size: 2.5rem
 }
 
 li {
