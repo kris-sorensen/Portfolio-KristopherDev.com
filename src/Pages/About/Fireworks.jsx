@@ -49,7 +49,6 @@ const Fireworks = ({ color, explodeHere }) => {
         // };
     }, []);
 
-    console.log(explodeHere)
 
     const colors = new Float32Array(count * 3)
     const positions = new Float32Array(count * 3)

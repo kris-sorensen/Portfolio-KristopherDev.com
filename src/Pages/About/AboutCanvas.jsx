@@ -24,7 +24,7 @@ function AboutCanvas() {
     const [fireworks, setFireworks] = useState([])
     const [colorArr] = useState([0x504DF4, 0x1738B7, 0xA76BFE])
     const [color, setColor] = useState(0)
-    const [launchPositionsArr] = useState([[-4, 3], [3, 1.8], [.5, -1]])
+    const [launchPositionsArr] = useState([[-4, 3], [3, 1.8], [.5, -2]])
     const [launchPosition, setLaunchPosition] = useState(0)
     const [isPlaying, setIsPlaying] = useState(true)
     const [delay] = useState(2000)
