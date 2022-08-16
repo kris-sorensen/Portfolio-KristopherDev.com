@@ -8,10 +8,9 @@ import Title from './Title';
 import useInterval from '../../hooks/useInteveral'
 import { useControls, Leva } from 'leva';
 import PreExplodedFirework from './PreExplodedFirework'
-import { AfterimagePass, UnrealBloomPass } from "three-stdlib"
+import { AfterimagePass } from "three-stdlib"
 
 extend({ AfterimagePass });
-extend({ UnrealBloomPass });
 
 // TODO:
 /*

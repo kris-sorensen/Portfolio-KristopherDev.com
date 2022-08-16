@@ -8,13 +8,34 @@ import './styles/navbar.css';
 function Navbar() {
     const navigate=useNavigate();
     return (
-        <nav >
-            <ol className="navContainer">
-                <li className="about" onClick={() => navigate('/about')}>About</li>
+        // <nav >
+        //     <ol className="navContainer">
+        //         <li className="about" onClick={() => navigate('/about')}>About</li>
 
-                {/* <li className="work">Work</li> */}
-            </ol>
-        </nav>
+        //         {/* <li className="work">Work</li> */}
+        //     </ol>
+        // </nav>
+        <div className="container-nav-mobile">
+            <div className="phone">
+                <div className="content">
+
+                    <nav role="navigation">
+                        <div id="menuToggle">
+                            <input type="checkbox" />
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <ul id="menu">
+                                <li><a onClick={() => navigate('/')}>Home</a></li>
+                                <li><a onClick={() => navigate('/about')}>About</a></li>
+                                {/* <li><a href="#">Info</a></li> */}
+                                {/* <li><a href="#">Contact</a></li> */}
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
     );
 }
 
