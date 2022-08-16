@@ -70,6 +70,8 @@ const Fireworks = ({ color, explodeHere }) => {
         // colors[i3] = Math.random()
         // colors[i3 + 1] = Math.random()
         // colors[i3 + 2] = Math.random()
+
+        //3 colors
         if (i % 6 == 0) {
 
             colors[i3] = 1
@@ -89,6 +91,9 @@ const Fireworks = ({ color, explodeHere }) => {
             colors[i3 + 1] = .031
             colors[i3 + 2] = 1
         }
+
+
+
     }
 
 
