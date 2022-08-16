@@ -102,9 +102,6 @@ const Fireworks = ({ color, explodeHere }) => {
             colors[i3 + 1] = .031
             colors[i3 + 2] = 1
         }
-
-
-
     }
 
 

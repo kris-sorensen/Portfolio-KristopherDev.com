@@ -6,19 +6,15 @@ function useWindowSize() {
     const [windowSize, setWindowSize] = useState({
         width: undefined,
         height: undefined,
-        earthsize: undefined,
     });
     useEffect(() => {
         // Handler to call on window resize
         function handleResize() {
-            let earthSize;
-            if (window.innerWidth > 420) earthSize = 9.5
-            else earthSize = 6.5
+
             // Set window width/height to state
             setWindowSize({
                 width: window.innerWidth,
                 height: window.innerHeight,
-                earthSize: earthSize,
             });
         }
         // Add event listener
