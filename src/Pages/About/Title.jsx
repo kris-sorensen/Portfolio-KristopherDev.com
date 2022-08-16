@@ -33,11 +33,11 @@ function Title() {
             setClickOrTap('Click')
         }
         if (height < 400) {
-            setConstructionY(-1)
-            setClickHereY(-1.3)
+            setConstructionY(-.9)
+            setClickHereY(-1.2)
         } else {
             setConstructionY(-2.2)
-            setClickHereY(-2.5)
+            setClickHereY(-2.6)
         }
     }, [width])
 
