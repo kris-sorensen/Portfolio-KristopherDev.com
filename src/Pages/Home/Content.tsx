@@ -4,6 +4,7 @@ import {motion} from "framer-motion";
 import {useNavigate} from "react-router-dom";
 
 import './styles/content.css';
+import Navbar from './../Portals/Navbar';
 
 const ContentContainer=() => {
     //Hooks
@@ -104,13 +105,7 @@ const ContentContainer=() => {
                 <h1 id="name">Software Developer</h1>
                 <h2 id="title">Kristopher Sorensen</h2>
             </header>
-            <nav >
-                <ol className="navContainer">
-                    <motion.li ref={aboutRef} onHoverStart={() => handleHover(aboutRef.current)} onHoverEnd={() => handleHoverExit(aboutRef.current)} className="about" onClick={() => navigate('/about')}>About</motion.li>
-
-                    {/* <li className="work">Work</li> */}
-                </ol>
-            </nav>
+            <Navbar />
             <div className="container">
                 <div className="socialContainer">
                     <div className="social icon" >

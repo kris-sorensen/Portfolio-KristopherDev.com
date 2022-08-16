@@ -104,7 +104,7 @@ const SplitMaterial = shaderMaterial(
         vec2 rotateUv = rotate(vUv, 1.0, vec2(0.5));
 
         // Calculate Transition Line
-        float sinTime = sin(uTime * .5);
+        float sinTime = (1. + (sin(uTime * .5))) / 2.;
         float fade = sinTime - .1;
         
         float strength = smoothstep( sinTime, fade, vUv.x);
