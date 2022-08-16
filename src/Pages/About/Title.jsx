@@ -9,20 +9,35 @@ extend({ SlowRevealMaterial })
 
 function Title() {
 
-    const [titleFontSize, setTitleFontSize] = useState(1.8)
+    const [titleFontSize, setTitleFontSize] = useState(null)
+    const [constructionFontSize, setConstructionFontSize] = useState(null)
+    const [constructionY, setConstructionY] = useState(null)
+    const [clickHereFontSize, setClickHereFontSize] = useState(null)
+    const [clickHereY, setClickHereY] = useState(null)
     const [clickOrTap, setClickOrTap] = useState('')
 
     const splitMaterial = useRef()
-    const { width } = useWindowSize()
+    const { width, height } = useWindowSize()
 
     useLayoutEffect(() => {
         if (width < 1147) {
             setTitleFontSize(1.0)
+            setConstructionFontSize(.2)
+            setClickHereFontSize(.15)
             setClickOrTap('Tap')
         }
         else {
             setTitleFontSize(1.8)
+            setConstructionFontSize(.3)
+            setClickHereFontSize(.2)
             setClickOrTap('Click')
+        }
+        if (height < 400) {
+            setConstructionY(-1)
+            setClickHereY(-1.3)
+        } else {
+            setConstructionY(-2.2)
+            setClickHereY(-2.5)
         }
     }, [width])
 
@@ -46,9 +61,9 @@ function Title() {
                 >
                     <slowRevealMaterial ref={splitMaterial} />hello!</Text>
             </mesh>
-            <mesh position={[0, -2, 1]}>
+            <mesh position={[0, constructionY, 1]}>
                 <Text
-                    fontSize={.3}
+                    fontSize={constructionFontSize}
                     maxWidth={200}
                     lineHeight={1}
                     letterSpacing={0.02}
@@ -60,10 +75,10 @@ function Title() {
                 >Under Construction
                 </Text>
             </mesh>
-            <mesh position={[0, -2.5, 1]}>
+            <mesh position={[0, clickHereY, 1]}>
                 <Text
                     color={'white'}
-                    fontSize={.2}
+                    fontSize={clickHereFontSize}
                     maxWidth={200}
                     lineHeight={1}
                     letterSpacing={0.02}

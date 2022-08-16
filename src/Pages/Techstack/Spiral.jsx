@@ -8,11 +8,6 @@ import { shaderMaterial } from '@react-three/drei';
 import glsl from 'babel-plugin-glsl/macro.js';
 
 
-
-
-
-
-
 const Spiral = () => {
     // const { mouse, viewport, gl, clock } = useThree()
     const meshRef = useRef()
@@ -24,11 +19,6 @@ const Spiral = () => {
         clockOffset = clock.getElapsedTime()
 
     }, []);
-
-
-
-
-
 
 
     return (
