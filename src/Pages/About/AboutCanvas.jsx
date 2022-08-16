@@ -73,7 +73,7 @@ function AboutCanvas() {
                 <Title />
                 {fireworks}
             </Canvas>
-            <Loader />
+            {/* <Loader /> */}
         </div>
     );
 }

@@ -4,6 +4,11 @@ import { extend, useFrame } from '@react-three/fiber'
 import * as THREE from "three";
 import glsl from 'babel-plugin-glsl/macro.js'
 import useWindowSize from '../../hooks/useWindowSize';
+import SlowRevealMaterial from '../../shaders/slowReveal'
+
+extend({ SlowRevealMaterial })
+
+
 
 function Title() {
 
@@ -11,7 +16,7 @@ function Title() {
     const [clickOrTap, setClickOrTap] = useState('')
 
     const splitMaterial = useRef()
-    const { width, height } = useWindowSize()
+    const { width } = useWindowSize()
 
     useLayoutEffect(() => {
         if (width < 1147) {
@@ -42,7 +47,7 @@ function Title() {
                     anchorY="middle"
                     outlineOpacity={0}
                 >
-                    <splitMaterial ref={splitMaterial} />hello!</Text>
+                    <slowRevealMaterial ref={splitMaterial} />hello!</Text>
             </mesh>
             <mesh position={[0, -2, 1]}>
                 <Text
@@ -77,45 +82,9 @@ function Title() {
 }
 
 
-const SplitMaterial = shaderMaterial(
-    { uTime: 0 },// vertex shader
-    glsl`
-    varying vec2 vUv;
-
-    void main(){
-        gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-        vUv = uv;
-    }
-  `,
-    // fragment shader
-    glsl`
-    varying vec2 vUv;
-    uniform float uTime;
-
-    
-    vec2 rotate(vec2 uv, float rotation, vec2 mid)
-    {
-        return vec2(
-        cos(rotation) * (uv.x - mid.x) + sin(rotation) * (uv.y - mid.y) + mid.x,
-        cos(rotation) * (uv.y - mid.y) - sin(rotation) * (uv.x - mid.x) + mid.y
-        );
-    }
-    void main() {
-        vec2 rotateUv = rotate(vUv, 1.0, vec2(0.5));
-
-        // Calculate Transition Line
-        float sinTime = (1. + (sin(uTime * .5))) / 2.;
-        float fade = sinTime - .1;
-        
-        float strength = smoothstep( sinTime, fade, vUv.x);
-        // float strength1 = 1.0 - step(.5,vUv.y);
-        gl_FragColor = vec4(strength, strength, strength, strength);
-    }
-  `
-)
 
 
-extend({ SplitMaterial })
+
 
 
 
