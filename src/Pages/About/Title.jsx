@@ -13,7 +13,6 @@ function Title() {
     const { width, height } = useWindowSize()
 
     useLayoutEffect(() => {
-        console.log(width)
         if (width < 1147) setTitleFontSize(1.0)
         else setTitleFontSize(1.8)
     }, [width])
@@ -72,7 +71,7 @@ function Title() {
 
 
 const SplitMaterial = shaderMaterial(
-    { uTransitionLine: .55, uTime: 0 },// vertex shader
+    { uTime: 0 },// vertex shader
     glsl`
     varying vec2 vUv;
 
@@ -85,7 +84,6 @@ const SplitMaterial = shaderMaterial(
     glsl`
     varying vec2 vUv;
     uniform float uTime;
-    varying float uTransitionLine;
 
     
     vec2 rotate(vec2 uv, float rotation, vec2 mid)

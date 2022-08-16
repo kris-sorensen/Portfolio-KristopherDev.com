@@ -51,10 +51,7 @@ const Fireworks = ({ color, explodeHere }) => {
 
 
 
-    let runFrame = useRef(true)
-    let colorWhite = useRef(true)
-
-
+    const colors = new Float32Array(count * 3)
     const positions = new Float32Array(count * 3)
     const velocities = new Float32Array(count)
     const index = new Float32Array(count)
@@ -68,6 +65,30 @@ const Fireworks = ({ color, explodeHere }) => {
         velocities[i] = Math.random() * power
         // index
         index[i] = i
+        // colors
+        // random Colors
+        // colors[i3] = Math.random()
+        // colors[i3 + 1] = Math.random()
+        // colors[i3 + 2] = Math.random()
+        if (i % 6 == 0) {
+
+            colors[i3] = 1
+            colors[i3 + 1] = 0
+            colors[i3 + 2] = 0
+        }
+
+        else if (i % 10 == 0) {
+
+            colors[i3] = 0
+            colors[i3 + 1] = 0
+            colors[i3 + 2] = 1
+        }
+
+        else if (i % 7) {
+            colors[i3] = .498
+            colors[i3 + 1] = .031
+            colors[i3 + 2] = 1
+        }
     }
 
 
@@ -84,10 +105,8 @@ const Fireworks = ({ color, explodeHere }) => {
         } else {
             points.current.material.uniforms.uOpacity.value -= .009;
         }
-        points.current.material.uniforms.uFriction.value -= .003;
+        // points.current.material.uniforms.uFriction.value -= .003;
         // points.current.material.uniforms.uGravity.value -= .0035;
-
-
     })
 
     return (
@@ -99,6 +118,13 @@ const Fireworks = ({ color, explodeHere }) => {
                             attach="attributes-position"
                             count={positions.length / 3}
                             array={positions}
+                            itemSize={3}
+                            usage={THREE.DynamicDrawUsage}
+                        />
+                        <bufferAttribute
+                            attach="attributes-color"
+                            count={colors.length / 3}
+                            array={colors}
                             itemSize={3}
                             usage={THREE.DynamicDrawUsage}
                         />
@@ -138,7 +164,6 @@ Fireworks.propTypes = {
 const FireworkMaterial =
     shaderMaterial(
         {
-            color: new THREE.Color(1., 0.0, 0.1),
             uSize: 1,
             uTime: .1,
             uAngleIncrement: 1,
@@ -219,8 +244,10 @@ const FireworkMaterial =
         glsl`
             varying vec3 vColor;
             varying vec2 vuv;
+            varying vec3 color;
             uniform float uOpacity;
             uniform float uTime;
+
 
 
 
@@ -230,28 +257,27 @@ const FireworkMaterial =
                 //Light point pattren (difuse point that fades faster)
                 float strength = distance(gl_PointCoord, vec2(.5));
                 strength = 1. - strength;
-                strength = pow(strength, 10.);
+                strength = pow(strength, 2.);
                 
                 // Inital color flashes white and then goes to color
                 float transitionColor = smoothstep(.25, .1, uTime);
-
+                
 
                 //Color
-                //Blue
-                // vec3 color = mix(vec3(transitionColor, transitionColor, 1.), vColor, strength);
-                
-                //Red
-                vec3 color = mix(vec3(1., transitionColor, transitionColor), vColor, strength);
-                //Purple
-                // vec3 color = mix(vec3(1., transitionColor, 1.), vColor, strength);
-
-
-                // glow color
+                vec3 color = vColor;
+                if(transitionColor < 0.1){
+                    color =  color;
+                }else{
+                    color =  mix(vec3(transitionColor), vColor, strength);
+                }
+                    
                 
 
                 // gl_FragColor= vec4(color, 1.);
-                gl_FragColor= vec4(color, uOpacity);
-                // gl_FragColor = vec4(vuv, 1.0, uOpacity);
+                // gl_FragColor= vec4(vColor.r,vColor.g,vColor.b, uOpacity);
+                // gl_FragColor = vec4(vColor, uOpacity);
+                gl_FragColor = vec4(color, uOpacity);
+                // gl_FragColor = vec4(vColor.r * strength, vColor.g * strength, vColor.b * strength,     1.);
                         
             }`
     );

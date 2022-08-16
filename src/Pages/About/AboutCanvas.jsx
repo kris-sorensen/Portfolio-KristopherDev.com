@@ -29,7 +29,7 @@ function AboutCanvas() {
     const [isPlaying, setIsPlaying] = useState(true)
     const [delay] = useState(2000)
     //Gui
-    const transparentLayerParams = useControls({ opacity: { value: .4, min: 0.01, max: 1, step: .0001 } });
+    const transparentLayerParams = useControls({ opacity: { value: .3, min: 0.01, max: 1, step: .0001 } });
 
     //.12
     // onLoad setoff 3 firworks on interval with specific cordinates. if param is defined (position) I ignore mouse location and use param position instead. will launch in left right corner and under black of hello.
@@ -68,7 +68,7 @@ function AboutCanvas() {
                 {/* <OrbitControls /> */}
                 {/* <PreExplodedFirework /> */}
                 <Effects multisamping={0} renderIndex={-1} disableGamma={false} depthBuffer={true}>
-                    {/* <afterimagePass /> */}
+                    <afterimagePass args={[0]} />
                 </Effects>
 
                 <Title />
