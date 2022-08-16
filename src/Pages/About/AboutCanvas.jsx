@@ -41,17 +41,17 @@ function AboutCanvas() {
 
 
     // onLoad launch 3 fireworks on interval
-    // useInterval(
-    //     () => {
-    //         if (launchPosition >= launchPositionsArr.length) setIsPlaying(false)
-    //         else {
-    //             handleClick(launchPositionsArr[launchPosition])
-    //             setLaunchPosition(launchPosition + 1)
-    //         }
-    //     },
-    //     // Delay in milliseconds or null to stop it
-    //     isPlaying ? delay : null,
-    // )
+    useInterval(
+        () => {
+            if (launchPosition >= launchPositionsArr.length) setIsPlaying(false)
+            else {
+                handleClick(launchPositionsArr[launchPosition])
+                setLaunchPosition(launchPosition + 1)
+            }
+        },
+        // Delay in milliseconds or null to stop it
+        isPlaying ? delay : null,
+    )
 
     const handleClick = (explodeHere) => {
         setFireworks([...fireworks, <Fireworks explodeHere={explodeHere} color={colorArr[color]} key={Date.now()} />])

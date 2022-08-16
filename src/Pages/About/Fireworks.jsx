@@ -49,18 +49,30 @@ const Fireworks = ({ color, explodeHere }) => {
         // };
     }, []);
 
-
+    console.log(explodeHere)
 
     const colors = new Float32Array(count * 3)
     const positions = new Float32Array(count * 3)
     const velocities = new Float32Array(count)
     const index = new Float32Array(count)
     for (let i = 0; i < count; i++) {
+
         const i3 = i * 3
+        if (explodeHere.length > 0) {
+            //positions
+            positions[i3] = explodeHere[0]
+            positions[i3 + 1] = explodeHere[1]
+            positions[i3 + 2] = 0
+        } else {
+            //positions
+            positions[i3] = (mouse.x * viewport.width) / 2
+            positions[i3 + 1] = (mouse.y * viewport.height) / 2
+            positions[i3 + 2] = 0
+        }
         //positions
-        positions[i3] = (mouse.x * viewport.width) / 2
-        positions[i3 + 1] = (mouse.y * viewport.height) / 2
-        positions[i3 + 2] = 0
+        // positions[i3] = (mouse.x * viewport.width) / 2
+        // positions[i3 + 1] = (mouse.y * viewport.height) / 2
+        // positions[i3 + 2] = 0
         //velocities
         velocities[i] = Math.random() * power
         // index
