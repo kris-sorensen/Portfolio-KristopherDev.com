@@ -8,13 +8,20 @@ import useWindowSize from '../../hooks/useWindowSize';
 function Title() {
 
     const [titleFontSize, setTitleFontSize] = useState(1.8)
+    const [clickOrTap, setClickOrTap] = useState('')
 
     const splitMaterial = useRef()
     const { width, height } = useWindowSize()
 
     useLayoutEffect(() => {
-        if (width < 1147) setTitleFontSize(1.0)
-        else setTitleFontSize(1.8)
+        if (width < 1147) {
+            setTitleFontSize(1.0)
+            setClickOrTap('Tap')
+        }
+        else {
+            setTitleFontSize(1.8)
+            setClickOrTap('Click')
+        }
     }, [width])
 
     useFrame(({ clock }) => {
@@ -62,7 +69,7 @@ function Title() {
                     anchorX="center"
                     anchorY="bottom-baseline"
                     outlineOpacity={0}
-                >click/tap Anywhere
+                >{clickOrTap} Anywhere
                 </Text>
             </mesh>
         </>
