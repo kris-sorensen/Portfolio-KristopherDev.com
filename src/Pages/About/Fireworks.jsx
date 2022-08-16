@@ -29,13 +29,6 @@ const Fireworks = ({ explodeHere }) => {
     // * animation loop
     useFrame(() => {
         points.current.material.uniforms.uTime.value = clock.getElapsedTime() - clockOffset;
-        // console.log(state.clock.getElapsedTime() - clockOffset)
-        // if (points.current.material.uniforms.uOpacity.value <= 0) {
-        //     points.current.material.uniforms.uOpacity.value = 0
-        //     points.current.visible = false
-        // } else {
-        //     points.current.material.uniforms.uOpacity.value -= .009
-        // }
     })
 
     return (

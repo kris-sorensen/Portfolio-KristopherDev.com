@@ -12,12 +12,6 @@ import { AfterimagePass } from "three-stdlib"
 
 extend({ AfterimagePass });
 
-// TODO:
-/*
-* add smoothness (multisampling?) to text or see if there is a native property
-* only allow click after white flash/certain amount of time
-
-*/
 
 function AboutCanvas() {
     const [fireworks, setFireworks] = useState([])
@@ -30,13 +24,8 @@ function AboutCanvas() {
     //Gui
     const transparentLayerParams = useControls({ opacity: { value: .3, min: 0.01, max: 1, step: .0001 } });
 
-    //.12
-    // onLoad setoff 3 firworks on interval with specific cordinates. if param is defined (position) I ignore mouse location and use param position instead. will launch in left right corner and under black of hello.
     // will need to send up light eventually that will go to firework spot and explode.
     // needs to be on interval so they don't all launch at same time. will pass position into handle click
-    // after launch change shader so hello is revealed (maybe flicker it first, same with click me)
-
-    // const [currentFirework, setCurrentFirework] = useState(0) // make state? useState?
 
 
     // onLoad launch 3 fireworks on interval
@@ -60,7 +49,7 @@ function AboutCanvas() {
     }
 
     return (
-        <div style={{ height: '95%', width: '100%' }} className="canvas-container">
+        <div style={{ height: '100%', width: '100%' }} className="canvas-container">
             <Leva hidden />
             <Canvas onClick={handleClick} gl={{ autoClearColor: false, }} orthographic camera={{ zoom: 100, position: [0, 0, 5] }}>
                 <SemiTransparentLayer renderIndex={-2} opacity={transparentLayerParams.opacity} />
@@ -73,7 +62,6 @@ function AboutCanvas() {
                 <Title />
                 {fireworks}
             </Canvas>
-            {/* <Loader /> */}
         </div>
     );
 }
