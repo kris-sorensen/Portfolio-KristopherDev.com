@@ -1,14 +1,11 @@
 import React, { useRef, useState, useLayoutEffect } from 'react';
-import { shaderMaterial, Text } from "@react-three/drei";
+import { Text } from "@react-three/drei";
 import { extend, useFrame } from '@react-three/fiber'
 import * as THREE from "three";
-import glsl from 'babel-plugin-glsl/macro.js'
 import useWindowSize from '../../hooks/useWindowSize';
 import SlowRevealMaterial from '../../shaders/slowReveal'
 
 extend({ SlowRevealMaterial })
-
-
 
 function Title() {
 

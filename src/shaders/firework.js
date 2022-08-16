@@ -12,7 +12,6 @@ const FireworkMaterial =
             uOpacity: 1,
             uSpread: .25,
             uFireworkSize: 1,
-
         },
 
         // vertex shader
@@ -77,22 +76,19 @@ const FireworkMaterial =
             */
             vColor = color;
             vuv = uv;
-
-            }
-  `,
+        }`,
         // fragment shader
         glsl`
+            uniform float uTime;
+            uniform float uOpacity;
+        
             varying vec3 vColor;
             varying vec2 vuv;
             varying vec3 color;
-            uniform float uOpacity;
-            uniform float uTime;
-
-
+            varying float vOpacity;
 
 
             void main(){
-
 
                 //Light point pattren (difuse point that fades faster)
                 float strength = distance(gl_PointCoord, vec2(.5));
@@ -101,24 +97,20 @@ const FireworkMaterial =
                 
                 // Inital color flashes white and then goes to color
                 float transitionColor = smoothstep(.25, .1, uTime);
-                
 
-                //Color
+                // Color
                 vec3 color = vColor;
                 if(transitionColor < 0.1){
                     color =  color;
                 }else{
                     color =  mix(vec3(transitionColor), vColor, strength);
                 }
-                    
-                
 
-                // gl_FragColor= vec4(color, 1.);
-                // gl_FragColor= vec4(vColor.r,vColor.g,vColor.b, uOpacity);
-                // gl_FragColor = vec4(vColor, uOpacity);
-                gl_FragColor = vec4(color, uOpacity);
-                // gl_FragColor = vec4(vColor.r * strength, vColor.g * strength, vColor.b * strength,     1.);
-                        
+                // Opacity
+                float opacity = smoothstep( 2.6, .8, uTime);
+                    
+                //Final
+                gl_FragColor = vec4(color, opacity);
             }`
     );
 
