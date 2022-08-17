@@ -11,7 +11,8 @@ import { useControls, Leva } from 'leva';
 import { AfterimagePass } from "three-stdlib"
 import fireworkSound from './audio/firework.mp3';
 // import fireworkSoundMobile from './audio/firework-shortest.mp3';
-import fireworkSoundMobile from './audio/firework-short.mp3';
+// import fireworkSoundMobile from './audio/firework-short.mp3';
+import fireworkSoundMobile from './audio/firework-mobile.mp3';
 import useSound from 'use-sound';
 import useWindowSize from '../../hooks/useWindowSize';
 
