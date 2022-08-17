@@ -49,7 +49,11 @@ function AboutCanvas() {
     // onLoad launch 3 fireworks on interval
     useInterval(
         () => {
-            if (launchPosition >= launchPositionsArr.length) setIsPlaying(false)
+            if (isMobile) return null
+            if (launchPosition >= launchPositionsArr.length) {
+                setIsPlaying(false)
+                return null
+            }
             else {
                 handleClick(launchPositionsArr[launchPosition])
                 setLaunchPosition(launchPosition + 1)
