@@ -9,6 +9,8 @@ import useInterval from '../../hooks/useInteveral'
 import { useControls, Leva } from 'leva';
 import PreExplodedFirework from './PreExplodedFirework'
 import { AfterimagePass } from "three-stdlib"
+import fireworkSound from './audio/firework.mp3';
+import useSound from 'use-sound';
 
 extend({ AfterimagePass });
 
@@ -21,6 +23,8 @@ function AboutCanvas() {
     const [launchPosition, setLaunchPosition] = useState(0)
     const [isPlaying, setIsPlaying] = useState(true)
     const [delay] = useState(2000)
+    const [play] = useSound(fireworkSound);
+
     //Gui
     const transparentLayerParams = useControls({ opacity: { value: .3, min: 0.01, max: 1, step: .0001 } });
 
@@ -46,6 +50,7 @@ function AboutCanvas() {
         if (color >= colorArr.length - 1) {
             setColor(0)
         } else setColor(color + 1)
+        play()
     }
 
     return (
