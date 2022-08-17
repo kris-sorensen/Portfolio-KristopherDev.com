@@ -1,16 +1,18 @@
+import React, { useState, useEffect } from 'react';
 import { Loader, Effects } from "@react-three/drei";
 import { Canvas, extend } from '@react-three/fiber';
-import React, { useState } from 'react';
 import Fireworks from "./Fireworks";
 import './styles/about.css';
 import SemiTransparentLayer from './SemiTransparentLayer';
 import Title from './Title';
 import useInterval from '../../hooks/useInteveral'
 import { useControls, Leva } from 'leva';
-import PreExplodedFirework from './PreExplodedFirework'
+// import PreExplodedFirework from './PreExplodedFirework'
 import { AfterimagePass } from "three-stdlib"
 import fireworkSound from './audio/firework.mp3';
+import fireworkSoundMobile from './audio/firework-shortest.mp3';
 import useSound from 'use-sound';
+import useWindowSize from '../../hooks/useWindowSize';
 
 extend({ AfterimagePass });
 
@@ -22,8 +24,20 @@ function AboutCanvas() {
     const [launchPositionsArr] = useState([[-4, 3], [3, 1.8], [.5, -2]])
     const [launchPosition, setLaunchPosition] = useState(0)
     const [isPlaying, setIsPlaying] = useState(true)
+    const [isMobile, setIsMobile] = useState(null)
     const [delay] = useState(2000)
     const [play] = useSound(fireworkSound);
+    const [playMobile] = useSound(fireworkSoundMobile);
+    const { width } = useWindowSize()
+
+    useEffect(() => {
+        if (width < 1147) {
+            setIsMobile(true)
+        }
+        else {
+            setIsMobile(false)
+        }
+    }, [width])
 
     //Gui
     const transparentLayerParams = useControls({ opacity: { value: .3, min: 0.01, max: 1, step: .0001 } });
@@ -50,7 +64,12 @@ function AboutCanvas() {
         if (color >= colorArr.length - 1) {
             setColor(0)
         } else setColor(color + 1)
-        play()
+        if (isMobile) {
+            playMobile()
+        } else {
+            play()
+
+        }
     }
 
     return (
