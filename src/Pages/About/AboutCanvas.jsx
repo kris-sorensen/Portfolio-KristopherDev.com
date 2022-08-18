@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import { Loader, Effects } from "@react-three/drei";
 import { Canvas, extend } from '@react-three/fiber';
 import Fireworks from "./Fireworks";
@@ -80,17 +80,20 @@ function AboutCanvas() {
         <div style={{ height: '100%', width: '100%' }} className="canvas-container">
             <Leva hidden />
             <Canvas onClick={handleClick} gl={{ autoClearColor: false, }} orthographic camera={{ zoom: 100, position: [0, 0, 5] }}>
-                <SemiTransparentLayer renderIndex={-2} opacity={transparentLayerParams.opacity} />
-                {/* <OrbitControls /> */}
-                {/* <PreExplodedFirework /> */}
-                <Effects multisamping={0} renderIndex={-1} disableGamma={false} depthBuffer={true}>
-                    <afterimagePass args={[0]} />
-                </Effects>
+                <Suspense fallback={null}>
+                    <SemiTransparentLayer renderIndex={-2} opacity={transparentLayerParams.opacity} />
+                    {/* <OrbitControls /> */}
+                    {/* <PreExplodedFirework /> */}
+                    <Effects multisamping={0} renderIndex={-1} disableGamma={false} depthBuffer={true}>
+                        <afterimagePass args={[0]} />
+                    </Effects>
 
-                <Title />
-                {fireworks}
+                    <Title />
+                    {fireworks}
+                </Suspense>
             </Canvas>
-        </div>
+            <Loader />
+        </div >
     );
 }
 
