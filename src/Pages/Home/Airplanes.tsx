@@ -36,7 +36,7 @@ const Airplanes=() => {
     const rad: number=Math.random()*Math.PI*.45+.2;
     const randomAxis: THREE.Vector3=new THREE.Vector3(random(), random(), random()).normalize();
     const randomAxisRot: number=Math.random()*Math.PI*2;
-    const planeSpeed=.4;
+    const planeSpeed=useRef(.4);
 
     useEffect(() => {
         trailRef.current.rotateX(Math.PI);
@@ -51,7 +51,7 @@ const Airplanes=() => {
         group.current.rotation.set(0, 0, 0);
 
         deltaTime=time.getDelta();
-        rot+=deltaTime*planeSpeed*.75;
+        rot+=deltaTime*planeSpeed.current*.75;
 
         group.current.rotateOnAxis(randomAxis, randomAxisRot);
         group.current.rotateOnAxis(randomAxis, randomAxisRot);
@@ -71,18 +71,18 @@ const Airplanes=() => {
     // group.current.visible=!group.current.visible;
     // // $('html,body').css('cursor', 'pointer');
     // };
-    // const handleClick=() => {
+    const handleClick=() => {
+        planeSpeed.current+=.8;
+        // group.current.visible=!group.current.visible;
+        //todo: destroy object with fire if clicked too many times?
 
-    //     group.current.visible=!group.current.visible;
-    //     //todo: destroy object instead 
-
-    // };
+    };
 
     return (
         <Suspense fallback={null}>
-            {/* onClick={handleClick} */}
+
             {/* onPointerOut={handleHover} onPointerOver={handleHover} */}
-            <group ref={group}  >
+            <group ref={group} onClick={handleClick} >
                 <group scale={.0018} >
                     <mesh geometry={nodes.Cube_2_2_Body_0_1.geometry} material={materials.Body} />
                     <mesh geometry={nodes.Cube_2_2_Body_0_2.geometry} material={materials.material} />
