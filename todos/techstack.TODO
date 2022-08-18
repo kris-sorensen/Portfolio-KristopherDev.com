@@ -1,0 +1,42 @@
+
+Tech Stack: @started(22-08-17 11:29)
+  Project:  
+    ✔ Swirl @done(22-08-17 18:17)
+    ☐ Title
+    ☐ Tech Stack icons
+    ☐ onClick Events 
+
+    Swirl:
+      ✔ Make store file for page @done(22-08-17 18:17)
+      ✔ Add uniforms @done(22-08-17 18:17)
+      ✔ Add attributes @done(22-08-17 18:17)
+      ✔ add shader to file @done(22-08-17 18:17)
+      ✔ understand how shader is working by commenting out parts @done(22-08-17 18:17)
+      ✔ position shader with camaera position and shader position @done(22-08-17 18:17)
+
+    Title:
+      ☐ Add text via Drei
+      ☐ Add simple shader
+      ☐ cool blue for title
+        shader: 
+          ideas: 
+            - radial moving gradient
+            - spinning title
+            - stock ticker 
+            - ?
+      ☐ Position title
+      ☐ ? add light and shadows
+    
+    Tech Icons:
+      ☐ find download Icons
+      ☐ change color?
+      ☐ ?what about additional technologies? is there a way to hightlight those?
+      ☐ position on screen use drei flexbox?
+
+    onClick Events:
+      ☐ ?can you do a rewind and fastforward variable
+      ☐ ?onclick on icons would reveal the name of the tech? flip and come center with x to exit? and swoosh sound?
+
+    Other:
+  
+  

@@ -1,8 +1,10 @@
+import React, { Suspense } from 'react';
+import * as THREE from 'three';
 import { Canvas, extend } from '@react-three/fiber';
-import React from 'react';
 import './styles/techstack.css';
 import { useControls, Leva } from 'leva';
 import Spiral from './Spiral'
+import { Circle, OrbitControls } from '@react-three/drei'
 
 /* TODO:
   * create a new store and place parameters
@@ -18,10 +20,13 @@ import Spiral from './Spiral'
 function TechstackCanvas() {
 
     return (
-        <div style={{ height: '95%', width: '100%' }} className="canvas-container">
+        <div style={{ height: '100%', width: '100%' }} className="canvas-container">
             <Leva hidden />
             <Canvas gl={{}} camera={{ position: [0, 0.2, .75] }}>
-                <Spiral />
+                <OrbitControls />
+                <Suspense fallback={null}>
+                    <Spiral />
+                </Suspense>
             </Canvas>
         </div>
     );

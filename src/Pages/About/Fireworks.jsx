@@ -12,7 +12,7 @@ extend({ FireworkMaterial });
 const Fireworks = ({ explodeHere }) => {
     // * hooks
     const { gl, clock } = useThree()
-    const { gravity, particleSize, particleCount, friction, opacity } = useFireworksStore()
+    const { gravity, particleSize, particleCount, friction } = useFireworksStore()
     const [angleIncrement] = useState((Math.PI * 2) / particleCount);
     const points = useRef()
 
