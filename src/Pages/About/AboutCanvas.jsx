@@ -13,6 +13,7 @@ import fireworkSound from './audio/firework.mp3';
 import fireworkSoundMobile from './audio/firework-mobile.mp3';
 import useSound from 'use-sound';
 import useWindowSize from '../../hooks/useWindowSize';
+import Techstack from '../TechstackSimple/techstack';
 
 extend({ AfterimagePass });
 
@@ -91,6 +92,7 @@ function AboutCanvas() {
                     <Title />
                     {fireworks}
                 </Suspense>
+                {/* <Techstack /> */}
             </Canvas>
             <Loader />
         </div >
