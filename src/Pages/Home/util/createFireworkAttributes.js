@@ -1,10 +1,13 @@
 import { useThree } from '@react-three/fiber';
 import useFireworksStore from '../../../stores/useFireworksStore'
 
+import useScrollPosition from '../../../hooks/useScrollPosition'
+
 // * fill attribute arrays
 const createFireworkAttributes = (explodeHere) => {
-    const { mouse, viewport } = useThree()
+    const { mouse, viewport, camera } = useThree()
     const { power, particleCount } = useFireworksStore()
+
 
     // * attributes
     const colors = new Float32Array(particleCount * 3)
@@ -22,8 +25,8 @@ const createFireworkAttributes = (explodeHere) => {
             positions[i3 + 2] = 0
         } else {
             //mouse click positions
-            positions[i3] = (mouse.x * viewport.width) / 2
-            positions[i3 + 1] = (mouse.y * viewport.height) / 2
+            positions[i3] = ((mouse.x * viewport.width) / 2)
+            positions[i3 + 1] = ((mouse.y * viewport.height) / 2) + camera.position.y
             positions[i3 + 2] = 0
         }
 

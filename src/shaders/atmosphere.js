@@ -5,9 +5,9 @@ import { Texture } from "three";
 
 
 const AtmosphereMaterial = shaderMaterial(
-    { map: new Texture(), color: new THREE.Color(0.2, 0.0, 0.1) },
-    // vertex shader
-    glsl`
+  { map: new Texture(), color: new THREE.Color(0.2, 0.0, 0.1) },
+  // vertex shader
+  glsl`
     varying vec2 vertexUV;
     varying vec3 vertexNormal;
 
@@ -17,8 +17,8 @@ const AtmosphereMaterial = shaderMaterial(
         gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); // boiler plate code
     }
   `,
-    // fragment shader
-    glsl`
+  // fragment shader
+  glsl`
     uniform sampler2D map;
     varying vec2 vertexUV;
     varying vec3 vertexNormal;

@@ -3,7 +3,7 @@
 @import url("https://use.typekit.net/wez5tme.css");
 
 /* Main Content */
-.Home {
+.connect {
     height: 100vh;
     width: 100%;
 }
@@ -17,7 +17,7 @@ Canvas {
     width: 100%;
     background-color: black;
     overflow-x: hidden;
-    overflow-y: hidden;
+    /* overflow-y: hidden; */
 }
 
 .page {

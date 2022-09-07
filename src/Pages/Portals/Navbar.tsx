@@ -27,9 +27,10 @@ function Navbar() {
                             <span></span>
                             <ul id="menu">
                                 <li><a onClick={() => navigate('/')}>Home</a></li>
-                                <li><a onClick={() => navigate('/about')}>About</a></li>
+                                <li><a onClick={() => document.location='/#about'}>About</a></li>
+                                <li><a onClick={() => navigate('/connect')}>Connect</a></li>
                                 {/* <li><a href="#">Info</a></li> */}
-                                {/* <li><a href="#">Contact</a></li> */}
+
                             </ul>
                         </div>
                     </nav>

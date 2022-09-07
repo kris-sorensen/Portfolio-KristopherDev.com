@@ -1,10 +1,10 @@
-import React, { useState, useEffect, Suspense } from 'react';
+import React, { useState, useEffect, Suspense, useRef } from 'react';
 import { Loader, Effects } from "@react-three/drei";
-import { Canvas, extend } from '@react-three/fiber';
+import { Canvas, extend, useFrame, useThree } from '@react-three/fiber';
 import Fireworks from "./Fireworks";
-import './styles/about.css';
+import './styles/home.css';
 import SemiTransparentLayer from './SemiTransparentLayer';
-import Title from './Title';
+import HomeContent from './HomeContent';
 import useInterval from '../../hooks/useInteveral'
 import { useControls, Leva } from 'leva';
 // import PreExplodedFirework from './PreExplodedFirework'
@@ -13,7 +13,11 @@ import fireworkSound from './audio/firework.mp3';
 import fireworkSoundMobile from './audio/firework-mobile.mp3';
 import useSound from 'use-sound';
 import useWindowSize from '../../hooks/useWindowSize';
-import Techstack from '../TechstackSimple/techstack';
+import useScrollPosition from '../../hooks/useScrollPosition'
+// import Techstack from '../TechstackSimple/Techstack';
+// import Techstack from '../Techstack/Techstack';
+
+import Test from '../test'
 
 extend({ AfterimagePass });
 
@@ -31,6 +35,7 @@ function AboutCanvas() {
     const [playMobile] = useSound(fireworkSoundMobile);
     const { width } = useWindowSize()
 
+
     useEffect(() => {
         if (width < 1147) {
             setIsMobile(true)
@@ -39,6 +44,8 @@ function AboutCanvas() {
             setIsMobile(false)
         }
     }, [width])
+
+
 
     //Gui
     const transparentLayerParams = useControls({ opacity: { value: .3, min: 0.01, max: 1, step: .0001 } });
@@ -56,7 +63,7 @@ function AboutCanvas() {
                 return null
             }
             else {
-                handleClick(launchPositionsArr[launchPosition])
+                launchFirework(launchPositionsArr[launchPosition])
                 setLaunchPosition(launchPosition + 1)
             }
         },
@@ -64,7 +71,7 @@ function AboutCanvas() {
         isPlaying ? delay : null,
     )
 
-    const handleClick = (explodeHere) => {
+    const launchFirework = (explodeHere) => {
         setFireworks([...fireworks, <Fireworks explodeHere={explodeHere} color={colorArr[color]} key={Date.now()} />])
         if (color >= colorArr.length - 1) {
             setColor(0)
@@ -73,30 +80,58 @@ function AboutCanvas() {
             playMobile()
         } else {
             play()
-
         }
     }
 
     return (
-        <div style={{ height: '100%', width: '100%' }} className="canvas-container">
-            <Leva hidden />
-            <Canvas onClick={handleClick} gl={{ autoClearColor: false, }} orthographic camera={{ zoom: 100, position: [0, 0, 5] }}>
-                <Suspense fallback={null}>
-                    <SemiTransparentLayer renderIndex={-2} opacity={transparentLayerParams.opacity} />
-                    {/* <OrbitControls /> */}
-                    {/* <PreExplodedFirework /> */}
-                    <Effects multisamping={0} renderIndex={-1} disableGamma={false} depthBuffer={true}>
-                        <afterimagePass args={[0]} />
-                    </Effects>
+        <>
+            <div style={{ width: '100%', height: '100vh', position: 'fixed', top: 0, left: 0, outline: 'none' }} >
+                <Leva hidden />
+                <Canvas onClick={launchFirework} gl={{ autoClearColor: false, antialias: false }} orthographic camera={{ zoom: 100, position: [0, 0, 5] }}>
+                    <Suspense fallback={Loader}>
+                        <Test />
+                        <Camera />
+                        <SemiTransparentLayer renderIndex={-2} opacity={transparentLayerParams.opacity} />
+                        {/* <OrbitControls /> */}
+                        {/* <PreExplodedFirework /> */}
+                        <Effects multisamping={0} renderIndex={-1} disableGamma={false} depthBuffer={true}>
+                            <afterimagePass args={[0]} />
+                        </Effects>
 
-                    <Title />
-                    {fireworks}
-                </Suspense>
-                {/* <Techstack /> */}
-            </Canvas>
-            <Loader />
-        </div >
+                        {/* <Techstack /> */}
+                        <HomeContent />
+                        {fireworks}
+                    </Suspense>
+                </Canvas>
+                <Loader />
+            </div>
+        </>
     );
 }
 
+const Camera = () => {
+
+    const scrollPosition = useScrollPosition();
+    const { height } = useWindowSize()
+    const { camera, gl, viewport } = useThree()
+    const initalLoad = useRef(true)
+
+    // Move camera onScroll
+    useFrame(() => {
+        camera.position.y = - scrollPosition / height * viewport.height
+    })
+
+    // Disable transparent layer when scrolling. If enabled meshes will streak
+    useEffect(() => {
+        if (!initalLoad.current) {
+            gl.autoClearColor = true
+            return () => gl.autoClearColor = false
+        } else {
+            initalLoad.current = false
+        }
+    }, [scrollPosition])
+
+    return null
+}
 export default AboutCanvas;
+

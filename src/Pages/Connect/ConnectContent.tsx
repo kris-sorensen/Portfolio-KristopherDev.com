@@ -3,16 +3,16 @@ import gsap from 'gsap';
 import {motion} from "framer-motion";
 import {useNavigate} from "react-router-dom";
 
-import './styles/content.css';
-import Navbar from './../Portals/Navbar';
+import './styles/connect.css';
+import Navbar from '../Portals/Navbar';
 
-const ContentContainer=() => {
+const ConnectContent=() => {
     //Hooks
     const [isClicked, setIsClicked]=useState(true);
     const navigate=useNavigate();
     // Auto Lauch Social Links Animation
     useEffect(() => {
-        const timer=setTimeout(() => handleClick(), 4000);
+        const timer=setTimeout(() => handleClick(), 2000);
         return () => clearTimeout(timer);
     }, []);
 
@@ -118,7 +118,7 @@ const ContentContainer=() => {
                         <motion.img id="linkedIn" ref={linkedInRef} src="linkedIn.png" alt="LinkedIn" onHoverStart={() => handleHover(linkedInRef.current)} onHoverEnd={() => handleHoverExit(linkedInRef.current)} onClick={() => handleLinkedInClick()} />
                     </div>
                     <div className="socialEmail icon invis-icon" >
-                        <motion.img id="email" ref={emailRef} src="email.png" alt="Email" onHoverStart={() => handleHover(emailRef.current)} onHoverEnd={() => handleHoverExit(emailRef.current)} onClick={() => handleEmailClick()} />
+                        <motion.img id="email" ref={emailRef} src="email2.png" alt="Email" onHoverStart={() => handleHover(emailRef.current)} onHoverEnd={() => handleHoverExit(emailRef.current)} onClick={() => handleEmailClick()} />
                     </div>
                 </div>
             </div>
@@ -128,4 +128,4 @@ const ContentContainer=() => {
 };
 
 
-export default ContentContainer;
+export default ConnectContent;

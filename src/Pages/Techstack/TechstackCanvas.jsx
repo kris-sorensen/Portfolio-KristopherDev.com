@@ -4,7 +4,7 @@ import { Canvas, extend } from '@react-three/fiber';
 import './styles/techstack.css';
 import { useControls, Leva } from 'leva';
 import Spiral from './Spiral'
-import { Circle, Edges, OrbitControls, Cylinder, Html, Plane } from '@react-three/drei'
+import { Circle, Edges, OrbitControls, Cylinder, Html, Plane, Sphere } from '@react-three/drei'
 import Loader from '../../utils/loader'
 
 /* TODO:
@@ -116,6 +116,7 @@ const PuckJS = () => {
 
     return (
         <mesh position={[3, 0, -2]}>
+            {/* <Sphere> */}
             <Cylinder args={[.3, .3, .1, 30, 30]}>
                 <Html className="puck-content" rotation-x={-Math.PI / 2} position={[.0, 0.06, .0]} transform occlude>
                     <div style={{ width: "15px", height: "15px", backgroundColor: '#f7df1e', borderRadius: "50%" }} >
@@ -130,6 +131,7 @@ const PuckJS = () => {
                     </div>
                 </Html>
                 <meshStandardMaterial castShadow recieveShadow color='#f7df1e' />
+                {/* </Sphere> */}
             </Cylinder>
         </mesh>
     )
@@ -138,7 +140,7 @@ const PuckTS = () => {
 
     return (
         <mesh position={[4, 0, 0]}>
-            <Cylinder args={[.3, .3, .1, 30, 30]}>
+            <Cylinder args={[.3, .2, .1, 30, 30]}>
                 <Html className="puck-content" rotation-x={-Math.PI / 2} position={[0, 0.06, .0]} transform occlude>
                     <div style={{ width: "15px", height: "15px", backgroundColor: '#222', borderRadius: "50%" }} >
                         <img onClick={() => console.log('click top')} style={{ width: '100%', height: '100%', borderRadius: '50%' }} src="typescript.svg" alt="Social Links" />

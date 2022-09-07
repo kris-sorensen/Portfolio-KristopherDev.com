@@ -1,16 +1,12 @@
 /* Nav Bar */
 
+.container-nav-mobile {
+    z-index: 90000;
+    height: 100vh;
+}
+
 nav {
-    /* z-index: 3000;
-    position: relative;
-    width: 100%;
-    height: 10rem; */
-    /* left: 5%;
-    top: 10%; */
-    /* font-size: 2.5rem;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-weight: 500;
-    color: white; */
+    z-index: 4000;
 }
 
 .navContainer {
@@ -19,7 +15,7 @@ nav {
     height: 100%;
     align-items: center;
     margin-left: 9rem;
-    font-size: 2.4rem
+    font-size: 2.4rem;
 }
 
 li {
@@ -33,19 +29,10 @@ li {
     }
 
     .navContainer {
-
         margin-left: 2rem;
         font-size: 2.0rem
     }
-
-
-
-
-
 }
-
-
-
 
 
 a {
@@ -67,15 +54,6 @@ ul {
     list-style-type: none;
 }
 
-
-
-.container-nav-mobile {
-    /* margin-top: 50px; */
-    /* Display: flex; */
-    /* justify-content: center; */
-    /* align-items: center; */
-    z-index: 90000;
-}
 
 .phone {
     background-color: #36383F;
@@ -99,7 +77,6 @@ ul {
 }
 
 nav {
-    /* background-color: #1E1E23; */
     background-color: #000;
     height: 65px;
 }

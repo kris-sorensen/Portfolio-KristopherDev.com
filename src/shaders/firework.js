@@ -90,11 +90,12 @@ const FireworkMaterial =
 
             void main(){
 
-                //Light point pattren (difuse point that fades faster)
+                 //Light point pattren (difuse point that fades faster)
                 float strength = distance(gl_PointCoord, vec2(.5));
                 strength = 1. - strength;
                 strength = pow(strength, 2.);
                 
+
                 // Inital color flashes white and then goes to color
                 float transitionColor = smoothstep(.25, .1, uTime);
 
