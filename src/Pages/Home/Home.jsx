@@ -16,7 +16,7 @@ const Home = () => {
             <div className="Home">
                 <Navbar />
                 <HomeCanvas />
-                <About />
+                {/* <About /> */}
 
                 {/* <HomeContent /> */}
             </div>

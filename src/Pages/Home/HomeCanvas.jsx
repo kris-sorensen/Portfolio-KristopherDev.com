@@ -16,6 +16,7 @@ import useWindowSize from '../../hooks/useWindowSize';
 import useScrollPosition from '../../hooks/useScrollPosition'
 // import Techstack from '../TechstackSimple/Techstack';
 // import Techstack from '../Techstack/Techstack';
+import About from '../About/About'
 
 import Test from '../test'
 
@@ -99,7 +100,8 @@ function AboutCanvas() {
                         </Effects>
 
                         {/* <Techstack /> */}
-                        <HomeContent />
+                        {/* <HomeContent /> */}
+                        <About />
                         {fireworks}
                     </Suspense>
                 </Canvas>
