@@ -8,13 +8,7 @@ import './styles/navbar.css';
 function Navbar() {
     const navigate=useNavigate();
     return (
-        // <nav >
-        //     <ol className="navContainer">
-        //         <li className="about" onClick={() => navigate('/about')}>About</li>
 
-        //         {/* <li className="work">Work</li> */}
-        //     </ol>
-        // </nav>
         <div className="container-nav-mobile">
             <div className="phone">
                 <div className="content">
@@ -27,9 +21,8 @@ function Navbar() {
                             <span></span>
                             <ul id="menu">
                                 <li><a onClick={() => navigate('/')}>Home</a></li>
-                                <li><a onClick={() => document.location='/#about'}>About</a></li>
+                                <li><a onClick={() => document.location='/about'}>About</a></li>
                                 <li><a onClick={() => navigate('/connect')}>Connect</a></li>
-                                {/* <li><a href="#">Info</a></li> */}
 
                             </ul>
                         </div>

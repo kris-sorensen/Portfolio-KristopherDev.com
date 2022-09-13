@@ -1,14 +1,17 @@
-import React from 'react';
+import React, {Suspense} from 'react';
 import ConnectContent from './ConnectContent';
 import ConnectCanvas from './ConnectCanvas';
+import {Loader} from '@react-three/drei';
 
 function Connect() {
 
     return (
-        <div className="connect" >
-            <ConnectContent />
-            <ConnectCanvas />
-        </div>
+        <Suspense fallback={<Loader />}>
+            <div className="connect" >
+                <ConnectContent />
+                <ConnectCanvas />
+            </div>
+        </Suspense>
     );
 }
 

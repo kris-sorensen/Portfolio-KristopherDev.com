@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Suspense, useRef } from 'react';
 import { Loader, Effects } from "@react-three/drei";
-import { Canvas, extend, useFrame, useThree } from '@react-three/fiber';
+import { Canvas, extend } from '@react-three/fiber';
 import Fireworks from "./Fireworks";
 import './styles/home.css';
 import SemiTransparentLayer from './SemiTransparentLayer';
@@ -13,17 +13,18 @@ import fireworkSound from './audio/firework.mp3';
 import fireworkSoundMobile from './audio/firework-mobile.mp3';
 import useSound from 'use-sound';
 import useWindowSize from '../../hooks/useWindowSize';
-import useScrollPosition from '../../hooks/useScrollPosition'
 // import Techstack from '../TechstackSimple/Techstack';
 // import Techstack from '../Techstack/Techstack';
-import About from '../About/About'
 
-import Test from '../test'
+
+// import Test from '../test'
 
 extend({ AfterimagePass });
 
 
-function AboutCanvas() {
+
+
+function HomeCanvas() {
     const [fireworks, setFireworks] = useState([])
     const [colorArr] = useState([0x504DF4, 0x1738B7, 0xA76BFE])
     const [color, setColor] = useState(0)
@@ -89,9 +90,7 @@ function AboutCanvas() {
             <div style={{ width: '100%', height: '100vh', position: 'fixed', top: 0, left: 0, outline: 'none' }} >
                 <Leva hidden />
                 <Canvas onClick={launchFirework} gl={{ autoClearColor: false, antialias: false }} orthographic camera={{ zoom: 100, position: [0, 0, 5] }}>
-                    <Suspense fallback={Loader}>
-                        <Test />
-                        <Camera />
+                    <Suspense fallback={<Loader />}>
                         <SemiTransparentLayer renderIndex={-2} opacity={transparentLayerParams.opacity} />
                         {/* <OrbitControls /> */}
                         {/* <PreExplodedFirework /> */}
@@ -99,41 +98,15 @@ function AboutCanvas() {
                             <afterimagePass args={[0]} />
                         </Effects>
 
-                        {/* <Techstack /> */}
-                        {/* <HomeContent /> */}
-                        <About />
+                        <HomeContent />
                         {fireworks}
                     </Suspense>
                 </Canvas>
-                <Loader />
             </div>
         </>
     );
 }
 
-const Camera = () => {
 
-    const scrollPosition = useScrollPosition();
-    const { height } = useWindowSize()
-    const { camera, gl, viewport } = useThree()
-    const initalLoad = useRef(true)
-
-    // Move camera onScroll
-    useFrame(() => {
-        camera.position.y = - scrollPosition / height * viewport.height
-    })
-
-    // Disable transparent layer when scrolling. If enabled meshes will streak
-    useEffect(() => {
-        if (!initalLoad.current) {
-            gl.autoClearColor = true
-            return () => gl.autoClearColor = false
-        } else {
-            initalLoad.current = false
-        }
-    }, [scrollPosition])
-
-    return null
-}
-export default AboutCanvas;
+export default HomeCanvas;
 

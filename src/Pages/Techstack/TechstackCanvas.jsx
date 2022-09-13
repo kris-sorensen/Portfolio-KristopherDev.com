@@ -25,7 +25,7 @@ function TechstackCanvas() {
             <Leva hidden />
             <Canvas gl={{}} shadows camera={{ position: [0, 0, 5] }}>
                 <OrbitControls />
-                <Suspense fallback={Loader}>
+                <Suspense fallback={<Loader />}>
                     {/* <Spiral /> */}
                     <directionalLight castShadow position={[10, 10, 10]} />
                     <Plane args={[20, 10]} >

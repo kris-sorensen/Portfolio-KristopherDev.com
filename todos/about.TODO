@@ -1,0 +1,131 @@
+
+
+
+About:
+    Brainstorm:
+        ✔ Move about page into its own page and restore home page @done(22-09-13 10:59)
+        ☐ add depth to game(maybe have a back plane canvas with btns coming out)
+        ✔ setup Canvas @done(22-09-13 10:59)
+        ✔ cleanup files @done(22-09-13 11:00)
+        ☐ onHover for btn and onClick
+        ☐ write rules: under game in fadded cloud duster font or similar 
+        ☐ program game
+            ☐ onHover (only when not doing sequence) square hightlights its color
+            ☐ default color of low opacity gray
+            ☐ each square with have a shader behind it that is scalled slightly bigger and will act like outer atmosphere on earth
+            ☐ 2-3x flashes of green when get sequence correct
+                ☐ triggers next sequence
+            ☐ 2-3x flashes of red when incorrect sequence and starting over
+                ☐ triggers restart
+                ☐ will also trigger red flashes and restart if too much time inbetween clicks
+            ☐ An array to hold the current sequence
+            ☐ Restart
+                ☐ clear array
+                ☐ assign random color to each square. 
+            ☐ Sequence
+                ☐ starts with one. after sequence and after every correct hit will restart timer giving player x amount of time to hit the next point
+                ☐ sequence will play on an interval timer that will have a sequence index state that will update with every sequence. will use interval to slow down how often a sequence is shown. maybe every 1/2 second.
+            ☐ light show when x(20?) in a row is achieved
+            ☐ when sequence is correct all colors flash 2-3x
+            ☐ Setup
+                ☐ each square gets assigned a random color onLoad and restart
+            ☐ onClick
+                ☐ will check to see if appropriate block was chosen and move index state 1. each time will check to see if you have reached the end of the sequence or trigger a restart if an incorrect block was choosen.
+                ☐ onClick and color stays on for a second before fading out
+                ☐ will have a playing sequence boolean state that will only allow firing of onClicks if false. same with hovers
+
+    Actionable Steps:
+        
+        ☐ Setup
+            
+        Variabls:
+
+                // setup
+                ✔ refs to access sqares @done(22-09-13 17:09)
+                ✔ array of refs @done(22-09-13 17:09)
+                ✔ state: array of colors (9) @done(22-09-13 17:09)
+
+                // playing sequrence
+                ☐ State: sequence array. default empty
+                ☐ State: playingSequence(false)
+               
+
+                //clicking
+
+                ☐ state: simonIndex(0)
+
+                //timer
+
+                ☐ have a 5second timer that counts down. will show visually on screen. starts over when a click is made.
+            
+                
+
+            Functions: 
+            
+                ☐ Colors:
+                    
+                    ☐ shuffle array of colors using   Fisher-Yates (aka Knuth) Shuffle. first copy array and then change at end
+                    
+                    ☐ have a loop to assign each sqaure that color using ref. Change color and add a uColor variable to all squares with saved color 
+                    
+                ☐ Start animation
+                    
+                    ☐ setup interval hook with flash time X that gets called each time
+                    
+                    ☐ loop squre arr and flash twice. 100 => 0 opactity and 
+                    
+                    ☐ turn grey. Seperate function
+
+                    ☐ Trigger Start
+                
+                ☐  Start 
+
+                    ☐ function addToSequence().
+                        
+                        ☐ setPlayingSequence(true)
+                    
+                        ☐ function random(count) pick a random block 0-8 and push it into sequence array
+
+                        ☐ loop through array and turn color of each element in sequence on. have a setTimeout in loop to slow down play
+
+                        ☐ start timer
+
+                        ☐ setPlayingSequence(false)
+
+                ☐ onClick
+
+                    ☐ check if isPlayingSequence is false and return if true
+
+                    ☐ check to see if valid operation. if not trigger restart double red
+
+                    ☐ check if was last operation
+                        
+                        ☐ trigger all squares flash twice
+                            
+                            ☐ which will trigger new game
+
+                    ☐ setSimonIndex++
+
+                    ☐ Restart timer
+
+                    ☐ Round 20 check
+
+
+                ☐ flashes (one function?)
+
+                    ☐ double green
+                    ☐ double red 
+                    ☐ double everything 
+                
+                ☐ Timer 
+
+                    ☐ if end of timer is reached trigger red flashes 
+
+                    ☐ trigger restart
+
+
+
+
+
+                ☐ Restart and onload useEffect hook that starts everything
+                

@@ -30,8 +30,8 @@ const ConnectCanvas = () => {
         <>
             <Canvas className="connect-canvas" gl={{ antialias: true, toneMapping: THREE.NoToneMapping }}
                 linear >
-                <Leva hidden />
-                <Suspense fallback={Loader}>
+                <Suspense fallback={<Loader />}>
+                    <Leva hidden />
                     {/* <OrbitControls /> */}
                     <CameraContainer />
 
@@ -48,7 +48,7 @@ const ConnectCanvas = () => {
                     <Airplanes />
                     <Airplanes />
                 </Suspense>
-            </Canvas >
+            </Canvas>
             {/* <Loader /> */}
         </>
     );
