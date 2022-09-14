@@ -36,8 +36,6 @@ About:
 
     Actionable Steps:
         
-        ☐ Setup
-            
         Variabls:
 
                 // setup
@@ -47,7 +45,7 @@ About:
 
                 // playing sequrence
                 ✔ State: sequence array. default empty @done(22-09-13 19:51)
-                ☐ State: playingSequence(false)
+                ✔ State: playingSequence(false) @done(22-09-14 11:31)
                
 
                 //clicking
@@ -57,6 +55,10 @@ About:
                 //timer
 
                 ☐ have a 5second timer that counts down. will show visually on screen. starts over when a click is made.
+
+                //level
+
+                ☐ have a round marker that gets updated on finishing sequence and reset if hit fail
             
                 
 
@@ -70,56 +72,48 @@ About:
 
                     ☐ choose final colors
                     
-                ☐ Start animation
-                    
-                    ☐ setup interval hook with flash time X that gets called each time
-                    
-                    ☐ loop squre arr and flash twice. 100 => 0 opactity and 
-                    
-                    ☐ turn grey. Seperate function
-
-                    ☐ Trigger Start
                 
                 ☐  Start 
 
                     ☐ function addToSequence().
                         
-                        ☐ setPlayingSequence(true)
+                        ✔ setPlayingSequence(true) @done(22-09-13 22:12)
                     
                         ✔ function random(count) pick a random block 0-8 and push it into sequence array @done(22-09-13 19:52)
 
                         ✔ loop through array and turn color of each element in sequence on. @done(22-09-13 19:52)
                         
-                        ☐ have a setTimeout in loop to slow down play
+                        ✔ have a setTimeout in loop to slow down play @done(22-09-13 22:12)
                         
-                        ☐ setPlayingSequence(false)
+                        ✔ setPlayingSequence(false) @done(22-09-13 22:12)
                         
                         ☐ start timer
 
                 ☐ onClick
 
-                    ☐ check if isPlayingSequence is false and return if true
+                    ✔ check if isPlayingSequence is false and return if true @done(22-09-13 22:12)
 
-                    ☐ check to see if valid operation. if not trigger restart double red
-
-                    ☐ check if was last operation
+                    ✔ check to see if valid operation. @done(22-09-14 11:29)
                         
-                        ☐ trigger all squares flash twice
-                            
-                            ☐ which will trigger new game
+                    ✔ if not trigger restart double red @done(22-09-14 12:33)
 
-                    ☐ setSimonIndex++
+                    ✔ check if was last operation @done(22-09-14 11:29)
+                        
+                        ✔ trigger squares to flash green 2x @done(22-09-14 12:33)
+                            
+                            ✔ which will trigger addToSequence @done(22-09-14 12:33)
+
+                    ✔ setSimonIndex++ @done(22-09-14 11:30)
 
                     ☐ Restart timer
 
                     ☐ Round 20 check
 
 
-                ☐ flashes (one function?)
+                ✔ flashes (one function?) @done(22-09-14 12:33)
 
-                    ☐ double green
-                    ☐ double red 
-                    ☐ double everything 
+                    ✔ double green @done(22-09-14 12:33)
+                    ✔ double red @done(22-09-14 12:33)
                 
                 ☐ Timer 
 
@@ -131,5 +125,8 @@ About:
 
 
 
-                ☐ Restart and onload useEffect hook that starts everything
+                ✔ Restart and onload useEffect hook that starts everything @done(22-09-13 22:21)
+                Other:
+                    ☐ mobile friendly
+                    ☐ add fade quick fade effect for onClick 
                 

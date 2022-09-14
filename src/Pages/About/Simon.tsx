@@ -1,83 +1,132 @@
 import * as THREE from 'three';
-import React, {SyntheticEvent, useEffect, useRef, useState} from 'react';
-import {extend, MeshProps} from '@react-three/fiber';
-import {Plane} from '@react-three/drei';
+import React, { SyntheticEvent, useEffect, useRef, useState } from 'react';
+import { extend, MeshProps, useFrame } from '@react-three/fiber';
+import { Plane } from '@react-three/drei';
 
-// import useTimeout from '../../hooks/useTimeout';
+import { sleep } from '../../utils/sleep';
+import { pickColors } from './util/pickColors';
 
 
-
-const Simon=() => {
-    const [numOfPlanes, setNumOfPlanes]=useState<number>(9);
-    const [rows, setRows]=useState<number>(3);
-    const [colors, setColors]=useState<string[]>(['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#00ffff', '#ff00ff', '#ff8000', '#8000ff', '#800000']);
-    const [sequenceIsPlaying, setSequenceIsPlaying]=useState(false);
-    const sequence=useRef<number[]>([]);
-    const [sequenceIndex, setSequenceIndex]=useState<number>(0);
-
-    const group=useRef<THREE.Group>(null!);
+const Simon = () => {
+    // * setup
+    const [numOfBlocks, setNumOfBlocks] = useState<number>(9);
+    const [rows, setRows] = useState<number>(3);
+    // * color
+    const [colors, setColors] = useState<string[]>(['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#00ffff', '#ff00ff', '#ff8000', '#8000ff', '#800000']);
+    // * sequence
+    const [sequenceIsPlaying, setSequenceIsPlaying] = useState(true);
+    const sequence = useRef<number[]>([]);
+    const [sequenceIndex, setSequenceIndex] = useState<number>(0);
+    // * Refs
+    const group = useRef<THREE.Group>(null!);
 
     useEffect(() => {
         restart();
     }, []);
 
-    const restart=() => {
-        setSequenceIndex(0);
-        sequence.current=[];
-        setColors(pickColors(colors));
-        addSequence();
-        addSequence();
-        addSequence();
-        addSequence();
-        addSequence();
-        addSequence();
 
+    const restart = () => {
+        setSequenceIndex(0);
+        sequence.current = [];
+        setColors(pickColors(colors));
+        giveBlocksIndex();
+        addOneToSequence();
     };
 
-    const addSequence=() => {
-        setSequenceIsPlaying(true);
+    const giveBlocksIndex = () => {
+        // use index to access color. add to each blocks material
+        for(let i = 0;i < group.current.children.length;i++) {
+            const el = group.current.children;
+            // @ts-expect-error instance of wasn't working will need to change
+            el[i].uColorIndex = i;
+        }
+    };
+
+    const addOneToSequence = () => {
         setSequenceIndex(0);
-        sequence.current.push(Math.floor(Math.random()*9));
+        sequence.current.push(Math.floor(Math.random() * 9));
         playSequence();
     };
 
-    const playSequence=async () => {
-        for(let i=0;i<sequence.current.length;i++) {
+    const playSequence = async () => {
+        for(let i = 0;i < sequence.current.length;i++) {
             // @ts-expect-error instance of wasn't working will need to change
-            const color=group.current.children[sequence.current[i]].children[0].material.color;
+            const color = group.current.children[sequence.current[i]].children[0].material.color;
 
             color.set(colors[sequence.current[i]]);
-            await pause(1000);
+            await sleep(1000);
             color.set('#ffffff');
-
+            // * add Time as white incase a sequence of duplicate colors 
+            await sleep(300);
         }
+        setSequenceIsPlaying(false);
+        // todo: timer start
+    };
+
+    // todo: fix any type
+    const handleBoardClick = async (e: any) => {
+        // * clicks allowed check (disabled for sequence)
+        if(sequenceIsPlaying) return;
+        // * correct square was clicked check
+        if(e.object.parent.uColorIndex != sequence.current[sequenceIndex]) {
+            setSequenceIsPlaying(true);
+            await flashAllSquares2x('#ff0000');
+            restart();
+            return;
+        }
+        // * flash color
+        setSequenceIsPlaying(true);
+        const color = e.object.material.color;
+        color.set(colors[e.object.parent.uColorIndex]);
+        await sleep(350);
+        color.set('#ffffff');
+
+        // * end of sequence check
+        if(sequence.current[sequenceIndex + 1] === undefined) {
+            setSequenceIsPlaying(true);
+            await flashAllSquares2x('#00ff00');
+            addOneToSequence();
+            return;
+        }
+        // todo: reset timer
+        setSequenceIndex(sequenceIndex + 1);
         setSequenceIsPlaying(false);
     };
 
+    const flashAllSquares2x = async (color: string) => {
 
-    const handleBoardClick=(e: any) => {
-        e.preventDefault();
-        console.log(e);
+        let count = 1;
 
-        if(sequenceIsPlaying) return;
-        // check to see if correct piece was hit
-        // if not do red flashes which will trigger restart
-
-        // flash piece if correct
-
-        // check to see if that was the last sequence. if so trigger 2x flashing green wich will trigger addSequence
-        setSequenceIndex(sequenceIndex+1);
+        while(count <= 2) {
+            await sleep(200);
+            // turn color
+            for(let i = 0;i < numOfBlocks;i++) {
+                // @ts-expect-error instance of wasn't working will need to change
+                const material = group.current.children[i].children[0].material.color;
+                material.set(color);
+            }
+            await sleep(500);
+            //turn white
+            for(let i = 0;i < numOfBlocks;i++) {
+                // @ts-expect-error instance of wasn't working will need to change
+                const color = group.current.children[i].children[0].material.color;
+                color.set('#ffffff');
+            }
+            await sleep(150);
+            count += 1;
+        }
+        await sleep(500);
     };
 
 
 
     return (
         <>
-            <group position={[3, -.6, 0]} ref={group}>
+            <group position={ [3, -.6, 0] } ref={ group }>
                 {
-                    new Array(numOfPlanes).fill(0).fill(.6, 3, 6).fill(1.2, 6).map((y, i) => (
-                        <mesh onClick={handleBoardClick} key={i} position={[i%rows/1.666, y, 0]}>
-                            <Plane args={[.4, .4, 20, 20]}>
+                    new Array(numOfBlocks).fill(0).fill(.6, 3, 6).fill(1.2, 6).map((y, i) => (
+                        <mesh onClick={ handleBoardClick } key={ i } position={ [i % rows / 1.666, y, 0] }>
+                            <Plane args={ [.4, .4, 20, 20] }>
                                 <meshBasicMaterial />
                             </Plane>
                         </mesh>
@@ -93,23 +142,8 @@ export default Simon;
 
 
 
-const pickColors=(colors: string[]): string[] => {
-    let currentIndex=colors.length, randomIndex;
-    // While there remain elements to shuffle.
-    while(currentIndex!=0) {
-        // Pick a remaining element.
-        randomIndex=Math.floor(Math.random()*currentIndex);
-        currentIndex--;
-        // And swap it with the current element.
-        [colors[currentIndex], colors[randomIndex]]=[
-            colors[randomIndex], colors[currentIndex]];
-    }
-    return colors;
-};
 
-const pause=(delay: number) => {
-    return new Promise(resolve => setTimeout(resolve, delay));
-};
+
 
 
 // const assignColors=(): void => {
