@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import React, { useEffect, useRef, useState } from 'react';
 import { extend, MeshProps, useFrame } from '@react-three/fiber';
 import { Plane } from '@react-three/drei';
-
+// * utility functions
 import { sleep } from '../../utils/sleep';
 import { pickColors } from './util/pickColors';
 
@@ -34,7 +34,7 @@ const Simon = () => {
     };
 
     const giveBlocksIndex = () => {
-        // use index to access color. add to each blocks material
+        // use index to access color. add to each block
         for(let i = 0;i < group.current.children.length;i++) {
             const el = group.current.children;
             // @ts-expect-error instance of wasn't working will need to change
@@ -145,14 +145,4 @@ const Simon = () => {
 export default Simon;
 
 
-// const assignColors=(): void => {
 
-//     group.current.children.forEach((child, i) => {
-
-//         if(child.children[0] instanceof THREE.Mesh) {
-
-//             // console.log(child.children[0].material.color);
-//             child.children[0].material.color.set(colors[i]);
-//         }
-//     });
-// };

@@ -1,14 +1,12 @@
-import {Loader} from '@react-three/drei';
-import React, {Suspense} from 'react';
+import { Loader } from '@react-three/drei';
+import React, { Suspense } from 'react';
 import AboutCanvas from './AboutCanvas';
 
 
 
-const About=() => {
-
-
+const About = () => {
     return (
-        <Suspense fallback={<Loader />}>
+        <Suspense fallback={ <Loader /> }>
             <AboutCanvas />
         </Suspense>
     );
