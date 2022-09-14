@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import React, { SyntheticEvent, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { extend, MeshProps, useFrame } from '@react-three/fiber';
 import { Plane } from '@react-three/drei';
 
@@ -8,22 +8,22 @@ import { pickColors } from './util/pickColors';
 
 
 const Simon = () => {
-    // * setup
+    // * setup state
     const [numOfBlocks, setNumOfBlocks] = useState<number>(9);
     const [rows, setRows] = useState<number>(3);
-    // * color
+    // * color state
     const [colors, setColors] = useState<string[]>(['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#00ffff', '#ff00ff', '#ff8000', '#8000ff', '#800000']);
-    // * sequence
+    // * sequence state
     const [sequenceIsPlaying, setSequenceIsPlaying] = useState(true);
     const sequence = useRef<number[]>([]);
     const [sequenceIndex, setSequenceIndex] = useState<number>(0);
     // * Refs
     const group = useRef<THREE.Group>(null!);
 
+    // * setup
     useEffect(() => {
         restart();
     }, []);
-
 
     const restart = () => {
         setSequenceIndex(0);
@@ -41,18 +41,20 @@ const Simon = () => {
             el[i].uColorIndex = i;
         }
     };
-
+    // * sequence
     const addOneToSequence = () => {
+        // reset sequence index
         setSequenceIndex(0);
+        // choose random block
         sequence.current.push(Math.floor(Math.random() * 9));
         playSequence();
     };
 
     const playSequence = async () => {
+        // loop throught sequence array and animate each block in sequence
         for(let i = 0;i < sequence.current.length;i++) {
             // @ts-expect-error instance of wasn't working will need to change
             const color = group.current.children[sequence.current[i]].children[0].material.color;
-
             color.set(colors[sequence.current[i]]);
             await sleep(1000);
             color.set('#ffffff');
@@ -63,36 +65,7 @@ const Simon = () => {
         // todo: timer start
     };
 
-    // todo: fix any type
-    const handleBoardClick = async (e: any) => {
-        // * clicks allowed check (disabled for sequence)
-        if(sequenceIsPlaying) return;
-        // * correct square was clicked check
-        if(e.object.parent.uColorIndex != sequence.current[sequenceIndex]) {
-            setSequenceIsPlaying(true);
-            await flashAllSquares2x('#ff0000');
-            restart();
-            return;
-        }
-        // * flash color
-        setSequenceIsPlaying(true);
-        const color = e.object.material.color;
-        color.set(colors[e.object.parent.uColorIndex]);
-        await sleep(350);
-        color.set('#ffffff');
-
-        // * end of sequence check
-        if(sequence.current[sequenceIndex + 1] === undefined) {
-            setSequenceIsPlaying(true);
-            await flashAllSquares2x('#00ff00');
-            addOneToSequence();
-            return;
-        }
-        // todo: reset timer
-        setSequenceIndex(sequenceIndex + 1);
-        setSequenceIsPlaying(false);
-    };
-
+    // * animate successfully completing sequence and failing sequence
     const flashAllSquares2x = async (color: string) => {
 
         let count = 1;
@@ -115,9 +88,41 @@ const Simon = () => {
             await sleep(150);
             count += 1;
         }
+
         await sleep(500);
     };
 
+
+    // todo: fix any type
+    // * handle events
+    const handleBoardClick = async (e: any) => {
+        // clicks allowed check (disabled for sequence)
+        if(sequenceIsPlaying) return;
+        // correct square was clicked check
+        if(e.object.parent.uColorIndex != sequence.current[sequenceIndex]) {
+            setSequenceIsPlaying(true);
+            await flashAllSquares2x('#ff0000');
+            restart();
+            return;
+        }
+        // flash color
+        setSequenceIsPlaying(true);
+        const color = e.object.material.color;
+        color.set(colors[e.object.parent.uColorIndex]);
+        await sleep(350);
+        color.set('#ffffff');
+
+        // end of sequence check
+        if(sequence.current[sequenceIndex + 1] === undefined) {
+            setSequenceIsPlaying(true);
+            await flashAllSquares2x('#00ff00');
+            addOneToSequence();
+            return;
+        }
+        // todo: reset timer
+        setSequenceIndex(sequenceIndex + 1);
+        setSequenceIsPlaying(false);
+    };
 
 
     return (
@@ -138,12 +143,6 @@ const Simon = () => {
 };
 
 export default Simon;
-
-
-
-
-
-
 
 
 // const assignColors=(): void => {
