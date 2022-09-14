@@ -46,13 +46,13 @@ About:
                 ✔ state: array of colors (9) @done(22-09-13 17:09)
 
                 // playing sequrence
-                ☐ State: sequence array. default empty
+                ✔ State: sequence array. default empty @done(22-09-13 19:51)
                 ☐ State: playingSequence(false)
                
 
                 //clicking
 
-                ☐ state: simonIndex(0)
+                ✔ state: simonIndex(0) @done(22-09-13 19:51)
 
                 //timer
 
@@ -64,9 +64,11 @@ About:
             
                 ☐ Colors:
                     
-                    ☐ shuffle array of colors using   Fisher-Yates (aka Knuth) Shuffle. first copy array and then change at end
+                    ✔ shuffle array of colors using   Fisher-Yates (aka Knuth) Shuffle. first copy array and then change at end @done(22-09-13 19:51)
                     
-                    ☐ have a loop to assign each sqaure that color using ref. Change color and add a uColor variable to all squares with saved color 
+                    ✔ have a loop to assign each sqaure that color using ref. Change color and add a uColor variable to all squares with saved color @done(22-09-13 19:51)
+
+                    ☐ choose final colors
                     
                 ☐ Start animation
                     
@@ -84,13 +86,15 @@ About:
                         
                         ☐ setPlayingSequence(true)
                     
-                        ☐ function random(count) pick a random block 0-8 and push it into sequence array
+                        ✔ function random(count) pick a random block 0-8 and push it into sequence array @done(22-09-13 19:52)
 
-                        ☐ loop through array and turn color of each element in sequence on. have a setTimeout in loop to slow down play
-
-                        ☐ start timer
-
+                        ✔ loop through array and turn color of each element in sequence on. @done(22-09-13 19:52)
+                        
+                        ☐ have a setTimeout in loop to slow down play
+                        
                         ☐ setPlayingSequence(false)
+                        
+                        ☐ start timer
 
                 ☐ onClick
 

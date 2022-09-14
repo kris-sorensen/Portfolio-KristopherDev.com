@@ -9,29 +9,60 @@ const Simon=() => {
     const [numOfPlanes, setNumOfPlanes]=useState<number>(9);
     const [rows, setRows]=useState<number>(3);
     const [colors, setColors]=useState<string[]>(['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#00ffff', '#ff00ff', '#ff8000', '#8000ff', '#800000']);
+    const sequence=useRef<number[]>([]);
+    const [sequenceIndex, setSequenceIndex]=useState<number>(0);
 
-    const group=useRef(null);
+    const group=useRef<THREE.Group&THREE.Mesh>(null!);
 
     useEffect(() => {
-
         restart();
-
-    });
+    }, []);
 
     const restart=() => {
+        setSequenceIndex(0);
+        sequence.current=[];
         setColors(pickColors(colors));
-        assignColors(colors);
+        addSequence();
 
     };
 
-    const assignColors=(colors: string[]): string[] => {
-        group.current.children.forEach((child: {}) => {
+
+
+    const addSequence=() => {
+        // todo: setSequenceIsPlaying(true)
+        sequence.current.push(Math.floor(Math.random()*9));
+        playSequence();
+    };
+
+    const playSequence=() => {
+        for(let i=0;i<sequence.current.length;i++) {
+            // @ts-expect-error instance of wasn't working will need to change
+            group.current.children[sequence.current[i]].children[0].material.color.set(colors[sequence.current[i]]);
 
         }
-        console.log(group);
-        return colors;
+        // loop sequence.length
+        // change color
+        // setTimeout
+        // change color to grey
+
+        // todo: setSequenceIsPlaying(false)
+
     };
 
+
+
+
+    const assignColors=(): void => {
+
+        group.current.children.forEach((child, i) => {
+
+            if(child.children[0] instanceof THREE.Mesh) {
+
+                console.log(child.children[0].material.color);
+                child.children[0].material.color.set(colors[i]);
+            }
+        });
+    };
 
 
 
