@@ -6,15 +6,19 @@ import { Object3DNode } from '@react-three/fiber';
 
 
 const SimonGlowMaterial: typeof THREE.ShaderMaterial = shaderMaterial(
-    { blending: THREE.AdditiveBlending, uColor: new THREE.Vector3(1, 0, 0) },
+    { blending: THREE.AdditiveBlending, uColor: new THREE.Vector3(0, .93, .99) },
     // vertex shader
     glsl`
-    varying vec3 vertexNormal;
     varying vec2 vuv;
 
     void main(){
-        vertexNormal = normal;
-        gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); // boiler plate code
+        vec4 modelPosition = modelMatrix * vec4(position, 1.0);
+
+        
+        //Final
+                vec4 viewPosition = viewMatrix * modelPosition;
+                vec4 projectedPosition = projectionMatrix * viewPosition;
+                gl_Position = projectedPosition;
 
         vuv = uv;
     }
@@ -26,15 +30,19 @@ const SimonGlowMaterial: typeof THREE.ShaderMaterial = shaderMaterial(
     uniform vec3 uColor;
 
     void main() {
-        float d = length(vuv -.5) - 0.01; // signed distance function
+        vec2 xy = mod((vuv),.2);
 
-        vec3 col = vec3(step(0., -d)); // create white circle with black background
+        float d = length(xy -.1); // signed distance function
 
-        float glow = 0.01/d; // create glow and diminish it with distance
+        vec3 col = vec3(step(0.2, -d)); // create white circle with black background
+
+        float difuse = 2.5;
+
+        float glow = 0.01/d * difuse; // create glow and diminish it with distance
         glow = clamp(glow, 0., 1.); // remove artifacts
-        // col = smoothstep(.5, 1., col);
+        col = smoothstep(.5, 1., col);
         col += glow * 1.; // add glow
-        col = col * uColor;
+        col = col * uColor; // add color
 
         gl_FragColor = vec4(col,1.0); // output color
 

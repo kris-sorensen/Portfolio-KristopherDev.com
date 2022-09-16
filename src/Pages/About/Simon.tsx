@@ -1,11 +1,14 @@
 import * as THREE from 'three';
 import React, { useEffect, useRef, useState } from 'react';
-import { extend, MeshProps, useFrame } from '@react-three/fiber';
-import { Circle, Plane, Sphere } from '@react-three/drei';
+import { extend } from '@react-three/fiber';
+import { Plane, Text } from '@react-three/drei';
+import { Select } from '@react-three/postprocessing';
+
 // * utility functions
 import { sleep } from '../../utils/sleep';
 import { pickColors } from './util/pickColors';
 import SimonGlowMaterial from '../../shaders/simonGlow';
+
 
 
 extend({ SimonGlowMaterial });
@@ -33,10 +36,24 @@ const Simon = () => {
     );
     // * color state
     const [colors, setColors] = useState<string[]>(['#ff0044', '#00eeff', '#ffff00', '#33ffaa', '#ff00ff', '#ff8000', '#aaffaa']);
+
+    const colorsArr = useRef<{ r: number, g: number, b: number; }[]>([
+        { r: 0, b: 1, g: .95 }, // aqua
+        { r: 1, g: 0, b: .26 }, // light blue
+        { r: 0, g: .38, b: .95 }, // blue
+        { r: .62, g: .46, b: .96 }, // Lavender
+        { r: .98, g: .32, b: .71 }, // pink
+        { r: 0, g: .93, b: .99 }, // fushia
+        { r: .98, g: .47, b: .24 } // orange
+    ]);
+
     // * sequence state
     const [sequenceIsPlaying, setSequenceIsPlaying] = useState(true);
     const sequence = useRef<number[]>([]);
     const [sequenceIndex, setSequenceIndex] = useState<number>(0);
+    // * level state
+    const [level, setLevel] = useState(1);
+
     // * Refs
     const group = useRef<THREE.Group>(null!);
 
@@ -51,6 +68,7 @@ const Simon = () => {
         setColors(pickColors(colors));
         giveBlocksIndex();
         addOneToSequence();
+        setLevel(1);
     };
 
     const giveBlocksIndex = () => {
@@ -75,11 +93,13 @@ const Simon = () => {
         for(let i = 0;i < sequence.current.length;i++) {
             // @ts-expect-error instance of wasn't working will need to change
             const color = group.current.children[sequence.current[i]].children[0].children[0].material.color;
+            //todo: change to uniform location
 
             color.set(colors[sequence.current[i]]);
-
+            //todo: change to uniform setting and rgb and new THREE.Vector3()
             await sleep(1000);
             color.set('#ffffff');
+            //todo: change to uniform setting and rgb and new THREE.Vector3()
 
             // * add Time as white incase a sequence of duplicate colors 
             await sleep(300);
@@ -99,14 +119,18 @@ const Simon = () => {
             for(let i = 0;i < numOfBlocks;i++) {
                 // @ts-expect-error instance of wasn't working will need to change
                 const material = group.current.children[i].children[0].children[0].material.color;
+                //todo: change to uniform location
                 material.set(color);
+                //todo: change to uniform setting and rgb and new THREE.Vector3()
             }
             await sleep(500);
             //turn white
             for(let i = 0;i < numOfBlocks;i++) {
                 // @ts-expect-error instance of wasn't working will need to change
                 const color = group.current.children[i].children[0].children[0].material.color;
+                //todo: change to uniform location
                 color.set('#ffffff');
+                //todo: change to uniform setting and rgb and new THREE.Vector3()
             }
             await sleep(250);
             count += 1;
@@ -119,15 +143,14 @@ const Simon = () => {
     // todo: fix any type
     // * handle events
     const handleBoardClick = async (e: any) => {
-        console.log(group.current);
         // clicks allowed check (disabled for sequence)
         if(sequenceIsPlaying) return;
         // correct square was clicked check
-        console.log(e.object.parent.uColorIndex);
         if(e.object.parent.parent.uColorIndex !=
             sequence.current[sequenceIndex]) {
             setSequenceIsPlaying(true);
             await flashAllSquares2x('#ff0000');
+            //todo: change input to new vertor3() and led red
             restart();
             return;
         }
@@ -142,6 +165,8 @@ const Simon = () => {
         if(sequence.current[sequenceIndex + 1] === undefined) {
             setSequenceIsPlaying(true);
             await flashAllSquares2x('#00ff00');
+            //todo: change input to new vertor3() and led green
+            setLevel(level + 1);
             addOneToSequence();
             return;
         }
@@ -160,14 +185,24 @@ const Simon = () => {
                         <group key={ i }>
                             <mesh onClick={ handleBoardClick } position={ [xPositions[i], yPositions[i], 0] }>
                                 <Plane args={ [.55, .55, 20, 20] }>
-                                    <meshBasicMaterial transparent opacity={ 1 } />
+                                    {/* <meshBasicMaterial transparent opacity={ 1 } /> */ }
+                                    <simonGlowMaterial />
                                 </Plane>
                             </mesh>
                         </group>
                     ))
                 }
             </group>
-
+            <Select enabled={ false }>
+                <mesh position={ [3.6, -1.2, 0] }>
+                    <Text
+                        color="#00eeff"
+                        fontSize={ .15 }
+                    >
+                        { level }
+                    </Text>
+                </mesh>
+            </Select>
 
 
         </>
