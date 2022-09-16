@@ -12,6 +12,7 @@ import Firstname from './Firstname';
 import Lastname from './Lastname';
 import Title from './Title';
 import Content from './Content';
+import Rules from './Rules';
 
 import { EffectComposer, SelectiveBloom, Selection, Select, } from '@react-three/postprocessing';
 
@@ -23,7 +24,7 @@ function AboutCanvas() {
         <Canvas>
             <Suspense fallback={ <Loader /> }>
                 <Background />
-                {/* <Rules /> */ }
+                <Rules />
                 {/* <AboutContent /> */ }
                 <Firstname />
                 <Lastname />
@@ -36,10 +37,11 @@ function AboutCanvas() {
                         <Simon />
                     </Select>
                     <EffectComposer multisampling={ 8 }>
-                        <SelectiveBloom kernelSize={ 3 } luminanceThreshold={ 0 } luminanceSmoothing={ 0.4 } intensity={ 3 } />
+                        <SelectiveBloom kernelSize={ 3 } luminanceThreshold={ 0 } luminanceSmoothing={ 0.4 } intensity={ .9 } />
 
                     </EffectComposer>
                 </Selection>
+                <ambientLight intensity={ .2 } />
             </Suspense>
         </Canvas>
     );

@@ -19,7 +19,7 @@ function Firstname() {
             </mesh>
             <mesh position={ [3, viewport.height * .35, 0] }>
                 <Plane args={ [6, 1.3] }>
-                    <meshBasicMaterial color={ 'white' } />
+                    <meshBasicMaterial color={ '#ff0044' } />
                 </Plane>
             </mesh>
         </group >

@@ -11,14 +11,14 @@ function Lastname() {
             <mesh position={ [viewport.width * -.02, viewport.height * -.35, 0.001] }>
                 <Text
                     anchorX={ 'right' }
-                    color='white'
+                    color='#00eeff'
                     fontSize={ .85 }
                     font="https://fonts.gstatic.com/s/raleway/v14/1Ptrg8zYS_SKggPNwK4vaqI.woff">
                     SORENSEN
                 </Text>
             </mesh>
-            <mesh position={ [-3, viewport.height * -.35, 0] }>
-                <Plane args={ [6, 1.3] }>
+            <mesh position={ [-2.75, viewport.height * -.35, 0] }>
+                <Plane args={ [5.5, 1.3] }>
                     <meshBasicMaterial color={ 'black' } />
                 </Plane>
             </mesh>

@@ -17,10 +17,22 @@ extend({ SimonGlowMaterial });
 
 const Simon = () => {
     // * setup state
-    const [numOfBlocks, setNumOfBlocks] = useState<number>(9);
+    const [numOfBlocks, setNumOfBlocks] = useState<number>(7);
     const [rows, setRows] = useState<number>(3);
+    const [xPositions, setXPositions] = useState<number[]>(
+        [0, .7, 1.4, 2.1,
+            1.4, 2.1,
+            1.4
+        ]
+    );
+    const [yPositions, setYPositions] = useState<number[]>(
+        [0, 0, 0, 0,
+            .7, .7,
+            -.7
+        ]
+    );
     // * color state
-    const [colors, setColors] = useState<string[]>(['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#00ffff', '#ff00ff', '#ff8000', '#8000ff', '#800000']);
+    const [colors, setColors] = useState<string[]>(['#ff0044', '#00eeff', '#ffff00', '#33ffaa', '#ff00ff', '#ff8000', '#aaffaa']);
     // * sequence state
     const [sequenceIsPlaying, setSequenceIsPlaying] = useState(true);
     const sequence = useRef<number[]>([]);
@@ -54,7 +66,7 @@ const Simon = () => {
         // reset sequence index
         setSequenceIndex(0);
         // choose random block
-        sequence.current.push(Math.floor(Math.random() * 9));
+        sequence.current.push(Math.floor(Math.random() * numOfBlocks));
         playSequence();
     };
 
@@ -63,17 +75,12 @@ const Simon = () => {
         for(let i = 0;i < sequence.current.length;i++) {
             // @ts-expect-error instance of wasn't working will need to change
             const color = group.current.children[sequence.current[i]].children[0].children[0].material.color;
-            // change color of glow
-            // //@ts-expect-error instance of wasn't working will need to change
-            // group.current.children[sequence.current[i]].children[1].children[0].material.uniforms.uColor.value = new THREE.Vector3(1, 0, 1);
-            // set block color
+
             color.set(colors[sequence.current[i]]);
 
             await sleep(1000);
             color.set('#ffffff');
-            // change color of glow
-            //// @ts-expect-error instance of wasn't working will need to change
-            // group.current.children[sequence.current[i]].children[1].children[0].material.uniforms.uColor.value = new THREE.Vector3(0, 0, 0);
+
             // * add Time as white incase a sequence of duplicate colors 
             await sleep(300);
         }
@@ -147,24 +154,15 @@ const Simon = () => {
     return (
         <>
 
-            <group position={ [3, -1, 0] } ref={ group }>
+            <group position={ [1.5, -0.5, 0] } ref={ group }>
                 {
                     new Array(numOfBlocks).fill(0).fill(.6, 3, 6).fill(1.2, 6).map((y, i) => (
                         <group key={ i }>
-                            <mesh onClick={ handleBoardClick } position={ [i % rows * .8, y * 1.4, 0] }>
+                            <mesh onClick={ handleBoardClick } position={ [xPositions[i], yPositions[i], 0] }>
                                 <Plane args={ [.55, .55, 20, 20] }>
                                     <meshBasicMaterial transparent opacity={ 1 } />
                                 </Plane>
-
                             </mesh>
-                            {/* <mesh position={ [i % rows / 1.666, y, -.001] }>
-                                <Circle scale={ 1.4 } args={ [.35, 20, 20] }>
-                                    <simonGlowMaterial transparent uColor={ new THREE.Vector3(0, 0, 0) } />
-
-                                </Circle>
-
-                            </mesh> */}
-
                         </group>
                     ))
                 }
