@@ -8,6 +8,8 @@ import useWindowResize from '../../hooks/useWindowResize';
 import AtmosphereMaterial from '../../shaders/atmosphere';
 
 
+
+
 //todo: add shadows to all parts
 //todoL memo() useMousePosition
 // add glowing point light like ghosts on haunted house that follows mouse?

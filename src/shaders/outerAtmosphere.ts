@@ -1,12 +1,13 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore: Unreachable code error
-import glsl from 'babel-plugin-glsl/macro.js'; import * as THREE from "three";
-import {shaderMaterial} from '@react-three/drei';
-import {Object3DNode} from '@react-three/fiber';
+import glsl from 'babel-plugin-glsl/macro.js';
+import * as THREE from "three";
+import { shaderMaterial } from '@react-three/drei';
+import { Object3DNode } from '@react-three/fiber';
 
 
-const OuterAtmosphereMaterial: typeof THREE.ShaderMaterial=shaderMaterial(
-  {blending: THREE.AdditiveBlending, side: THREE.BackSide},
+const OuterAtmosphereMaterial: typeof THREE.ShaderMaterial = shaderMaterial(
+  { blending: THREE.AdditiveBlending, side: THREE.BackSide },
   // vertex shader
   glsl`
     varying vec3 vertexNormal;

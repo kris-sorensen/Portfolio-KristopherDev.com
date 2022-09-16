@@ -1,0 +1,38 @@
+
+
+
+
+2.0:
+
+
+  
+    
+    
+    
+    Moon:
+        ☐ find texture pack of moon.
+        ☐ Apply texture
+        ☐ Apply maps
+        ☐ shrink moon
+
+    Rockets:
+        ☐ find Glb of rocket
+        ☐ compress glb file
+        ☐ apply glb
+        ☐ 
+        ☐ increase range of randomness of Y (distance from moon to rocket)
+    
+    Glow:
+        ☐ turn outer atmosphere glow white make it a unifrom
+        ☐ inner glow to black (effect opacity?)
+
+    Fire:
+        ☐ triangle instead of plane shape
+        ☐ color with orange gradient
+
+    Text:
+        ☐ white thin tall font? that says? 
+    
+    Other: 
+        ☐ fix mobile orbit controls
+        ☐ 

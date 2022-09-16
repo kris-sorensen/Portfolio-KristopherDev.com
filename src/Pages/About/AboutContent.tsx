@@ -16,7 +16,7 @@ const AboutContent = () => {
 
         >
             {/* All */ }
-            <group position={ [-0, .2, 0] }>
+            <group position={ [-.8, -.3, 0] }>
                 <Box
                     justifyContent={ 'center' }
                     marginTop={ 2 }
@@ -24,11 +24,11 @@ const AboutContent = () => {
                 >
                     {/* Name  */ }
                     <Box >
-                        <mesh >
+                        <mesh position={ [-.5, 0, 0] } >
 
                             <Text
-                                fontSize={ .55 }>
-                                <meshBasicMaterial color='white' />
+                                fontSize={ .45 }>
+                                <meshBasicMaterial color='black' />
                                 `${ `{ KRISTOPHER }` }`
                             </Text>
 
@@ -40,47 +40,49 @@ const AboutContent = () => {
                         <Box >
                             {/* Title */ }
                             <Box>
-                                <mesh position={ [-.4, -.4, 0] }>
-                                    <Plane args={ [2.1, .3] } />
-                                    <Text
-                                        fontSize={ .15 }
-                                    ><meshBasicMaterial color='#222' />#SOFTWARE ENGINEER</Text>
+                                <mesh position={ [-1, -.3, 0] }>
+                                    <Plane args={ [1.3, .25] } >
+                                        <meshBasicMaterial color='black' />
+                                    </Plane>
+                                    <Text position={ [0, 0, .01] }
+                                        fontSize={ .08 }
+                                    ><meshBasicMaterial color='#ffffff' />#SOFTWARE ENGINEER</Text>
                                 </mesh>
                             </Box>
                             {/* Paragraphs */ }
                             <Box flexWrap="wrap"  >
-                                <mesh position={ [.8, -.9, 0] }>
+                                <mesh position={ [.0, -.7, 0] }>
                                     <Text
                                         textAlign="left"
-                                        maxWidth={ 4.5 }
-                                        fontSize={ .15 }
+                                        maxWidth={ 3.3 }
+                                        fontSize={ .12 }
                                         lineHeight={ 1.7 }
-                                    ><meshBasicMaterial color='white' />Hello and welcome to my site! I am a Software Engineer with 7+ years of experience creating memorable, and beautiful web experiences that captivate and engage guests.
+                                    ><meshBasicMaterial color='black' />Hello and welcome to my site! I am a Software Engineer with 7+ years of experience creating memorable, and beautiful web experiences that captivate and engage guests.
                                     </Text>
                                 </mesh>
                             </Box>
                             {/* Paragraph 2 */ }
                             <Box   >
-                                <mesh position={ [.8, -1.3, 0] }>
+                                <mesh position={ [0, -1.1, 0] }>
                                     <Text
                                         textAlign="left"
-                                        maxWidth={ 4.5 }
-                                        fontSize={ .15 }
+                                        maxWidth={ 3.3 }
+                                        fontSize={ .12 }
                                         lineHeight={ 1.6 }
-                                    ><meshBasicMaterial color='white' />
+                                    ><meshBasicMaterial color='black' />
                                         I love playing with the newest technologies. Especially technologies that can be used to enhance user experience and improve performance. I feel that a website should be performant, emotionally engaging, and memorable. There is no greater joy to me than seeing a users face light up as they interact with my software.
                                     </Text>
                                 </mesh>
                             </Box>
                             {/* Btn */ }
-                            <mesh position={ [-.4, -3.8, 0] }>
-                                <Plane args={ [2.2, .5] }>
-                                    <meshBasicMaterial color='white' />
-                                </Plane>
-                                <Plane args={ [2.18, .48] }>
+                            <mesh position={ [3.6, -4., 0] }>
+                                <Plane position={ [0, 0, .01] } args={ [1.62, .5] }>
                                     <meshBasicMaterial color='black' />
                                 </Plane>
-                                <Text
+                                <Plane position={ [0, 0, .0101] } args={ [1.6, .48] }>
+                                    <meshBasicMaterial color='white' />
+                                </Plane>
+                                <Text color='black' position={ [0, 0, .03] }
                                     fontSize={ .15 }
                                 >Techstack</Text>
                             </mesh>
