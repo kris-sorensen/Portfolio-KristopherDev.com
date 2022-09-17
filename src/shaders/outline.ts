@@ -6,8 +6,8 @@ import * as THREE from "three";
 
 
 const OutlineMaterial: typeof THREE.ShaderMaterial = shaderMaterial(
-    {},// vertex shader
-    glsl`
+  {},// vertex shader
+  glsl`
     varying vec2 vuv;
 
     void main(){
@@ -15,8 +15,8 @@ const OutlineMaterial: typeof THREE.ShaderMaterial = shaderMaterial(
         vuv = uv;
     }
   `,
-    // fragment shader
-    glsl`
+  // fragment shader
+  glsl`
   
     varying vec2 vuv;
     
@@ -28,8 +28,9 @@ const OutlineMaterial: typeof THREE.ShaderMaterial = shaderMaterial(
         float yT = 1. - step(.99, vuv.y );
         float strength = xL * yB * yT * xR;
         // float strength = x;
+        vec3 col = vec3( strength) * vec3(1.0,1., 1.);
         
-        gl_FragColor = vec4(vec3(strength), .7);
+        gl_FragColor = vec4(col, 1.);
     }
   `
 );

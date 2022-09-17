@@ -27,8 +27,9 @@ const ConnectCanvas = () => {
     const elementSize = useWindowResize();
 
     return (
-        <>
-            <Canvas className="connect-canvas" gl={{ antialias: true, toneMapping: THREE.NoToneMapping }}
+
+        <div style={{ width: '100%', height: '100vh', position: 'fixed', top: 0, left: 0, outline: 'none' }} >
+            <Canvas gl={{ antialias: true, toneMapping: THREE.NoToneMapping }}
                 linear >
                 <Suspense fallback={<Loader />}>
                     <Leva hidden />
@@ -50,7 +51,7 @@ const ConnectCanvas = () => {
                 </Suspense>
             </Canvas>
             {/* <Loader /> */}
-        </>
+        </div>
     );
 };
 

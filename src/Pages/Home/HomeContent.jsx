@@ -20,7 +20,6 @@ function HomeContent() {
     const [clickOrTap, setClickOrTap] = useState('')
     const [isHovered, setIsHovered] = useState(false)
     const { width, height } = useWindowSize()
-    // const navigate = useNavigate();
 
 
     const splitMaterial = useRef()
@@ -94,8 +93,8 @@ function HomeContent() {
     }
 
     const handleClick = () => {
-
-        setIsTransitioning(true)
+        document.location = '/about'
+        // setIsTransitioning(true)
     }
 
     return (

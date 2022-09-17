@@ -9,10 +9,10 @@ const Home = () => {
 
     return (
         <Suspense fallback={<Loader />}>
-            <div className="Home">
-                <Navbar />
-                <HomeCanvas />
-            </div>
+
+            <Navbar color={'white'} />
+            <HomeCanvas />
+
         </Suspense>
     );
 };

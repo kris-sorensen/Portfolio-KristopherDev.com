@@ -2,7 +2,7 @@ import React, { useState, useEffect, Suspense, useRef } from 'react';
 import { Loader, Effects } from "@react-three/drei";
 import { Canvas, extend } from '@react-three/fiber';
 import Fireworks from "./Fireworks";
-import './styles/home.css';
+// import './styles/home.css';
 import SemiTransparentLayer from './SemiTransparentLayer';
 import HomeContent from './HomeContent';
 import useInterval from '../../hooks/useInteveral'
@@ -13,11 +13,7 @@ import fireworkSound from './audio/firework.mp3';
 import fireworkSoundMobile from './audio/firework-mobile.mp3';
 import useSound from 'use-sound';
 import useWindowSize from '../../hooks/useWindowSize';
-// import Techstack from '../TechstackSimple/Techstack';
-// import Techstack from '../Techstack/Techstack';
 
-
-// import Test from '../test'
 
 extend({ AfterimagePass });
 

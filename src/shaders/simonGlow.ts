@@ -6,7 +6,7 @@ import { Object3DNode } from '@react-three/fiber';
 
 
 const SimonGlowMaterial: typeof THREE.ShaderMaterial = shaderMaterial(
-    { blending: THREE.AdditiveBlending, uColor: new THREE.Vector3(0, .93, .99) },
+    { uColor: new THREE.Vector3(1, 1, 1) },
     // vertex shader
     glsl`
     varying vec2 vuv;
@@ -36,7 +36,7 @@ const SimonGlowMaterial: typeof THREE.ShaderMaterial = shaderMaterial(
 
         vec3 col = vec3(step(0.2, -d)); // create white circle with black background
 
-        float difuse = 2.5;
+        float difuse = 2.;
 
         float glow = 0.01/d * difuse; // create glow and diminish it with distance
         glow = clamp(glow, 0., 1.); // remove artifacts

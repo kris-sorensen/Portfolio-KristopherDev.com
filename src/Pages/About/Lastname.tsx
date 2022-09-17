@@ -17,7 +17,7 @@ function Lastname() {
                     SORENSEN
                 </Text>
             </mesh>
-            <mesh position={ [-2.75, viewport.height * -.35, 0] }>
+            <mesh position={ [-2.7, viewport.height * -.35, 0] }>
                 <Plane args={ [5.5, 1.3] }>
                     <meshBasicMaterial color={ 'black' } />
                 </Plane>

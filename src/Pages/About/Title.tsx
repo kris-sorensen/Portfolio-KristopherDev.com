@@ -7,7 +7,7 @@ function Title() {
     const { viewport } = useThree();
 
     return (
-        <mesh position={ [-viewport.width / 2 * .9, viewport.height * .4, 0.001] }>
+        <mesh position={ [-viewport.width / 2 * .8, viewport.height * .435, 0.001] }>
             <Text
                 anchorX={ 'left' }
                 color='black'

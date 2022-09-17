@@ -1,47 +1,47 @@
-import React, {useState, useRef, useEffect} from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import gsap from 'gsap';
-import {motion} from "framer-motion";
-import {useNavigate} from "react-router-dom";
+import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 import './styles/connect.css';
 import Navbar from '../Portals/Navbar';
 
-const ConnectContent=() => {
+const ConnectContent = () => {
     //Hooks
-    const [isClicked, setIsClicked]=useState(true);
-    const navigate=useNavigate();
+    const [isClicked, setIsClicked] = useState(true);
+    const navigate = useNavigate();
     // Auto Lauch Social Links Animation
     useEffect(() => {
-        const timer=setTimeout(() => handleClick(), 2000);
+        const timer = setTimeout(() => handleClick(), 2000);
         return () => clearTimeout(timer);
     }, []);
 
     //Refs
-    const plusRef=useRef(null);
-    const gitRef=useRef(null);
-    const linkedInRef=useRef(null);
-    const emailRef=useRef(null);
-    const aboutRef=useRef(null);
+    const plusRef = useRef(null);
+    const gitRef = useRef(null);
+    const linkedInRef = useRef(null);
+    const emailRef = useRef(null);
+    const aboutRef = useRef(null);
 
     /**
      * Animations
      */
 
     // Hover Effect Scale Img on Hover
-    const handleHover=(el: gsap.TweenTarget) => {
+    const handleHover = (el: gsap.TweenTarget) => {
         gsap.to(el, {
             scale: 1.2,
         });
     };
 
-    const handleHoverExit=(el: gsap.TweenTarget) => {
+    const handleHoverExit = (el: gsap.TweenTarget) => {
         gsap.to(el, {
             scale: 1,
         });
     };
 
     // onClick Animation for Plus svg
-    const handleClick=() => {
+    const handleClick = () => {
         setIsClicked(!isClicked);
         if(isClicked) {
             gsap.to(plusRef.current, {
@@ -87,42 +87,44 @@ const ConnectContent=() => {
     };
 
     // Onclick events for social Icons
-    const handleGitClick=() => {
+    const handleGitClick = () => {
         window.open("https://github.com/kris-sorensen");
     };
-    const handleLinkedInClick=() => {
+    const handleLinkedInClick = () => {
         window.open("https://www.linkedin.com/in/kris-sorensen/");
     };
-    const handleEmailClick=() => {
+    const handleEmailClick = () => {
         window.open('mailto:krismsorensen@gmail.com?');
     };
 
 
 
     return (
-        <div className="page">
+        // <div className="page">
+        <>
             <header>
                 <h1 id="name">Software Developer</h1>
                 <h2 id="title">Kristopher Sorensen</h2>
             </header>
             <Navbar />
-            <div className="container">
+            <div className="container" style={ {} }>
                 <div className="socialContainer">
                     <div className="social icon" >
-                        <motion.img id="plus" onHoverStart={() => handleHover(plusRef.current)} onHoverEnd={() => handleHoverExit(plusRef.current)} src="add.png" ref={plusRef} alt="Social Links" onClick={() => handleClick()} />
+                        <motion.img id="plus" onHoverStart={ () => handleHover(plusRef.current) } onHoverEnd={ () => handleHoverExit(plusRef.current) } src="add.png" ref={ plusRef } alt="Social Links" onClick={ () => handleClick() } />
                     </div>
                     <div className="socialGit icon invis-icon">
-                        <motion.img id="git" ref={gitRef} src="git.png" alt="Github" onHoverStart={() => handleHover(gitRef.current)} onHoverEnd={() => handleHoverExit(gitRef.current)} onClick={() => handleGitClick()} />
+                        <motion.img id="git" ref={ gitRef } src="git.png" alt="Github" onHoverStart={ () => handleHover(gitRef.current) } onHoverEnd={ () => handleHoverExit(gitRef.current) } onClick={ () => handleGitClick() } />
                     </div>
                     <div className="socialLI icon invis-icon" >
-                        <motion.img id="linkedIn" ref={linkedInRef} src="linkedIn.png" alt="LinkedIn" onHoverStart={() => handleHover(linkedInRef.current)} onHoverEnd={() => handleHoverExit(linkedInRef.current)} onClick={() => handleLinkedInClick()} />
+                        <motion.img id="linkedIn" ref={ linkedInRef } src="linkedIn.png" alt="LinkedIn" onHoverStart={ () => handleHover(linkedInRef.current) } onHoverEnd={ () => handleHoverExit(linkedInRef.current) } onClick={ () => handleLinkedInClick() } />
                     </div>
                     <div className="socialEmail icon invis-icon" >
-                        <motion.img id="email" ref={emailRef} src="email2.png" alt="Email" onHoverStart={() => handleHover(emailRef.current)} onHoverEnd={() => handleHoverExit(emailRef.current)} onClick={() => handleEmailClick()} />
+                        <motion.img id="email" ref={ emailRef } src="email2.png" alt="Email" onHoverStart={ () => handleHover(emailRef.current) } onHoverEnd={ () => handleHoverExit(emailRef.current) } onClick={ () => handleEmailClick() } />
                     </div>
                 </div>
             </div>
-        </div>
+        </>
+        // </div>
 
     );
 };

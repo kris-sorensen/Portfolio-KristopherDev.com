@@ -1,12 +1,15 @@
-import React from 'react';
-import {useNavigate} from "react-router-dom";
+import React, { useRef, useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import './styles/navbar.css';
 
 //todo: need to add a mouse hover effect to links. make into a mobile menu
 
 
-function Navbar() {
-    const navigate=useNavigate();
+function Navbar({ color }: any) {
+    const navigate = useNavigate();
+    const [toggle, setToggle] = useState(false);
+
+
     return (
 
         <div className="container-nav-mobile">
@@ -14,22 +17,25 @@ function Navbar() {
                 <div className="content">
 
                     <nav role="navigation">
-                        <div id="menuToggle">
+                        <div id="menuToggle" onClick={ () => setToggle(!toggle) }>
                             <input type="checkbox" />
-                            <span></span>
-                            <span></span>
-                            <span></span>
+                            <span style={ {
+                                background: toggle ? 'red' : color ? color : 'white'
+                            } } ></span>
+                            <span style={ { background: toggle ? 'black' : color ? color : 'white' } } ></span>
+                            <span style={ { background: toggle ? 'black' : color ? color : 'white' } }></span>
                             <ul id="menu">
-                                <li><a onClick={() => navigate('/')}>Home</a></li>
-                                <li><a onClick={() => document.location='/about'}>About</a></li>
-                                <li><a onClick={() => navigate('/connect')}>Connect</a></li>
+                                <li><a onClick={ () => navigate('/') }>Home</a></li>
+                                <li><a onClick={ () => navigate('/about') }>About</a></li>
+                                <li><a onClick={ () => navigate('/connect') }>Connect</a></li>
 
                             </ul>
                         </div>
                     </nav>
                 </div>
-            </div>
-        </div>
+            </div >
+        </div >
+
     );
 }
 

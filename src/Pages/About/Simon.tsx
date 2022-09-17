@@ -4,10 +4,16 @@ import { extend } from '@react-three/fiber';
 import { Plane, Text } from '@react-three/drei';
 import { Select } from '@react-three/postprocessing';
 
+// * Components
+import Rules from './Rules';
+
 // * utility functions
 import { sleep } from '../../utils/sleep';
 import { pickColors } from './util/pickColors';
 import SimonGlowMaterial from '../../shaders/simonGlow';
+
+//* types
+import { ColorType } from './types/types';
 
 
 
@@ -35,9 +41,7 @@ const Simon = () => {
         ]
     );
     // * color state
-    const [colors, setColors] = useState<string[]>(['#ff0044', '#00eeff', '#ffff00', '#33ffaa', '#ff00ff', '#ff8000', '#aaffaa']);
-
-    const colorsArr = useRef<{ r: number, g: number, b: number; }[]>([
+    const [colorsArr, setColorsArr] = useState<ColorType[]>([
         { r: 0, b: 1, g: .95 }, // aqua
         { r: 1, g: 0, b: .26 }, // light blue
         { r: 0, g: .38, b: .95 }, // blue
@@ -62,13 +66,23 @@ const Simon = () => {
         restart();
     }, []);
 
-    const restart = () => {
+    const restart = async () => {
+        setSequenceIsPlaying(true);
+        AllBlocksToWhite();
         setSequenceIndex(0);
         sequence.current = [];
-        setColors(pickColors(colors));
+        setColorsArr(pickColors(colorsArr));
         giveBlocksIndex();
+        await sleep(550);
         addOneToSequence();
         setLevel(1);
+    };
+
+    const AllBlocksToWhite = () => {
+        for(let i = 0;i < numOfBlocks;i++) {
+            // @ts-expect-error instance of wasn't working will need to change
+            group.current.children[i].children[0].children[0].material.uniforms.uColor.value = new THREE.Vector3(1, 1, 1);
+        }
     };
 
     const giveBlocksIndex = () => {
@@ -91,25 +105,21 @@ const Simon = () => {
     const playSequence = async () => {
         // loop throught sequence array and animate each block in sequence
         for(let i = 0;i < sequence.current.length;i++) {
+            const col = colorsArr[sequence.current[i]];
             // @ts-expect-error instance of wasn't working will need to change
-            const color = group.current.children[sequence.current[i]].children[0].children[0].material.color;
-            //todo: change to uniform location
-
-            color.set(colors[sequence.current[i]]);
-            //todo: change to uniform setting and rgb and new THREE.Vector3()
+            group.current.children[sequence.current[i]].children[0].children[0].material.uniforms.uColor.value = new THREE.Vector3(col.r, col.g, col.b);
             await sleep(1000);
-            color.set('#ffffff');
-            //todo: change to uniform setting and rgb and new THREE.Vector3()
+            // @ts-expect-error instance of wasn't working will need to change
 
+            group.current.children[sequence.current[i]].children[0].children[0].material.uniforms.uColor.value = new THREE.Vector3(1, 1, 1);
             // * add Time as white incase a sequence of duplicate colors 
             await sleep(300);
         }
         setSequenceIsPlaying(false);
-        // todo: timer start
     };
 
     // * animate successfully completing sequence and failing sequence
-    const flashAllSquares2x = async (color: string) => {
+    const flashAllSquares2x = async (color: THREE.Vector3) => {
 
         let count = 1;
 
@@ -118,19 +128,13 @@ const Simon = () => {
             // turn color
             for(let i = 0;i < numOfBlocks;i++) {
                 // @ts-expect-error instance of wasn't working will need to change
-                const material = group.current.children[i].children[0].children[0].material.color;
-                //todo: change to uniform location
-                material.set(color);
-                //todo: change to uniform setting and rgb and new THREE.Vector3()
+                group.current.children[i].children[0].children[0].material.uniforms.uColor.value = color;
             }
             await sleep(500);
             //turn white
             for(let i = 0;i < numOfBlocks;i++) {
                 // @ts-expect-error instance of wasn't working will need to change
-                const color = group.current.children[i].children[0].children[0].material.color;
-                //todo: change to uniform location
-                color.set('#ffffff');
-                //todo: change to uniform setting and rgb and new THREE.Vector3()
+                group.current.children[i].children[0].children[0].material.uniforms.uColor.value = new THREE.Vector3(1, 1, 1);
             }
             await sleep(250);
             count += 1;
@@ -138,6 +142,10 @@ const Simon = () => {
 
         await sleep(500);
     };
+
+    // const flashCOlor = () => {
+
+    // }
 
 
     // todo: fix any type
@@ -149,28 +157,24 @@ const Simon = () => {
         if(e.object.parent.parent.uColorIndex !=
             sequence.current[sequenceIndex]) {
             setSequenceIsPlaying(true);
-            await flashAllSquares2x('#ff0000');
-            //todo: change input to new vertor3() and led red
+            await flashAllSquares2x(new THREE.Vector3(1, 0, 0));
             restart();
             return;
         }
         // flash color
         setSequenceIsPlaying(true);
-        const color = e.object.material.color;
-        color.set(colors[e.object.parent.parent.uColorIndex]);
+        e.object.material.uniforms.uColor.value = colorsArr[e.object.parent.parent.uColorIndex];
         await sleep(350);
-        color.set('#ffffff');
+        e.object.material.uniforms.uColor.value = { r: 1, g: 1, b: 1 };
 
         // end of sequence check
         if(sequence.current[sequenceIndex + 1] === undefined) {
             setSequenceIsPlaying(true);
-            await flashAllSquares2x('#00ff00');
-            //todo: change input to new vertor3() and led green
+            await flashAllSquares2x(new THREE.Vector3(0, 1, 0));
             setLevel(level + 1);
             addOneToSequence();
             return;
         }
-        // todo: reset timer
         setSequenceIndex(sequenceIndex + 1);
         setSequenceIsPlaying(false);
     };
@@ -179,30 +183,31 @@ const Simon = () => {
     return (
         <>
 
-            <group position={ [1.5, -0.5, 0] } ref={ group }>
+            <group position={ [2, -0.5, 0] } ref={ group }>
                 {
                     new Array(numOfBlocks).fill(0).fill(.6, 3, 6).fill(1.2, 6).map((y, i) => (
                         <group key={ i }>
                             <mesh onClick={ handleBoardClick } position={ [xPositions[i], yPositions[i], 0] }>
                                 <Plane args={ [.55, .55, 20, 20] }>
-                                    {/* <meshBasicMaterial transparent opacity={ 1 } /> */ }
                                     <simonGlowMaterial />
                                 </Plane>
                             </mesh>
                         </group>
                     ))
                 }
+
+                <Select enabled={ false }>
+                    <Rules restart={ restart } />
+                    <mesh position={ [2.1, -.75, 0] }>
+                        <Text
+                            color="#00eeff"
+                            fontSize={ .15 }
+                        >
+                            { level }
+                        </Text>
+                    </mesh>
+                </Select>
             </group>
-            <Select enabled={ false }>
-                <mesh position={ [3.6, -1.2, 0] }>
-                    <Text
-                        color="#00eeff"
-                        fontSize={ .15 }
-                    >
-                        { level }
-                    </Text>
-                </mesh>
-            </Select>
 
 
         </>

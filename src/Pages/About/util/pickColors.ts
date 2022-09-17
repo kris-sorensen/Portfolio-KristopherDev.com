@@ -1,4 +1,6 @@
-export const pickColors = (colors: string[]): string[] => {
+import { ColorType } from '../types/types';
+
+export const pickColors = (colors: ColorType[]): ColorType[] => {
     let currentIndex = colors.length, randomIndex;
     // While there remain elements to shuffle.
     while(currentIndex != 0) {
@@ -11,3 +13,4 @@ export const pickColors = (colors: string[]): string[] => {
     }
     return colors;
 };
+
