@@ -185,7 +185,7 @@ const Simon = () => {
     return (
         <>
 
-            <group scale={ width! > 900 ? 1 : .9 } position={ [width! > 900 ? 2 : -.9, width! > 900 ? -.5 : -1.8, 0] } ref={ group }>
+            <group scale={ width! > 900 ? 1 : .9 } position={ [width! > 900 ? 2 : -.9, width! > 900 ? -.5 : -1.7, 0] } ref={ group }>
                 {
                     new Array(numOfBlocks).fill(0).fill(.6, 3, 6).fill(1.2, 6).map((y, i) => (
                         <group key={ i }>
