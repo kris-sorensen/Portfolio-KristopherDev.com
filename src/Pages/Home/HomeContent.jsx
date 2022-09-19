@@ -113,38 +113,41 @@ function HomeContent() {
                 >
                     <slowRevealMaterial ref={splitMaterial} />hello!</Text>
             </mesh>
-            <mesh position={[0, btnY + .6, 1]} >
-                <Plane position={[0, .15, 0]} args={[1.6, .8]}>
-                    <meshBasicMaterial ref={plane} color={'#724BCC'} />
-                </Plane>
-                <Text ref={btn} onPointerOver={handleHover} onPointerOut={handleHover} onClick={handleClick}
-                    fontSize={btnFontSize}
-                    maxWidth={200}
-                    lineHeight={1}
-                    lineWidth={2}
-                    letterSpacing={0.02}
-                    textAlign={'center'}
-                    color={'#F3246C'}
-                    anchorX="center"
-                    anchorY="bottom-baseline"
-                    outlineOpacity={.3}
-                    outlineWidth={.01}
-                >ENTER</Text>
-            </mesh>
-            <mesh position={[0, clickHereY, 1]}>
-                <Text
-                    color={'#F3246C'}
-                    strokeWidth={100}
-                    fontSize={clickHereFontSize}
-                    maxWidth={200}
-                    lineHeight={1}
-                    letterSpacing={0.5}
-                    textAlign={'center'}
-                    anchorX="center"
-                    anchorY="bottom-baseline"
-                    outlineOpacity={0}
-                >{clickOrTap} Everywhere</Text>
-            </mesh>
+            <group scale={width > 900 ? 1 : .7}>
+                <mesh position={[0, btnY + .6, 1]} >
+                    <Plane position={[0, .15, 0]} args={[1.6, .8]}>
+                        <meshBasicMaterial ref={plane} color={'#724BCC'} />
+                    </Plane>
+                    <Text ref={btn} onPointerOver={handleHover} onPointerOut={handleHover} onClick={handleClick}
+                        fontSize={btnFontSize}
+                        maxWidth={200}
+                        lineHeight={1}
+                        lineWidth={2}
+                        letterSpacing={0.02}
+                        textAlign={'center'}
+                        color={'#F3246C'}
+                        anchorX="center"
+                        anchorY="bottom-baseline"
+                        outlineOpacity={.3}
+                        outlineWidth={.01}
+                    >ENTER</Text>
+                </mesh>
+                <mesh position={[0, width > 900 ? clickHereY : clickHereY + .6, 1]}>
+                    <Text
+                        color={'#F3246C'}
+                        strokeWidth={100}
+                        fontSize={clickHereFontSize}
+                        maxWidth={200}
+                        lineHeight={1}
+                        letterSpacing={0.5}
+                        textAlign={'center'}
+                        anchorX="center"
+                        anchorY="bottom-baseline"
+                        outlineOpacity={0}
+                    >{clickOrTap} Everywhere</Text>
+                </mesh>
+
+            </group>
         </>
     );
 }

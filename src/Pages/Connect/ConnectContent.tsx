@@ -100,14 +100,14 @@ const ConnectContent = () => {
 
 
     return (
-        // <div className="page">
+
         <>
             <header>
                 <h1 id="name">Software Developer</h1>
                 <h2 id="title">Kristopher Sorensen</h2>
             </header>
             <Navbar />
-            <div className="container" style={ {} }>
+            <div className="container" >
                 <div className="socialContainer">
                     <div className="social icon" >
                         <motion.img id="plus" onHoverStart={ () => handleHover(plusRef.current) } onHoverEnd={ () => handleHoverExit(plusRef.current) } src="add.png" ref={ plusRef } alt="Social Links" onClick={ () => handleClick() } />
@@ -124,7 +124,7 @@ const ConnectContent = () => {
                 </div>
             </div>
         </>
-        // </div>
+
 
     );
 };

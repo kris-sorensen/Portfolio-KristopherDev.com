@@ -1,15 +1,19 @@
 import { Plane, Text } from '@react-three/drei';
 import { extend, useThree } from '@react-three/fiber';
 import React from 'react';
+import useWindowSize from '../../hooks/useWindowSize';
+import BwMaterial from '../../shaders/bw';
 import OutlineMaterial from '../../shaders/outline';
 
 extend({ OutlineMaterial });
+extend({ BwMaterial });
 
 function Content() {
     const { viewport } = useThree();
+    const { width, height } = useWindowSize();
 
     return (
-        <group position={ [0, .8, 0] }>
+        <group position={ [width! > 900 ? 0 : 3.15, width! > 900 ? 1 : 2.2, 0] }>
             <mesh position={ [-4.5, viewport.height / 18, 0.001] }>
                 <Text
                     anchorX={ 'left' }
@@ -18,6 +22,7 @@ function Content() {
                     font="https://fonts.gstatic.com/s/raleway/v14/1Ptrg8zYS_SKggPNwK4vaqI.woff">
                     Hello and welcome to my site!
                 </Text>
+
             </mesh>
             <mesh position={ [-4.5, viewport.height / 30, 0.001] }>
                 <Text
@@ -30,6 +35,7 @@ function Content() {
                     font="https://fonts.gstatic.com/s/raleway/v14/1Ptrg8zYS_SKggPNwK4vaqI.woff">
                     I am a Software Engineer with 7+ years of experience creating memorable, and beautiful web experiences that captivate and engage visitors.
                 </Text>
+
             </mesh>
             <mesh position={ [-4.5, viewport.height / -16, 0.001] }>
                 <Text

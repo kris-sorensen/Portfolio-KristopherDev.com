@@ -6,7 +6,7 @@ import * as THREE from "three";
 
 
 const BwMaterial: typeof THREE.ShaderMaterial = shaderMaterial(
-  { blending: THREE.NoBlending, uGradientDirection: true },// vertex shader
+  { blending: THREE.NoBlending, uGradientDirection: true, uMobile: false },// vertex shader
   glsl`
     varying vec2 vuv;
 
@@ -20,13 +20,23 @@ const BwMaterial: typeof THREE.ShaderMaterial = shaderMaterial(
   
     varying vec2 vuv;
     uniform bool uGradientDirection;
+    uniform bool uMobile;
     
     void main() {
+      // change orientation for mobile  
+        float orientation = vuv.x;
 
-        float strength = step(.5, vuv.x );
+        if(uMobile){
+          orientation = vuv.y;
+        }  
+
+        float strength = step(.5, orientation );
+        
+        // switch black and white sides
         if(uGradientDirection){
           strength = 1. - strength;
         };
+
         
         gl_FragColor = vec4(vec3(strength), 1.0);
     }

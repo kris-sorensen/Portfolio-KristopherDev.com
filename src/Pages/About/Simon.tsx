@@ -14,6 +14,7 @@ import SimonGlowMaterial from '../../shaders/simonGlow';
 
 //* types
 import { ColorType } from './types/types';
+import useWindowSize from '../../hooks/useWindowSize';
 
 
 
@@ -25,6 +26,7 @@ extend({ SimonGlowMaterial });
 
 
 const Simon = () => {
+    const { width, height } = useWindowSize();
     // * setup state
     const [numOfBlocks, setNumOfBlocks] = useState<number>(7);
     const [rows, setRows] = useState<number>(3);
@@ -47,7 +49,7 @@ const Simon = () => {
         { r: 0, g: .38, b: .95 }, // blue
         { r: .62, g: .46, b: .96 }, // Lavender
         { r: .98, g: .32, b: .71 }, // pink
-        { r: 0, g: .93, b: .99 }, // fushia
+        { r: 1, g: 0, b: .27 }, // fushia
         { r: .98, g: .47, b: .24 } // orange
     ]);
 
@@ -183,7 +185,7 @@ const Simon = () => {
     return (
         <>
 
-            <group position={ [2, -0.5, 0] } ref={ group }>
+            <group scale={ width! > 900 ? 1 : .9 } position={ [width! > 900 ? 2 : -.9, width! > 900 ? -.5 : -2.1, 0] } ref={ group }>
                 {
                     new Array(numOfBlocks).fill(0).fill(.6, 3, 6).fill(1.2, 6).map((y, i) => (
                         <group key={ i }>

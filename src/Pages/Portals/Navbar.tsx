@@ -20,10 +20,10 @@ function Navbar({ color }: any) {
                         <div id="menuToggle" onClick={ () => setToggle(!toggle) }>
                             <input type="checkbox" />
                             <span style={ {
-                                background: toggle ? 'red' : color ? color : 'white'
+                                background: toggle ? 'turquoise' : color ? color : 'white'
                             } } ></span>
-                            <span style={ { background: toggle ? 'black' : color ? color : 'white' } } ></span>
-                            <span style={ { background: toggle ? 'black' : color ? color : 'white' } }></span>
+                            <span style={ { background: toggle ? 'white' : color ? color : 'white' } } ></span>
+                            <span style={ { background: toggle ? 'violet' : color ? color : 'white' } }></span>
                             <ul id="menu">
                                 <li><a onClick={ () => navigate('/') }>Home</a></li>
                                 <li><a onClick={ () => navigate('/about') }>About</a></li>

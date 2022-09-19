@@ -1,5 +1,5 @@
-import useWindowSize from './useWindowSize';
-import useScrollPosition from './useScrollPosition';
+import useWindowSize from '../../hooks/useWindowSize';
+import useScrollPosition from '../../hooks/useScrollPosition';
 import { useEffect, useRef } from 'react';
 import { useFrame, useThree } from '@react-three/fiber';
 

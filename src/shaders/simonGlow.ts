@@ -30,13 +30,13 @@ const SimonGlowMaterial: typeof THREE.ShaderMaterial = shaderMaterial(
     uniform vec3 uColor;
 
     void main() {
-        vec2 xy = mod((vuv),.2);
+        vec2 xy = mod((vuv),.05);
 
-        float d = length(xy -.1); // signed distance function
+        float d = length(xy -.025); // signed distance function
 
         vec3 col = vec3(step(0.2, -d)); // create white circle with black background
 
-        float difuse = 2.;
+        float difuse = 1.2;
 
         float glow = 0.01/d * difuse; // create glow and diminish it with distance
         glow = clamp(glow, 0., 1.); // remove artifacts
