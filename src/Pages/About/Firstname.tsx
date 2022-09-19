@@ -19,7 +19,7 @@ function Firstname() {
                     KRISTOPHER
                 </Text>
             </mesh>
-            <mesh position={ [width! > 900 ? 3 : 0, viewport.height * .35, 0] }>
+            <mesh position={ [width! > 900 ? 3 + .001 : 0, viewport.height * .35, 0] }>
                 <Plane args={ [6, width! > 900 ? 1.3 : .8] }>
                     <meshBasicMaterial color={ '#ff0044' } />
                 </Plane>
