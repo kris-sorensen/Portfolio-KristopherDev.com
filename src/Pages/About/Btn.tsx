@@ -41,7 +41,7 @@ const Btn = () => {
     });
 
     return (
-        <group scale={ width! > 900 ? .9 : .7 } onClick={ () => document.location = '/connect' } onPointerOver={ handleHover } onPointerOut={ handleHover } position={ [width! > 900 ? viewport.width * .5 - 1 : -1.4, width! > 900 ? viewport.height * -.5 + 1 : -.75, .001] }>
+        <group scale={ width! > 900 ? .9 : .7 } onClick={ () => document.location = '/connect' } onPointerOver={ handleHover } onPointerOut={ handleHover } position={ [width! > 900 ? viewport.width * .5 - 1 : -1.55, width! > 900 ? viewport.height * -.5 + 1 : -.65, .001] }>
             {/* halo */ }
             <mesh >
                 <Plane >

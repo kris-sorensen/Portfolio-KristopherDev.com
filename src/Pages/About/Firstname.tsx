@@ -14,7 +14,7 @@ function Firstname() {
                 <Text
                     anchorX={ width! > 900 ? 'left' : 'center' }
                     color='black'
-                    fontSize={ width! > 900 ? .85 : .45 }
+                    fontSize={ width! > 900 ? .85 : .35 }
                     font="https://fonts.gstatic.com/s/raleway/v14/1Ptrg8zYS_SKggPNwK4vaqI.woff">
                     KRISTOPHER
                 </Text>
