@@ -36,7 +36,7 @@ function AboutCanvas() {
                     <Btn />
                     <Content />
                     { width! > 900 ? <Title /> : null }
-                    <LeftsideGraphic />
+                    {/* <LeftsideGraphic /> */ }
                     <Selection >
                         <Select enabled={ true }>
                             <Simon />
