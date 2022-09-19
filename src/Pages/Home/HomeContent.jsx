@@ -30,7 +30,7 @@ function HomeContent() {
         if (width < 1147) {
             setTitleFontSize(1.0)
             setBtnFontSize(.4)
-            setClickHereFontSize(.18)
+            setClickHereFontSize(.2)
             setClickOrTap('Tap')
         }
         else {
