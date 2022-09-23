@@ -7,7 +7,7 @@ import { Object3DNode } from '@react-three/fiber';
 
 
 const OuterAtmosphereMaterial: typeof THREE.ShaderMaterial = shaderMaterial(
-    {},
+    { uTime: 0, transparent: true },
     // vertex shader
     glsl`
     
@@ -24,24 +24,44 @@ const OuterAtmosphereMaterial: typeof THREE.ShaderMaterial = shaderMaterial(
 
     varying vec2 vuv; 
     #define PI 3.1415926538
+    uniform float uTime;
 
-    float toPolar(vec2 vuv){
-        float distance = length(vuv)*2.;
-        float angle = atan((vuv.y)*2., (vuv.x)* 2.);
-        return angle / 2.*PI, distance;
-    }
+   
 
     void main() {
+        //setup uv
         vec2 xy = vuv - .5;
         xy *= 2.;
+
+        //length
         float len = length(xy);
-        float angle = atan(xy.y,xy.x);
+        
+        // angle
+        float angle = atan(xy.y, xy.x) + PI * (PI * 2.) ;
 
-        float col =  1.2 * sin(angle * 10.) ;
 
-        float color = 1. - smoothstep(col,col +.05, angle);
+    	float val = len + sin(angle * (mod(uTime /1000., 10.) +30.) + uTime) * .05 * sin((uTime * .5) * 2.);
+        
+        // adjust size with time
+        float size = .58 + .12 * sin(uTime);
 
-        gl_FragColor = vec4(vec3(color),1.);
+    	float lenVal = smoothstep(size, size + .1, val) * smoothstep(size + .06, size + .05, val);
+        
+        lenVal *= smoothstep(0., .6, len);
+
+        float lerpVal = ((sin(uTime) + 1.) / 4.);
+    	
+        //color
+        vec3 col = mix(vec3(1., 0., 0.), vec3(1., 0., 0.), lerpVal) ;
+        float a = max(.0, lenVal);
+
+        //alpha
+        a *= 100.;
+        a = clamp(a,0.,1.);
+        
+        //final
+        gl_FragColor = vec4(col, a) ;
+       
     }
   `
 );

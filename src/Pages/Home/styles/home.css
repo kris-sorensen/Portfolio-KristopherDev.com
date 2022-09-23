@@ -7,5 +7,5 @@ Canvas {
     width: 100%;
     background-color: black;
     overflow-x: hidden;
-    /* overflow-y: hidden; */
+    overflow-y: hidden;
 }

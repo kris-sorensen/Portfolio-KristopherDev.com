@@ -13,6 +13,7 @@ import fireworkSound from './audio/firework.mp3';
 import fireworkSoundMobile from './audio/firework-mobile.mp3';
 import useSound from 'use-sound';
 import useWindowSize from '../../hooks/useWindowSize';
+import { ucs2 } from 'punycode';
 
 
 extend({ AfterimagePass });
@@ -33,7 +34,6 @@ function HomeCanvas() {
     const [playMobile] = useSound(fireworkSoundMobile);
     const { width } = useWindowSize()
 
-
     useEffect(() => {
         if (width < 1147) {
             setIsMobile(true)
@@ -42,7 +42,6 @@ function HomeCanvas() {
             setIsMobile(false)
         }
     }, [width])
-
 
 
     //Gui
@@ -102,6 +101,8 @@ function HomeCanvas() {
         </>
     );
 }
+
+
 
 
 export default HomeCanvas;

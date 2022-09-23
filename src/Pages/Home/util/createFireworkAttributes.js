@@ -18,7 +18,7 @@ const createFireworkAttributes = (explodeHere) => {
     for (let i = 0; i < particleCount; i++) {
         const i3 = i * 3
         // * positions
-        if (explodeHere.length > 0) {
+        if (explodeHere.length > 0) { //explodeHere !== undefined &&
             //autofire explode here positions
             positions[i3] = explodeHere[0]
             positions[i3 + 1] = explodeHere[1]

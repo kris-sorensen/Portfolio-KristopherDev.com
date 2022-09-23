@@ -7,10 +7,13 @@ import SlowRevealMaterial from '../../shaders/slowReveal'
 import gsap from 'gsap';
 import useTimeout from '../../hooks/useTimeout'
 // import { useNavigate } from "react-router-dom";
+import PropTypes from 'prop-types';
+import { sleep } from '../../utils/sleep'
+import { click } from '@testing-library/user-event/dist/click';
 
 extend({ SlowRevealMaterial })
 
-function HomeContent() {
+function HomeContent({ launchFirework }) {
 
     const [titleFontSize, setTitleFontSize] = useState(null)
     const [btnFontSize, setBtnFontSize] = useState(null)
@@ -19,12 +22,15 @@ function HomeContent() {
     const [clickHereY, setClickHereY] = useState(null)
     const [clickOrTap, setClickOrTap] = useState('')
     const [isHovered, setIsHovered] = useState(false)
+    const [clickHovered, setClickHovered] = useState(false)
     const { width, height } = useWindowSize()
 
 
-    const splitMaterial = useRef()
+    const slowRevealMaterial = useRef()
     const btn = useRef()
     const plane = useRef()
+    const plane2 = useRef()
+    const click = useRef()
 
     useLayoutEffect(() => {
         if (width < 1147) {
@@ -49,7 +55,18 @@ function HomeContent() {
     }, [width])
 
     useFrame(({ clock }) => {
-        splitMaterial.current.uniforms.uTime.value = clock.getElapsedTime()
+        slowRevealMaterial.current.uniforms.uTime.value = clock.getElapsedTime()
+        if (!isHovered) {
+            if (plane.current.position.x > .6) {
+
+                plane.current.position.x -= .075
+                plane2.current.position.x += .075
+            }
+        } else if (isHovered && plane.current.position.x < 1.7) {
+            plane.current.position.x += .03
+            plane2.current.position.x -= .03
+        }
+
     })
 
     // const handleTransition = () => {
@@ -64,7 +81,7 @@ function HomeContent() {
     useTimeout(
         () => {
             // Your custom logic here
-            document.location = '/#about'
+            document.location = '/about'
         },
         // Delay in milliseconds or null to stop it
         isTransitioning ? delay : null,
@@ -76,24 +93,33 @@ function HomeContent() {
 
         if (!isHovered) {
             setIsHovered(true)
-            gsap.to(btn.current, {
-                color: '#724BCC',
-                duration: .5,
-            });
-            plane.current.color.set('#F3246C')
+            // gsap.to(btn.current, {
+            //     color: '#724BCC',
+            //     duration: .5,
+            // });
+            // plane.current.color.set('#F3246C')
+
 
         } else {
             setIsHovered(false)
-            gsap.to(btn.current, {
-                color: '#F3246C',
-                duration: .5,
-            });
-            plane.current.color.set('#724BCC')
+            // gsap.to(btn.current, {
+            //     color: '#F3246C',
+            //     duration: .5,
+            // });
+            // plane.current.color.set('#724BCC')
         }
     }
 
-    const handleClick = () => {
+    const handleClick = async () => {
         document.location = '/about'
+
+        // for (let i = 0; i < 20; i++) {
+        //     // await sleep(50)
+        //     // const launchHere = [Math.random() * (2 - -2) + -2, Math.random() * (1 - -1) + -3]
+        //     const launchHere = [-4 + (i / 2), 0]
+        //     launchFirework(launchHere)
+        //     console.log('launch')
+        // }
         // setIsTransitioning(true)
     }
 
@@ -111,43 +137,49 @@ function HomeContent() {
                     anchorY="middle"
                     outlineOpacity={0}
                 >
-                    <slowRevealMaterial ref={splitMaterial} />hello!</Text>
+                    <slowRevealMaterial ref={slowRevealMaterial} />hello!</Text>
             </mesh>
-            <group scale={width > 900 ? 1 : .7}>
-                <mesh position={[0, btnY + .6, 1]} >
-                    <Plane position={[0, .15, 0]} args={[1.6, .8]}>
-                        <meshBasicMaterial ref={plane} color={'#724BCC'} />
+            <group scale={width > 900 ? .8 : .5}>
+                <mesh position={[0, width > 900 ? btnY : btnY + .9, 1]} >
+                    <Plane ref={plane} position={[.6, .15, 0]} args={[1.2, .8]}>
+                        <meshBasicMaterial color={'#3f51b5'} />
+                    </Plane>
+                    <Plane ref={plane2} position={[-.6, .15, 0]} args={[1.2, .8]}>
+                        <meshBasicMaterial color={'#3f51b5'} />
                     </Plane>
                     <Text ref={btn} onPointerOver={handleHover} onPointerOut={handleHover} onClick={handleClick}
                         fontSize={btnFontSize}
                         maxWidth={200}
                         lineHeight={1}
                         lineWidth={2}
-                        letterSpacing={0.02}
+                        letterSpacing={0.15}
                         textAlign={'center'}
-                        color={'#F3246C'}
+                        color={'#ffffff'}
                         anchorX="center"
                         anchorY="bottom-baseline"
-                        outlineOpacity={.3}
-                        outlineWidth={.01}
+
+                    // outlineOpacity={.6}
+                    // outlineWidth={.008}
                     >ENTER</Text>
-                </mesh>
-                <mesh position={[0, width > 900 ? clickHereY : clickHereY + .6, 1]}>
-                    <Text
-                        color={'#F3246C'}
-                        strokeWidth={100}
-                        fontSize={clickHereFontSize}
-                        maxWidth={200}
-                        lineHeight={1}
-                        letterSpacing={0.5}
-                        textAlign={'center'}
-                        anchorX="center"
-                        anchorY="bottom-baseline"
-                        outlineOpacity={0}
-                    >{clickOrTap} Everywhere</Text>
                 </mesh>
 
             </group>
+            <mesh ref={click} scale={!clickHovered ? 1 : 1.05} onPointerOver={() => setClickHovered(true)}
+                onPointerOut={() => setClickHovered(false)}
+                position={[0, width > 900 ? clickHereY : clickHereY + 1.5, 1]}>
+                <Text
+                    color={'#F3246C'}
+                    strokeWidth={100}
+                    fontSize={clickHereFontSize}
+                    maxWidth={200}
+                    lineHeight={1}
+                    letterSpacing={width > 900 ? 0.5 : .3}
+                    textAlign={'center'}
+                    anchorX="center"
+                    anchorY="bottom-baseline"
+                    outlineOpacity={0}
+                >{clickOrTap} Everywhere</Text>
+            </mesh>
         </>
     );
 }
@@ -155,6 +187,10 @@ function HomeContent() {
 
 
 
+// * Types
+HomeContent.propTypes = {
+    launchFirework: PropTypes.func,
+};
 
 
 
