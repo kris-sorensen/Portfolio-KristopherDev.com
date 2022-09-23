@@ -89,11 +89,11 @@ function HomeCanvas() {
                         <SemiTransparentLayer renderIndex={-2} opacity={transparentLayerParams.opacity} />
                         {/* <OrbitControls /> */}
                         {/* <PreExplodedFirework /> */}
-                        <Effects multisamping={0} renderIndex={-1} disableGamma={false} depthBuffer={true}>
+                        <Effects multisampling={0} renderIndex={-1} disableGamma={false} depthBuffer={true}>
                             <afterimagePass args={[0]} />
                         </Effects>
 
-                        <HomeContent />
+                        <HomeContent launchFirework={launchFirework} />
                         {fireworks}
                     </Suspense>
                 </Canvas>
