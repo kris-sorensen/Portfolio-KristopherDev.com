@@ -8,7 +8,6 @@ import useWindowSize from '../../hooks/useWindowSize';
 
 extend({ BwMaterial });
 
-//todo: size of plane based on viewport dimensions
 const Background = () => {
     const { viewport } = useThree();
     const { width, height } = useWindowSize();
@@ -17,7 +16,6 @@ const Background = () => {
 
     useEffect(() => {
         if(typeof width !== 'undefined') {
-            console.log(width);
             if(width < 900) {
                 // @ts-expect-error instance of wasn't working will need to change
                 material.current.uniforms.uMobile.value = true;
@@ -32,6 +30,8 @@ const Background = () => {
         }
     }, [width, height]);
 
+
+
     return (
         <mesh position={ [0, 0, -.4] }>
             <Plane args={ [viewport.width / .25, viewport.height / .25, 1] }>
@@ -41,5 +41,7 @@ const Background = () => {
         </mesh>
     );
 };
+
+
 
 export default Background;
