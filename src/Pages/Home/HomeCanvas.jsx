@@ -91,7 +91,7 @@ function HomeCanvas() {
                         {/* <PreExplodedFirework /> */}
                         <Effects multisamping={0} renderIndex={-1}
                         >
-                            <afterimagePass args={[0.6]} />
+                            <afterimagePass args={[0]} />
                         </Effects>
 
                         <HomeContent />
