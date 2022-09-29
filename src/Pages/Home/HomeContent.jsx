@@ -56,15 +56,15 @@ function HomeContent() {
     useFrame(({ clock }) => {
         slowRevealMaterial.current.uniforms.uTime.value = clock.getElapsedTime()
 
-        if (isHovered && plane2.current.uniforms.uTime.value < .75) {
-            plane1.current.uniforms.uTime.value -= .015
-            plane2.current.uniforms.uTime.value += .015
-        }
+        // if (isHovered && plane2.current.uniforms.uTime.value < .75) {
+        //     plane1.current.uniforms.uTime.value -= .015
+        //     plane2.current.uniforms.uTime.value += .015
+        // }
 
-        else if (!isHovered && plane2.current.uniforms.uTime.value > 0) {
-            plane1.current.uniforms.uTime.value += .045
-            plane2.current.uniforms.uTime.value -= .045
-        }
+        // else if (!isHovered && plane2.current.uniforms.uTime.value > 0) {
+        //     plane1.current.uniforms.uTime.value += .045
+        //     plane2.current.uniforms.uTime.value -= .045
+        // }
     })
 
 
