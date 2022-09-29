@@ -1,7 +1,6 @@
 import { useThree } from '@react-three/fiber';
 import useFireworksStore from '../../../stores/useFireworksStore'
 
-import useScrollPosition from '../../../hooks/useScrollPosition'
 
 // * fill attribute arrays
 const createFireworkAttributes = (explodeHere) => {

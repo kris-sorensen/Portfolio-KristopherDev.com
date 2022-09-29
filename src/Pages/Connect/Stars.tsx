@@ -1,7 +1,7 @@
 import React from 'react';
-import {Stars} from '@react-three/drei';
+import { Stars } from '@react-three/drei';
 
-const StarsContainer=() => {
+const StarsContainer = () => {
     return (
         <mesh>
             <Stars />
@@ -9,4 +9,4 @@ const StarsContainer=() => {
     );
 };
 
-export default StarsContainer;
+export default React.memo(StarsContainer);

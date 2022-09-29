@@ -1,13 +1,14 @@
-import { Plane, Text } from '@react-three/drei';
-import { useThree } from '@react-three/fiber';
 import React from 'react';
+import { useThree } from '@react-three/fiber';
+import { Plane, Text } from '@react-three/drei';
+// * hooks
 import useWindowSize from '../../hooks/useWindowSize';
 
 
 function Firstname() {
     const { viewport } = useThree();
     const { width, height } = useWindowSize();
-
+    // todo: fix  nonNull assertions
     return (
         <group position={ [0, width! > 900 ? 0 : viewport.height * .1, 0] }>
             <mesh position={ [viewport.width * .02, viewport.height * .35, 0.001] }>
@@ -28,4 +29,4 @@ function Firstname() {
     );
 }
 
-export default Firstname;
+export default React.memo(Firstname);

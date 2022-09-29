@@ -15,15 +15,14 @@ function Navbar({ color }: any) {
         <div className="container-nav-mobile">
             <div className="phone">
                 <div className="content">
-
                     <nav role="navigation">
                         <div id="menuToggle" onClick={ () => setToggle(!toggle) }>
                             <input type="checkbox" />
                             <span style={ {
-                                background: toggle ? 'turquoise' : color ? color : 'white'
+                                background: toggle ? 'turquoise' : color ? color : 'turquoise'
                             } } ></span>
                             <span style={ { background: toggle ? 'white' : color ? color : 'white' } } ></span>
-                            <span style={ { background: toggle ? 'violet' : color ? color : 'white' } }></span>
+                            <span style={ { background: toggle ? 'violet' : color ? color : 'violet' } }></span>
                             <ul id="menu">
                                 <li><a onClick={ () => navigate('/') }>Home</a></li>
                                 <li><a onClick={ () => navigate('/about') }>About</a></li>

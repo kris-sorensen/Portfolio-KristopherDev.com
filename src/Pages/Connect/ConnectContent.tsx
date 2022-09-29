@@ -106,7 +106,7 @@ const ConnectContent = () => {
                 <h1 id="name">Software Developer</h1>
                 <h2 id="title">Kristopher Sorensen</h2>
             </header>
-            <Navbar />
+            <Navbar color={ 'white' } />
             <div className="container" >
                 <div className="socialContainer">
                     <div className="social icon" >
@@ -130,4 +130,4 @@ const ConnectContent = () => {
 };
 
 
-export default ConnectContent;
+export default React.memo(ConnectContent);

@@ -1,11 +1,11 @@
 import React, { useRef, useState } from 'react';
 import * as THREE from "three";
-import HaloMaterial from '../../shaders/halo';
 import { Plane, Text } from '@react-three/drei';
 import { extend, useFrame, useThree } from '@react-three/fiber';
+// * hooks
 import useWindowSize from '../../hooks/useWindowSize';
-
-
+// * shaders
+import HaloMaterial from '../../shaders/halo';
 extend({ HaloMaterial });
 
 const Btn = () => {
@@ -24,6 +24,7 @@ const Btn = () => {
     useFrame(() => {
         if(halo.current != null) {
             if(!hovered) {
+                // todo: fix
                 {/*@ts-expect-error instance of wasn't working will need to change*/ }
                 if(halo.current.uniforms.uSpread.value > 0) {
                     {/*@ts-expect-error instance of wasn't working will need to change*/ }
@@ -39,11 +40,17 @@ const Btn = () => {
             }
         }
     });
-
+    // todo: fix non null assertion and other
     return (
-        <group scale={ width! > 900 ? .9 : .7 } onClick={ () => document.location = '/connect' } onPointerOver={ handleHover } onPointerOut={ handleHover } position={ [width! > 900 ? viewport.width * .5 - 1 : -1.55, width! > 900 ? viewport.height * -.5 + 1 : -.65, .001] }>
+        <group
+            scale={ width! > 900 ? .9 : .7 }
+            onClick={ () => document.location = '/connect' }
+            onPointerOver={ handleHover }
+            onPointerOut={ handleHover }
+            position={ [width! > 900 ? viewport.width * .5 - 1 : -1.55, width! > 900 ? viewport.height * -.5 + 1 : -.65, .001] }
+        >
             {/* halo */ }
-            <mesh >
+            <mesh>
                 <Plane >
                     {/*@ts-expect-error instance of wasn't working will need to change*/ }
                     <haloMaterial ref={ halo } transparent />
@@ -53,16 +60,16 @@ const Btn = () => {
                 <Text
                     ref={ text }
                     letterSpacing={ .2 }
-                    fontSize={ .1 }
+                    fontSize={ .115 }
                     anchorX={ 'center' }
                     color={ !hovered ? '#ff0044' : "#ff0044" }
-                    font="https://fonts.gstatic.com/s/raleway/v14/1Ptrg8zYS_SKggPNwK4vaqI.woff"
+                    // font="https://fonts.gstatic.com/s/raleway/v14/1Ptrg8zYS_SKggPNwK4vaqI.woff"
+                    font="./DINAlternate-Bold.woff"
                 >
                     CONNECT
                 </Text>
             </mesh>
         </group >
-
     );
 };
 

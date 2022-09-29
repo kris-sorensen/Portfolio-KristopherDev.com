@@ -24,7 +24,6 @@ import Loader from '../../utils/loader';
 
 
 const ConnectCanvas = () => {
-    const elementSize = useWindowResize();
 
     return (
 
@@ -50,7 +49,6 @@ const ConnectCanvas = () => {
                     <Airplanes />
                 </Suspense>
             </Canvas>
-            {/* <Loader /> */}
         </div>
     );
 };
@@ -88,8 +86,7 @@ const Lights = () => {
     });
     return (
         <>
-            <directionalLight castShadow {...lightParams} color={"#fff"} />
-            <pointLight position={[0, 0, 40]} color={0xffffff} intensity={0.8} />
+            <directionalLight  {...lightParams} color={"#fff"} />
         </>
     );
 };

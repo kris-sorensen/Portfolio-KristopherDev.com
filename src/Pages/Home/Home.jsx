@@ -9,10 +9,8 @@ const Home = () => {
 
     return (
         <Suspense fallback={<Loader />}>
-
             <Navbar color={'white'} />
             <HomeCanvas />
-
         </Suspense>
     );
 };

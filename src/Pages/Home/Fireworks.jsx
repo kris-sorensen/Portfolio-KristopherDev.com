@@ -78,4 +78,4 @@ Fireworks.propTypes = {
 };
 
 
-export default Fireworks;
+export default React.memo(Fireworks);

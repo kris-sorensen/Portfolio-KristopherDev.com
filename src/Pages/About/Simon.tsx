@@ -3,33 +3,24 @@ import React, { useEffect, useRef, useState } from 'react';
 import { extend } from '@react-three/fiber';
 import { Plane, Text } from '@react-three/drei';
 import { Select } from '@react-three/postprocessing';
-
 // * Components
 import Rules from './Rules';
-
 // * utility functions
 import { sleep } from '../../utils/sleep';
 import { pickColors } from './util/pickColors';
-import SimonGlowMaterial from '../../shaders/simonGlow';
-
 //* types
 import { ColorType } from './types/types';
+// * hooks
 import useWindowSize from '../../hooks/useWindowSize';
-
-
-
+// * shaders
+import SimonGlowMaterial from '../../shaders/simonGlow';
 extend({ SimonGlowMaterial });
-
-
-
-// todo: extend shader material
 
 
 const Simon = () => {
     const { width, height } = useWindowSize();
     // * setup state
     const [numOfBlocks, setNumOfBlocks] = useState<number>(7);
-    const [rows, setRows] = useState<number>(3);
     const [xPositions, setXPositions] = useState<number[]>(
         [0, .7, 1.4, 2.1,
             1.4, 2.1,
@@ -61,6 +52,7 @@ const Simon = () => {
     const [level, setLevel] = useState(1);
 
     // * Refs
+    // todo: fix non non assertion
     const group = useRef<THREE.Group>(null!);
 
     // * setup
@@ -82,6 +74,7 @@ const Simon = () => {
 
     const AllBlocksToWhite = () => {
         for(let i = 0;i < numOfBlocks;i++) {
+            // todo: typescript error fix
             // @ts-expect-error instance of wasn't working will need to change
             group.current.children[i].children[0].children[0].material.uniforms.uColor.value = new THREE.Vector3(1, 1, 1);
         }
@@ -91,6 +84,7 @@ const Simon = () => {
         // use index to access color. add to each block
         for(let i = 0;i < group.current.children.length;i++) {
             const el = group.current.children;
+            // todo: typescript error fix
             // @ts-expect-error instance of wasn't working will need to change
             el[i].uColorIndex = i;
         }
@@ -105,14 +99,15 @@ const Simon = () => {
     };
 
     const playSequence = async () => {
-        // loop throught sequence array and animate each block in sequence
+        // loop through sequence array and animate each block in sequence
         for(let i = 0;i < sequence.current.length;i++) {
             const col = colorsArr[sequence.current[i]];
+            // todo: typescript error fix
             // @ts-expect-error instance of wasn't working will need to change
             group.current.children[sequence.current[i]].children[0].children[0].material.uniforms.uColor.value = new THREE.Vector3(col.r, col.g, col.b);
             await sleep(1000);
+            // todo: typescript error fix
             // @ts-expect-error instance of wasn't working will need to change
-
             group.current.children[sequence.current[i]].children[0].children[0].material.uniforms.uColor.value = new THREE.Vector3(1, 1, 1);
             // * add Time as white incase a sequence of duplicate colors 
             await sleep(300);
@@ -122,19 +117,20 @@ const Simon = () => {
 
     // * animate successfully completing sequence and failing sequence
     const flashAllSquares2x = async (color: THREE.Vector3) => {
-
         let count = 1;
 
         await sleep(200);
         while(count <= 2) {
             // turn color
             for(let i = 0;i < numOfBlocks;i++) {
+                // todo: typescript error fix
                 // @ts-expect-error instance of wasn't working will need to change
                 group.current.children[i].children[0].children[0].material.uniforms.uColor.value = color;
             }
             await sleep(500);
             //turn white
             for(let i = 0;i < numOfBlocks;i++) {
+                // todo: typescript error fix
                 // @ts-expect-error instance of wasn't working will need to change
                 group.current.children[i].children[0].children[0].material.uniforms.uColor.value = new THREE.Vector3(1, 1, 1);
             }
@@ -144,11 +140,6 @@ const Simon = () => {
 
         await sleep(500);
     };
-
-    // const flashCOlor = () => {
-
-    // }
-
 
     // todo: fix any type
     // * handle events
@@ -181,43 +172,44 @@ const Simon = () => {
         setSequenceIsPlaying(false);
     };
 
-
+    // todo: fix non null assertion check
     return (
-        <>
-
-            <group scale={ width! > 900 ? 1 : .9 } position={ [width! > 900 ? 2 : -.9, width! > 900 ? -.5 : -1.7, 0] } ref={ group }>
-                {
-                    new Array(numOfBlocks).fill(0).fill(.6, 3, 6).fill(1.2, 6).map((y, i) => (
-                        <group key={ i }>
-                            <mesh onClick={ handleBoardClick } position={ [xPositions[i], yPositions[i], 0] }>
-                                <Plane args={ [.55, .55, 20, 20] }>
-                                    <simonGlowMaterial />
-                                </Plane>
-                            </mesh>
-                        </group>
-                    ))
-                }
-
-                <Select enabled={ false }>
-                    <Rules restart={ restart } />
-                    <mesh position={ [2.1, -.75, 0] }>
-                        <Text
-                            color="#00eeff"
-                            fontSize={ .15 }
+        <group
+            scale={ width! > 900 ? 1 : .9 }
+            position={ [width! > 900 ? 2 : -.9, width! > 900 ? -.5 : -1.7, 0] }
+            ref={ group }
+        >
+            {
+                new Array(numOfBlocks).fill(0).fill(.6, 3, 6).fill(1.2, 6).map((y, i) => (
+                    <group key={ i }>
+                        <mesh
+                            onClick={ handleBoardClick }
+                            position={ [xPositions[i], yPositions[i], 0] }
                         >
-                            { level }
-                        </Text>
-                    </mesh>
-                </Select>
-            </group>
-
-
-        </>
+                            <Plane args={ [.55, .55, 20, 20] }>
+                                <simonGlowMaterial />
+                            </Plane>
+                        </mesh>
+                    </group>
+                ))
+            }
+            <Select enabled={ false }>
+                <Rules restart={ restart } />
+                <mesh position={ [2.1, -.75, 0] }>
+                    <Text
+                        color="#00eeff"
+                        fontSize={ .15 }
+                    >
+                        { level }
+                    </Text>
+                </mesh>
+            </Select>
+        </group>
     );
 };
 
 
-export default Simon;
+export default React.memo(Simon);
 
 
 

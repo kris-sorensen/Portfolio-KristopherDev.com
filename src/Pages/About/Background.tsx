@@ -1,11 +1,10 @@
 import React, { useEffect, useRef } from 'react';
 import { extend, useThree } from '@react-three/fiber';
 import { Plane } from '@react-three/drei';
-import BwMaterial from '../../shaders/bw';
-
+// * hooks
 import useWindowSize from '../../hooks/useWindowSize';
-
-
+// * shaders
+import BwMaterial from '../../shaders/bw';
 extend({ BwMaterial });
 
 const Background = () => {
@@ -13,10 +12,10 @@ const Background = () => {
     const { width, height } = useWindowSize();
     const material = useRef();
 
-
     useEffect(() => {
         if(typeof width !== 'undefined') {
             if(width < 900) {
+                //todo: fix 
                 // @ts-expect-error instance of wasn't working will need to change
                 material.current.uniforms.uMobile.value = true;
                 // @ts-expect-error instance of wasn't working will need to change
@@ -31,12 +30,15 @@ const Background = () => {
     }, [width, height]);
 
 
-
+    //todo: fix 
     return (
         <mesh position={ [0, 0, -.4] }>
             <Plane args={ [viewport.width / .25, viewport.height / .25, 1] }>
                 {/*@ts-expect-error instance of wasn't working will need to change*/ }
-                <bwMaterial ref={ material } uGradientDirection={ true } uMobile={ true } />
+                <bwMaterial
+                    ref={ material }
+                    uGradientDirection={ true }
+                    uMobile={ true } />
             </Plane>
         </mesh>
     );

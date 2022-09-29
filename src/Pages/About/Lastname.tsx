@@ -1,6 +1,6 @@
-import { Plane, Text } from '@react-three/drei';
-import { useThree } from '@react-three/fiber';
 import React from 'react';
+import { useThree } from '@react-three/fiber';
+import { Plane, Text } from '@react-three/drei';
 
 
 function Lastname() {
@@ -26,4 +26,4 @@ function Lastname() {
     );
 }
 
-export default Lastname;
+export default React.memo(Lastname);

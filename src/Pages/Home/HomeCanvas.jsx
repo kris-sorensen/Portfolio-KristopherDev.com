@@ -93,7 +93,7 @@ function HomeCanvas() {
                             <afterimagePass args={[0]} />
                         </Effects>
 
-                        <HomeContent launchFirework={launchFirework} />
+                        <HomeContent />
                         {fireworks}
                     </Suspense>
                 </Canvas>
