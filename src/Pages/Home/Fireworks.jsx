@@ -29,7 +29,7 @@ const Fireworks = ({ explodeHere }) => {
     // * animation loop
     useFrame(() => {
         points.current.material.uniforms.uTime.value = clock.getElapsedTime() - clockOffset;
-    })
+    }, -3)
 
     return (
         <>
