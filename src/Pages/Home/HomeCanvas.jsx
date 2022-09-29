@@ -84,7 +84,7 @@ function HomeCanvas() {
         <>
             <div style={{ width: '100%', height: '100vh', position: 'fixed', top: 0, left: 0, outline: 'none' }} >
                 <Leva hidden />
-                <Canvas onClick={launchFirework} gl={{ autoClearColor: false, antialias: false }} orthographic camera={{ zoom: 100, position: [0, 0, 5] }}>
+                <Canvas dpr={[1, 2]} onClick={launchFirework} gl={{ autoClearColor: false, antialias: true }} orthographic camera={{ zoom: 100, position: [0, 0, 5] }}>
                     <Suspense fallback={<Loader />}>
                         <SemiTransparentLayer renderIndex={-2} opacity={transparentLayerParams.opacity} />
                         {/* <OrbitControls /> */}
