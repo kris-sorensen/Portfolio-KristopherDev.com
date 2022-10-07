@@ -1,0 +1,93 @@
+Tasks:
+
+    Setup:
+
+        ✔ Create Route for page @done(22-10-06 11:02)
+        ✔ Lazy Load @done(22-10-06 11:02)
+        ✔ Create basic components and render default square @done(22-10-06 11:02)
+        ✔ Create todo list @done(22-10-06 11:26)
+
+    Model:
+
+        ✔ Pick Skateboard @started(22-10-06 12:18) @done(22-10-06 14:55) @lasted(2h37m49s)
+        ✔ import into blender or use pipeline @done(22-10-06 14:54)
+        ✔ convert to gltf @done(22-10-06 14:55)
+        ✔ compress for web @done(22-10-06 14:55)
+        ✔ load into scene @done(22-10-06 14:55)
+        ✔ scale and position @done(22-10-06 14:55)
+        ✔ Ligths added @done(22-10-06 19:25)
+        ✔ Bottom plane added @done(22-10-06 19:25)
+        ☐ hoaver above plane
+        ☐ add orbit controls (different than earth w/ dampening)
+        ☐ add presentation controls
+        ☐ have skateboard flip when bottom is clicked on
+        ☐ make rotate auto slowly or hover(drei?) when not in presentation mode
+            ☐ create a state that disables on presentation controls and enables when orbit controls is used
+    
+    Lights:
+
+        ✔ Add ambient light @done(22-10-06 14:55)
+        ✔ Add one spot light @done(22-10-06 17:30)
+        ✔ add light helper @done(22-10-06 17:30)
+        ✔ position @done(22-10-06 17:30)
+        ☐ optomize light 
+        ☐ add led shaders around board
+        ☐ try enviornment light
+        ☐ try two lights and different color lights
+
+    Floor: 
+
+        ✔ add plane (black) @done(22-10-06 19:25)
+        ✔ position @done(22-10-06 19:25)
+        ✔ recieve shadows @done(22-10-06 19:25)
+        ☐ apply texture to plane
+
+    Customize Skateboard:
+        
+        ☐ add state management
+        ☐ create events on griptape, bottom, wheels
+        ☐ add color picker 
+        ☐ hook up color change events to color picker
+        ☐ find textures
+        ☐ add texture bar that pops up when bottom of skateboard is clicked
+        ☐ apply textures when clicked on
+
+
+    Loading Screen:
+
+        ☐ add Drei loader
+        ☐ add Loading screen (grey or black) w/ svg 2d skateboard and word loading...
+        ☐ add animated spite of 2d head and feet and body no hands kicking forward in place skateboard and road marks
+    
+    Content:
+
+        ☐ Find font title
+        ☐ Find font Subtitle
+        ☐ Decide on name and what subtitle will say
+        ☐ use drei text and put on screen
+        ☐ Apply font
+        ☐ Position and size
+        ☐ play with different colors
+
+    
+    End:
+
+        ☐ Test desktop
+        ☐ Test Mobile
+        ☐ Push to site
+        ☐ create work link in navbar
+        ☐ create landing page of projects. Only will be one right now until you put tetris on
+
+
+    Stretch:
+
+        ☐ add a price thing 
+        ☐ add ability to order component
+
+    
+
+    
+    
+    
+
+

@@ -35,13 +35,13 @@ const Simon = () => {
     );
     // * color state
     const [colorsArr, setColorsArr] = useState<ColorType[]>([
-        { r: 0, b: 1, g: .95 }, // aqua
-        { r: 1, g: 0, b: .26 }, // light blue
-        { r: 0, g: .38, b: .95 }, // blue
+        { r: 0.141, b: .949, g: .141 }, // green vec3(0.141,0.949,0.141)
+        { r: .012, g: .988, b: .565 }, // aqua
+        { r: 0, g: .38, b: .95 }, // blue 
         { r: .62, g: .46, b: .96 }, // Lavender
         { r: .98, g: .32, b: .71 }, // pink
-        { r: 1, g: 0, b: .27 }, // fushia
-        { r: .98, g: .47, b: .24 } // orange
+        { r: .922, g: 0.961, b: .192 }, // yellow vec3(0.922,0.961,0.192)
+        { r: .988, g: .467, b: .012 } // orange vec3(0.988,0.467,0.012)
     ]);
 
     // * sequence state

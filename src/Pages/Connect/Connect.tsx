@@ -6,12 +6,15 @@ import { Loader } from '@react-three/drei';
 function Connect() {
 
     return (
-        <Suspense fallback={ <Loader /> }>
-            {/* <div className="connect" > */ }
-            <ConnectContent />
-            <ConnectCanvas />
-            {/* </div> */ }
-        </Suspense>
+        <>
+            <Suspense fallback={ null }>
+                {/* <div className="connect" > */ }
+                <ConnectContent />
+                <ConnectCanvas />
+                {/* </div> */ }
+            </Suspense>
+            <Loader />
+        </>
     );
 }
 

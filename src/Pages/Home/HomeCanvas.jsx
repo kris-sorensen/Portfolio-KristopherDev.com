@@ -13,7 +13,6 @@ import fireworkSound from './audio/firework.mp3';
 import fireworkSoundMobile from './audio/firework-mobile.mp3';
 import useSound from 'use-sound';
 import useWindowSize from '../../hooks/useWindowSize';
-import { ucs2 } from 'punycode';
 
 
 extend({ AfterimagePass });
@@ -85,18 +84,18 @@ function HomeCanvas() {
             <div style={{ width: '100%', height: '100vh', position: 'fixed', top: 0, left: 0, outline: 'none' }} >
                 <Leva hidden />
                 <Canvas dpr={[1, 2]} onClick={launchFirework} gl={{ autoClearColor: false, antialias: true }} orthographic camera={{ zoom: 100, position: [0, 0, 5] }}>
-                    <Suspense fallback={<Loader />}>
-                        <SemiTransparentLayer renderIndex={-2} opacity={transparentLayerParams.opacity} />
-                        {/* <OrbitControls /> */}
-                        {/* <PreExplodedFirework /> */}
-                        <Effects multisamping={0} renderIndex={-1}
-                        >
-                            <afterimagePass args={[0]} />
-                        </Effects>
+                    {/* <Suspense fallback={null}> */}
+                    <SemiTransparentLayer renderIndex={-2} opacity={transparentLayerParams.opacity} />
+                    {/* <OrbitControls /> */}
+                    {/* <PreExplodedFirework /> */}
+                    <Effects multisamping={0} renderIndex={-1}
+                    >
+                        <afterimagePass args={[0]} />
+                    </Effects>
 
-                        <HomeContent />
-                        {fireworks}
-                    </Suspense>
+                    <HomeContent />
+                    {fireworks}
+                    {/* </Suspense> */}
                 </Canvas>
             </div>
         </>

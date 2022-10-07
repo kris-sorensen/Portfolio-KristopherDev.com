@@ -7,10 +7,13 @@ import Navbar from '../Portals/Navbar';
 
 const About = () => {
     return (
-        <Suspense fallback={ <Loader /> }>
-            <AboutCanvas />
-            <Navbar color={ 'black' } />
-        </Suspense>
+        <>
+            <Suspense fallback={ null }>
+                <AboutCanvas />
+                <Navbar color={ 'black' } />
+            </Suspense>
+            <Loader />
+        </>
     );
 };
 

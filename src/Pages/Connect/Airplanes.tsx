@@ -47,7 +47,6 @@ const Airplanes = () => {
         rot += deltaTime * planeSpeed.current * .75;
 
         group.current.rotateOnAxis(randomAxis, randomAxisRot);
-        group.current.rotateOnAxis(randomAxis, randomAxisRot);
         group.current.rotateOnAxis(new THREE.Vector3(0, 1, 0), rot);
         group.current.rotateOnAxis(new THREE.Vector3(0, 0, 1), rad);
         group.current.translateY(elementSize.yOff);

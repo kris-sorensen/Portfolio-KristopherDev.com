@@ -21,12 +21,15 @@ import useWindowSize from '../../hooks/useWindowSize';
 function AboutCanvas() {
 
     const { width, height } = useWindowSize();
+
+
+
     // todo: fix non null assertions
     return (
         <div
             style={ {
                 width: '100%',
-                height: width! > 900 ? '100vh' : '100vh',
+                height: '100vh',
                 position: 'fixed',
                 top: 0,
                 left: 0,
@@ -35,32 +38,33 @@ function AboutCanvas() {
             } }
         >
             <Canvas>
-                <Suspense fallback={ <Loader /> }>
-                    {/* <ScrollControls pages={ width! > 900 ? 1 : 2 }> */ }
-                    <Background />
-                    {/* <Scroll> */ }
-                    <Firstname />
-                    { width! > 900 ? <Lastname /> : null }
-                    <Btn />
-                    <Content />
-                    { width! > 900 ? <Title /> : null }
-                    {/* <LeftsideGraphic /> */ }
-                    <Selection >
-                        <Select enabled={ true }>
-                            <Simon />
-                        </Select>
-                        <EffectComposer multisampling={ 1 }>
-                            <SelectiveBloom
-                                kernelSize={ 3 }
-                                luminanceThreshold={ .01 }
-                                luminanceSmoothing={ 0.4 }
-                                intensity={ .1 }
-                            />
-                        </EffectComposer>
-                    </Selection>
-                    {/* </Scroll> */ }
-                    {/* </ScrollControls> */ }
-                </Suspense>
+                {/* <Suspense fallback={ null }> */ }
+                {/* <ScrollControls pages={ width! > 900 ? 1 : 2 }> */ }
+                <Background />
+                {/* <Scroll> */ }
+                <Firstname />
+                { width! > 900 ? <Lastname /> : null }
+                <Btn />
+                <Content />
+                { width! > 900 ? <Title /> : null }
+                {/* <LeftsideGraphic /> */ }
+                <Selection >
+                    <Select enabled={ true }>
+                        <Simon />
+                    </Select>
+                    <EffectComposer multisampling={ 1 }>
+                        <SelectiveBloom
+                            kernelSize={ 3 }
+                            luminanceThreshold={ .01 }
+                            luminanceSmoothing={ 0.4 }
+                            intensity={ .1 }
+                        />
+                    </EffectComposer>
+                </Selection>
+                {/* </Scroll> */ }
+                {/* </ScrollControls> */ }
+                {/* </Suspense> */ }
+                {/* <Loader /> */ }
             </Canvas>
         </div>
     );

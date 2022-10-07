@@ -30,7 +30,7 @@ const ConnectCanvas = () => {
         <div style={{ width: '100%', height: '100vh', position: 'fixed', top: 0, left: 0, outline: 'none' }} >
             <Canvas gl={{ antialias: true, toneMapping: THREE.NoToneMapping }}
                 linear >
-                <Suspense fallback={<Loader />}>
+                <Suspense fallback={null}>
                     <Leva hidden />
                     {/* <OrbitControls /> */}
                     <CameraContainer />
