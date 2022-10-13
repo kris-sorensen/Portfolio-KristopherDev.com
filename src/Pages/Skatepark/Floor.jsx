@@ -1,10 +1,10 @@
-import * as THREE from 'three'
 import React from 'react'
+import * as THREE from 'three'
 import { useTexture, Plane } from '@react-three/drei';
 import { useControls } from 'leva';
 
 function Floor(props) {
-    const [floor, normal] = useTexture(['/skatepark/floor/street.jpg', '/skatepark/floor/streetNormal.jpg'])
+    // const [floor, normal] = useTexture(['/skatepark/floor/street.jpg', '/skatepark/floor/streetNormal.jpg'])
 
     const planeParams = useControls({ planeY: { value: -3.4, min: -5, max: 5, step: .001 }, });
 
@@ -20,7 +20,6 @@ function Floor(props) {
                     color={'white'}
 
                 />
-
             </Plane>
         </mesh>
     )
