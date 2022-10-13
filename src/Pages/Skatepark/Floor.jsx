@@ -1,19 +1,28 @@
 import * as THREE from 'three'
 import React from 'react'
-import { Canvas, useThree, useFrame, useLoader } from '@react-three/fiber'
-import { useTexture, Reflector, Plane } from '@react-three/drei';
+import { useTexture, Plane } from '@react-three/drei';
+import { useControls } from 'leva';
 
 function Floor(props) {
-    // const [floor, normal] = useTexture(['/SurfaceImperfections003_1K_var1.jpg', '/SurfaceImperfections003_1K_Normal.jpg'])
+    const [floor, normal] = useTexture(['/skatepark/floor/street.jpg', '/skatepark/floor/streetNormal.jpg'])
+
+    const planeParams = useControls({ planeY: { value: -3.4, min: -5, max: 5, step: .001 }, });
+
     return (
         <mesh >
-            <Plane  {...props} receiveShadow>
-                <meshStandardMaterial roughness={.6} metalness={1} color={'white'} />
+            <Plane
+                recieveShadow
+                args={[10, 10, 50, 50]}
+                rotation={[-Math.PI / 2, 0, Math.PI / 2]} position-y={planeParams.planeY}
+            >
+                <meshStandardMaterial
+                    roughness={1} metalness={0}
+                    color={'white'}
+
+                />
+
             </Plane>
         </mesh>
-        // <Reflector resolution={1024} args={[8, 8]} {...props}>
-        //     {(Material, props) => <Material color="#f0f0f0" metalness={0} roughnessMap={floor} normalMap={normal} normalScale={[2, 2]} {...props} />}
-        // </Reflector>
     )
 }
 

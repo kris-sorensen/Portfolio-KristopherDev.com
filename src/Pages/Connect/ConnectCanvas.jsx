@@ -86,7 +86,7 @@ const Lights = () => {
     });
     return (
         <>
-            <directionalLight  {...lightParams} color={"#fff"} />
+            <directionalLight castShadow {...lightParams} color={"#fff"} />
         </>
     );
 };

@@ -1,12 +1,12 @@
 import React from 'react';
-import SkateparkCanvas from './SkateparkCanvas'
+import Scene from './Scene'
 
 
 const Skatepark = () => {
 
 
     return (
-        <SkateparkCanvas />
+        <Scene />
     )
 }
 

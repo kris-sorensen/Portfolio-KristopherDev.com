@@ -1,58 +1,85 @@
-import React, { useRef } from 'react';
+import React, { useRef, Suspense } from 'react';
 import * as three from 'three';
-import { OrbitControls, Plane, SpotLight, useHelper, Float } from '@react-three/drei';
-import { useThree, useFrame } from '@react-three/fiber';
-import { Model } from './Model'
+import { OrbitControls, Plane, SpotLight, useHelper, Float, softShadows, Html, Box, ContactShadows } from '@react-three/drei';
+import { useThree, useFrame, extend } from '@react-three/fiber';
+// import { Model } from './Model'
 import Floor from './Floor'
+import { PresentationControls } from '@react-three/drei';
+import './styles/skateboard.css'
+import { SkateboardModel } from './SkateboardModel'
+import { useControls } from 'leva';
+
+
+
+
+
 
 const Skateboard = () => {
     const skateboard = useRef(null)
-    useFrame(() => {
-        // skateboard.current.rotation.y += .001
-        // skateboard.current.rotation.x += .0005
-        // skateboard.current.rotation.z -= .0005
+    const presControls = useRef(null)
+    useFrame((state) => {
+        const t = state.clock.getElapsedTime()
+        // skateboard.current.rotation.x = -Math.PI / 1.75 + Math.cos(t / 4) / 8
+        if (skateboard.current == null) return
+        // console.log(skateboard.current)
+        // skateboard.current.rotation.y += .003
+        // skateboard.current.position.y = (1 + Math.sin(t / 1.5)) / 10
+        // skateboard.current.rotation.z = (1 + Math.sin(t / 20))
     })
+
+    const params = useControls({
+        x: { value: 0, min: -20, max: 20, step: .01 },
+        y: { value: -.5, min: -20, max: 20, step: .01 },
+        z: { value: 0, min: -20, max: 20, step: .01 },
+        rotationX: { value: 0, min: 0, max: Math.PI * 2, step: .01 },
+        rotationY: { value: 4, min: 0, max: Math.PI * 2, step: .01 },
+        rotationZ: { value: .6, min: 0, max: Math.PI * 2, step: .01 },
+    });
+
 
 
 
     return (
         <>
-            <ambientLight intensity={.001} />
-            <Lights />
-            <OrbitControls />
-            {/* <Float
-                scale={0.75} position={[0, 0.65, 0]} rotation={[0, 0.6, 0]}
-            > */}
+            {/* <ambientLight intensity={.1} /> */}
 
-            <mesh ref={skateboard} rotation={[Math.PI / 6, Math.PI / 1.8, Math.PI / 116]} scale={.01} position={[0, 0, 0]} >
-                <Model />
+            <OrbitControls enableRotate={false} maxDistance={8} minDistance={6} />
+            <PresentationControls
+                ref={presControls}
+                global={true} // Spin globally or by dragging the model
+                cursor={true} // Whether to toggle cursor style on drag
+                snap={false} // Snap-back to center (can also be a spring config)
+                speed={4} // Speed factor
+                zoom={1} // Zoom factor when half the polar-max is reached
+                rotation={[params.rotationX, params.rotationY, params.rotationZ]} // Default rotation
+                polar={[-Math.PI / 1.5, Math.PI / 2]} // Vertical limits
+                azimuth={[-Infinity, Infinity]} // Horizontal limits
+                config={{ mass: 1, tension: 10, friction: 8 }} // Spring config
+            >
 
-            </mesh>
-            {/* </Float> */}
-            <Floor args={[10, 10]} mirror={1} blur={[500, 100]} mixBlur={12} mixStrength={1.5} rotation={[-Math.PI / 2, 0, Math.PI / 2]} position-y={-1} color={'black'} />
+                <Suspense fallback={null} >
+                    <mesh
+                        ref={skateboard}
+                        // rotation={[0, 0, 0]}
+                        scale={.007}
+                        position={[params.x, params.y, params.z]}
+                    >
+                        <SkateboardModel />
+
+                        {/* <Box args={[4, 4, 4]} recieveShadow castShadow>
+                            <meshStandardMaterial />
+                        </Box> */}
+
+
+                    </mesh>
+                </Suspense>
+            </PresentationControls>
+
         </>
     )
 }
 
-function Lights() {
-    const light = useRef()
-    // useHelper(light, three.SpotLightHelper, 'red')
 
 
-    return <pointLight
 
-        ref={light}
-        intensity={0.3}
-        angle={Math.PI / 10}
-        distance={6}
-        position={[0, 3, 0]}
-        // color={'red'}
-        // shadow-mapSize-width={64}
-        // shadow-mapSize-height={64}
-        castShadow
-    // shadow-bias={-0.001}
-    />
-}
-
-
-export default Skateboard;
+export default React.memo(Skateboard);
