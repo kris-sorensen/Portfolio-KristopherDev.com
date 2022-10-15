@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Suspense, useRef } from 'react';
-import { Loader, Effects } from "@react-three/drei";
+import { Loader, Effects, AdaptiveDpr } from "@react-three/drei";
 import { Canvas, extend } from '@react-three/fiber';
 import Fireworks from "./Fireworks";
 // import './styles/home.css';
@@ -84,18 +84,20 @@ function HomeCanvas() {
             <div style={{ width: '100%', height: '100vh', position: 'fixed', top: 0, left: 0, outline: 'none' }} >
                 <Leva hidden />
                 <Canvas dpr={[1, 2]} onClick={launchFirework} gl={{ autoClearColor: false, antialias: true }} orthographic camera={{ zoom: 100, position: [0, 0, 5] }}>
-                    {/* <Suspense fallback={null}> */}
-                    <SemiTransparentLayer renderIndex={-2} opacity={transparentLayerParams.opacity} />
-                    {/* <OrbitControls /> */}
-                    {/* <PreExplodedFirework /> */}
-                    <Effects multisamping={0} renderIndex={-1}
-                    >
-                        <afterimagePass args={[0]} />
-                    </Effects>
+                    <Suspense fallback={null}>
+                        <SemiTransparentLayer renderIndex={-2} opacity={transparentLayerParams.opacity} />
+                        {/* <OrbitControls /> */}
+                        {/* <PreExplodedFirework /> */}
+                        <Effects multisamping={0} renderIndex={-1}
+                        >
+                            <afterimagePass args={[0]} />
+                        </Effects>
 
-                    <HomeContent />
-                    {fireworks}
-                    {/* </Suspense> */}
+                        <HomeContent />
+                        {fireworks}
+                    </Suspense>
+                    {/* performance */}
+                    <AdaptiveDpr />
                 </Canvas>
             </div>
         </>

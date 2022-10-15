@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react';
 import * as three from 'three';
-import { Loader, ContactShadows, OrbitControls } from '@react-three/drei';
+import { Loader, OrbitControls, Preload } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
 import { useControls, folder } from 'leva';
 // * Components
@@ -12,6 +12,7 @@ import Stage from './Stage'
 import TextContainer from './TextContainer'
 import EffectsContainer from './Effects'
 import Cursor from './Cursor';
+import BackgroundGrad from './BackgroundGrad'
 
 const Scene = () => {
 
@@ -19,7 +20,7 @@ const Scene = () => {
         camera: folder({
             cameraX: { value: 0, min: 0, max: 10, step: .01 },
             cameraY: { value: -2, min: -7, max: 10, step: .01 },
-            cameraZ: { value: 8.6, min: 0, max: 30, step: .01 },
+            cameraZ: { value: 7.5, min: 0, max: 30, step: .01 },
         })
     });
 
@@ -41,16 +42,17 @@ const Scene = () => {
                 >
                     <OrbitControls
                         enableRotate={false}
-                        maxDistance={8.6}
+                        maxDistance={7.5}
                         minDistance={5}
                         enablePan={false}
                     />
                     <Suspense fallback={null}>
-
+                        <Preload all />
                         {/* <OrbitControls /> */}
                         <Skateboard />
-                        <Floor />
-                        <Stage />
+                        <BackgroundGrad />
+                        {/* <Floor /> */}
+                        {/* <Stage /> */}
                         <Lights />
                         <TextContainer />
                         <Cursor />

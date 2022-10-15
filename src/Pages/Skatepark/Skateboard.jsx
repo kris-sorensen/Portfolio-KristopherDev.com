@@ -15,19 +15,22 @@ const Skateboard = () => {
     const [hovered, setHovered] = useState(false);
     const skateboard = useRef(null)
 
-    // useFrame((state) => {
-    //     const t = state.clock.getElapsedTime()
-    //     if (skateboard.current == null) return
-    // })
+    useFrame((state) => {
+        const t = state.clock.getElapsedTime()
+        if (skateboard.current == null) return
+        // skateboard.current.rotateOnAxis(new three.Vector3(0, 1, 0), .0001);
+        // skateboard.current.rotateOnAxis(new three.Vector3(1, 0, 0), .0005);
+        // skateboard.current.rotateOnAxis(new three.Vector3(0, 0, 1), .0003);
+    })
 
     const params = useControls({
         skateboard: folder({
             x: { value: 0, min: -20, max: 20, step: .01 },
             y: { value: -.5, min: -20, max: 20, step: .01 },
             z: { value: 0, min: -20, max: 20, step: .01 },
-            rotationX: { value: 1.79, min: 0, max: Math.PI * 2, step: .01 },
-            rotationY: { value: 4.29, min: 0, max: Math.PI * 2, step: .01 },
-            rotationZ: { value: 3.46, min: 0, max: Math.PI * 2, step: .01 },
+            rotationX: { value: 2.11, min: 0, max: Math.PI * 2, step: .01 },
+            rotationY: { value: 2.48, min: 0, max: Math.PI * 2, step: .01 },
+            rotationZ: { value: 2.28, min: 0, max: Math.PI * 2, step: .01 },
         })
     });
 

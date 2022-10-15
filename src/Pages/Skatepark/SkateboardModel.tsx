@@ -21,6 +21,8 @@ import useSkateboardTexturesStore from '../../stores/useSkateboardTexturesStore'
 // todo: add textures
 // todo: onClick selects part and displays it as text. changing color changes part?
 // todo: words should be html elements not drei text so should color that follows mouse?
+// todo: use useCursor for changing cursors when hovering a mesh or not
+// todo: textures just slightly up higher than colors/ disapear if not right one
 
 /**
  * Textures
@@ -76,13 +78,13 @@ const SkateboardModel = ({ hovered, setHovered }: JSX.IntrinsicElements['group']
             <group position={ [-0.44, 53.71, -0.03] }
               rotation={ [-1.58, 0, -Math.PI / 2] } scale={ 100 }>
               <mesh castShadow receiveShadow geometry={ nodes.board_bottom.geometry }  >
-                <meshStandardMaterial color={ '#00ffff' } />
+                <meshStandardMaterial color={ '#0693E3' } />
               </mesh>
             </group>
             {/* wheels */ }
             <group position={ [-45.94, 17.76, -135.91] } rotation={ [-0.01, -Math.PI / 2, 0] } scale={ 17.76 }>
               <mesh castShadow receiveShadow geometry={ nodes.Circle004_SKATE_TEXTURE_0.geometry }  >
-                <meshStandardMaterial color={ "#F78DA7" } />
+                <meshStandardMaterial color={ "#00D084" } />
               </mesh>
             </group>
             <group position={ [-45.94, 17.76, 135.38] } rotation={ [-0.01, -Math.PI / 2, 0] } scale={ 17.76 }>
