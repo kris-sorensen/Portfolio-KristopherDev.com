@@ -1,6 +1,6 @@
 import React from 'react';
 // * Components
-import Scene from './Scene'
+import Scene from './SkateparkScene'
 
 
 const Skatepark = () => {

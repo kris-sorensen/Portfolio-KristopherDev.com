@@ -19,7 +19,7 @@ function Lights() {
             dlX: { value: .49, min: -10, max: 10, step: .01 },
             dlY: { value: -6.2, min: -10, max: 10, step: .01 },
             dlZ: { value: 7.1, min: -10, max: 10, step: .01 },
-            dlIntensity: { value: 1, min: 0, max: 10, step: .01 },
+            dlIntensity: { value: 1.55, min: 0, max: 10, step: .01 },
         })
     });
 
@@ -28,9 +28,9 @@ function Lights() {
             x: { value: -2.5, min: -10, max: 10, step: .01 },
             y: { value: 5.4, min: -10, max: 10, step: .01 },
             Z: { value: 0, min: -10, max: 10, step: .01 },
-            intensity: { value: 2, min: 0, max: 250, step: 1 },
+            intensity: { value: 60, min: 0, max: 250, step: 1 },
             penumbra: { value: 1, min: 0, max: 1, step: .001 },
-            distance: { value: 9.53, min: 0, max: 20, step: .01 },
+            distance: { value: 9.74, min: 0, max: 20, step: .01 },
             decay: { value: 1.65, min: 0, max: 6, step: .01 },
             angle: { value: .61, min: 0, max: Math.PI / 2, step: .001 },
             anglePower: { value: 7.5, min: 0, max: 20, step: .001 },
@@ -43,8 +43,8 @@ function Lights() {
 
         <group>
             <directionalLight
-                castShadow
-                color="#ffffff"
+                // castShadow
+                color="#dddddd"
                 position={[dlX, dlY, dlZ]}
                 intensity={dlIntensity}
             />
@@ -55,7 +55,8 @@ function Lights() {
                 distance={distance}
                 angle={angle}
                 decay={decay}
-                color={'#60c0f0'}
+                // color={'#60c0f0'}
+                color={'#0693E3'}
                 // target-position={new three.Vector3(0, -2, 0)}
                 anglePower={anglePower}
                 attenuation={attenuation}
@@ -68,7 +69,8 @@ function Lights() {
                 distance={distance}
                 angle={angle}
                 decay={decay}
-                color={'#8066c0'}
+                // color={'#8066c0'}
+                color={"#F78DA7"}
                 // target-position={new three.Vector3(0, -2, 0)}
                 anglePower={anglePower}
                 attenuation={attenuation}

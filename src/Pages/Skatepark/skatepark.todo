@@ -107,6 +107,11 @@ Tasks:
     Textures:
         ☐ checker
         ☐ red blue dragons
+
+    Performance:
+        ☐ share meshes in a global component:
+        ☐ memo
+        ☐ sha
     
     
     

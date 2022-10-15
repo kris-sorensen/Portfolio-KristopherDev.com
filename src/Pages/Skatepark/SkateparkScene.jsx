@@ -10,6 +10,8 @@ import Floor from './Floor';
 import Lights from './Lights'
 import Stage from './Stage'
 import TextContainer from './TextContainer'
+import EffectsContainer from './Effects'
+import Cursor from './Cursor';
 
 const Scene = () => {
 
@@ -17,7 +19,7 @@ const Scene = () => {
         camera: folder({
             cameraX: { value: 0, min: 0, max: 10, step: .01 },
             cameraY: { value: -2, min: -7, max: 10, step: .01 },
-            cameraZ: { value: 8.5, min: 0, max: 30, step: .01 },
+            cameraZ: { value: 8.6, min: 0, max: 30, step: .01 },
         })
     });
 
@@ -29,28 +31,39 @@ const Scene = () => {
                         antialias: true,
                         toneMapping: three.NoToneMapping
                     }}
+                    dpr={2}
                     shadows
                     color='white'
                     camera={{
+                        fov: 75,
                         position: [cameraParams.cameraX, cameraParams.cameraY, cameraParams.cameraZ]
                     }}
                 >
+                    <OrbitControls
+                        enableRotate={false}
+                        maxDistance={8.6}
+                        minDistance={5}
+                        enablePan={false}
+                    />
                     <Suspense fallback={null}>
+
                         {/* <OrbitControls /> */}
                         <Skateboard />
                         <Floor />
                         <Stage />
                         <Lights />
                         <TextContainer />
+                        <Cursor />
+                        {/* <EffectsContainer /> */}
                     </Suspense>
                 </Canvas>
                 <Loader />
             </div>
-            {/* <ColorPicker /> */}
+            <ColorPicker />
         </>
     )
 }
 
 
 
-export default Scene;
+export default React.memo(Scene);

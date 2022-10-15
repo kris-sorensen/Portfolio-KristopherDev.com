@@ -42,12 +42,15 @@ const HaloMaterial: typeof THREE.ShaderMaterial =
                 float innerCircle = smoothstep(.22 - uSpread,.255 - uSpread, circle);
                 
                 float col = outerCircle * innerCircle ;
+
+                float opacity = max(0.,col);
+                if(opacity > .99) opacity = 1.;
                 vec3 color = col * uColor;
 
                 
 
                 //Final
-                gl_FragColor = vec4(vec3(color), 1.);
+                gl_FragColor = vec4(vec3(color), opacity);
             }`
     );
 
