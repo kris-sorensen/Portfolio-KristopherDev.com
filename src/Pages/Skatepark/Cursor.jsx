@@ -19,11 +19,7 @@ const Cursor = () => {
         const x = (mouse.x * viewport.width) / 2
         const y = (mouse.y * viewport.height) / 2
         mesh.current.position.set(x, y, 0)
-        // mesh.current.rotation.set(0, 0, y)
 
-
-
-        // halo.current.uniforms.uSpread.value = .20
     })
     const { rx, ry, rz } = useControls({
         rx: { value: .24, min: -Math.PI * 2, max: Math.PI * 2, step: .001 },
@@ -32,22 +28,18 @@ const Cursor = () => {
     });
 
     return (
-        <mesh ref={mesh} position={[0, 0, 4]} rotation={[rx, ry, rz]} >
-            {/* <Points args={[.3]}
-            >
-                
-            </Points> */}
+        <mesh ref={mesh} position={[2, -1, 4]} rotation={[rx, ry, rz]} >
+
             <points>
                 <ringGeometry args={[.3, .4, 30, 30]} />
 
                 <pointsMaterial size={3} sizeAttenuation={false}
                     color={selectedColor}
                 />
-                {/* <PointMaterial transparent vertexColors size={15} sizeAttenuation={false} depthWrite={false} /> */}
             </points>
 
         </mesh>
     )
 }
 
-export default Cursor;
+export default React.memo(Cursor);
