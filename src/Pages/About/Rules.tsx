@@ -67,12 +67,12 @@ function Rules({ restart }: any) {
             >
                 <Text
                     ref={ simon }
-                    letterSpacing={ !simonHovered ? .8 : 0.2 }
+                    letterSpacing={ .8 }
                     fontSize={ .15 }
                     anchorX={ 'right' }
                     color={ '#00eeff' }
                 >
-                    { !simonHovered ? "SIMON" : 'click on blocks in the order they appear in' }
+                    { !simonHovered ? "SIMON" : 'SIMON' }
                 </Text>
             </mesh>
         </group>
