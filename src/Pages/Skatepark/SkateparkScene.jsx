@@ -13,6 +13,7 @@ import TextContainer from './TextContainer'
 import EffectsContainer from './Effects'
 import Cursor from './Cursor';
 import BackgroundGrad from './BackgroundGrad'
+import Title from './Title';
 
 const Scene = () => {
 
@@ -20,7 +21,7 @@ const Scene = () => {
         camera: folder({
             cameraX: { value: 0, min: 0, max: 10, step: .01 },
             cameraY: { value: -2, min: -7, max: 10, step: .01 },
-            cameraZ: { value: 7.5, min: 0, max: 30, step: .01 },
+            cameraZ: { value: 6.5, min: 0, max: 30, step: .01 },
         })
     });
 
@@ -44,7 +45,7 @@ const Scene = () => {
                     <OrbitControls
                         enableRotate={false}
                         maxDistance={7.5}
-                        minDistance={5}
+                        minDistance={4.8}
                         enablePan={false}
                     />
                     <Suspense fallback={null}>
@@ -55,7 +56,7 @@ const Scene = () => {
                         {/* <Floor /> */}
                         {/* <Stage /> */}
                         <Lights />
-                        <TextContainer />
+                        {/* <TextContainer /> */}
                         <Cursor />
                         {/* <EffectsContainer /> */}
                     </Suspense>
@@ -63,6 +64,7 @@ const Scene = () => {
                 <Loader />
             </div>
             <ColorPicker />
+            <Title />
         </>
     )
 }

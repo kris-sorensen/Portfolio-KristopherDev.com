@@ -1,7 +1,6 @@
 import * as THREE from 'three';
 import React, { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { Loader, Scroll, ScrollControls } from '@react-three/drei';
 import { EffectComposer, SelectiveBloom, Selection, Select, } from '@react-three/postprocessing';
 // * components
 import Simon from './Simon';
@@ -20,7 +19,7 @@ import useWindowSize from '../../hooks/useWindowSize';
 
 function AboutCanvas() {
 
-    const { width, height } = useWindowSize();
+    const { width } = useWindowSize();
 
 
 

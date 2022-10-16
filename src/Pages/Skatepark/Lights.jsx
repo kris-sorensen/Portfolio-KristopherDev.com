@@ -10,7 +10,7 @@ function Lights() {
     //* Parameters
     const { shadowY } = useControls({
         shadows: folder({
-            shadowY: { value: -3.2, min: -5, max: 0, step: .01 },
+            shadowY: { value: -2.8, min: -5, max: 0, step: .01 },
         })
     });
 

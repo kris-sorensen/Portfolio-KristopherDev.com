@@ -1,0 +1,12 @@
+@font-face {
+    font-family: "Ventilla";
+    src: local("Ventilla"),
+        url("../fonts/Ventilla.ttf") format("truetype");
+    /* font-weight: bold; */
+}
+
+@font-face {
+    font-family: "Skateboard";
+    src: local("Skateboard"),
+        url("../fonts/Skateboard.woff2") format("woff2");
+}

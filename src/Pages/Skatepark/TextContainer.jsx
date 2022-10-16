@@ -12,8 +12,7 @@ const TextContainer = () => {
             <group position={[0, 5.5, 0]}>
                 <mesh position={[0, 0, 0]} >
                     <Text
-                        font={'/Skateboard.ttf'}
-                        // font={'/Ventilla.ttf'}
+                        font={'/fonts/skatepark/Skateboard.ttf'}
                         fontSize={.85}
                         letterSpacing={.4}
                         transparent={true}
@@ -35,7 +34,7 @@ const TextContainer = () => {
                 <mesh position={[0, -1.2, 0]} >
                     <Text
                         fontSize={1.3}
-                        font={'/Ventilla.ttf'}
+                        font={'/fonts/skatepark/Ventilla.ttf'}
                     >Custom Boards
                     </Text>
                     <meshBasicMaterial color={'white'} />
