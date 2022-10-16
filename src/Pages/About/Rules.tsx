@@ -71,8 +71,7 @@ function Rules({ restart }: any) {
                     fontSize={ .15 }
                     anchorX={ 'right' }
                     color={ '#00eeff' }
-                >
-                    { !simonHovered ? "SIMON" : 'SIMON' }
+                >SIMON
                 </Text>
             </mesh>
         </group>
