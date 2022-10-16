@@ -94,9 +94,9 @@ const SkateboardModel = ({ hovered, setHovered }: JSX.IntrinsicElements['group']
           <group
             // onPointerOver={ (e) => (e.stopPropagation(), setHoveredElement(e.object.material.name), setHovered(true))}
             // onPointerOut={ (e) => e.intersections.length === 0 && setHoveredElement(null), setHovered(false) }
-            onPointerMissed={ (e) => (e.stopPropagation(), console.log(`Here`), updatePart('No Part Selected'), setSelectedElement(null)) }
+            onPointerMissed={ (e) => (e.stopPropagation(), updatePart('No Part Selected'), setSelectedElement(null)) }
             // onClick={ (e) => (e.stopPropagation(), (state.current = e.object.material.name)) }
-            onClick={ (e) => (e.stopPropagation(), setSelectedElement(e.object), updatePart(e.object.name), handleClick(e)) }>
+            onClick={ (e) => (e.stopPropagation(), setSelectedElement(e.object), updatePart(e.object.name)) }>
             <group position={ [-0.44, 53.71, -0.03] }
               rotation={ [-1.58, 0, -Math.PI / 2] } scale={ 100 }>
               <mesh name={ 'Deck' } castShadow receiveShadow geometry={ nodes.board_bottom.geometry }  >
