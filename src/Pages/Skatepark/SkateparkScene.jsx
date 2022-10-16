@@ -1,19 +1,16 @@
 import React, { Suspense } from 'react';
 import * as three from 'three';
 import { Loader, OrbitControls, Preload } from '@react-three/drei';
-import { Canvas } from '@react-three/fiber';
 import { useControls, folder, Leva } from 'leva';
+import { Canvas } from '@react-three/fiber';
 // * Components
 import Skateboard from './Skateboard'
 import ColorPicker from './ColorPicker'
-import Floor from './Floor';
 import Lights from './Lights'
-import Stage from './Stage'
 import TextContainer from './TextContainer'
-import EffectsContainer from './Effects'
 import Cursor from './Cursor';
 import BackgroundGrad from './BackgroundGrad'
-import Title from './Title';
+import CursorHTML from './Cursor2';
 
 const Scene = () => {
 
@@ -54,17 +51,15 @@ const Scene = () => {
                         <Skateboard />
                         <BackgroundGrad />
                         {/* <Floor /> */}
-                        {/* <Stage /> */}
                         <Lights />
-                        {/* <TextContainer /> */}
-                        <Cursor />
-                        {/* <EffectsContainer /> */}
+                        {/* <Cursor /> */}
                     </Suspense>
                 </Canvas>
                 <Loader />
             </div>
+            <CursorHTML />
             <ColorPicker />
-            <Title />
+            <TextContainer />
         </>
     )
 }

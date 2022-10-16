@@ -37,7 +37,11 @@ import useSkateboardTexturesStore from '../../stores/useSkateboardTexturesStore'
 const SkateboardModel = ({ hovered, setHovered }: JSX.IntrinsicElements['group'], ref) => {
   // Cursor showing current color
   const [hoveredElement, setHoveredElement] = useState(null);
+  const [selectedElement, setSelectedElement] = useState(null);
   const selectedColor = useSkateboardStore((state) => state.selectedColor);
+
+  const updatePart = useSkateboardStore((state) => state.updatePart);
+  // const selectedPart = useSkateboardStore((state) => state.selectedPart);
 
   useEffect(() => {
 
@@ -46,6 +50,14 @@ const SkateboardModel = ({ hovered, setHovered }: JSX.IntrinsicElements['group']
       return () => (document.body.style.cursor = `url('data:image/svg+xml;base64,${btoa("auto")}'), auto`);
     }
   }, [hovered]);
+
+  useEffect(() => {
+    // selectedElement.set(selectedColor);
+    if(selectedElement === null) return;
+    console.log(selectedColor);
+    selectedElement.material.color.set(selectedColor);
+  }, [selectedColor]);
+
 
 
   const { nodes, materials } = useGLTF('/models/skateboard/modifiedSkateboard-transformed.glb') as GLTFResult;
@@ -59,6 +71,17 @@ const SkateboardModel = ({ hovered, setHovered }: JSX.IntrinsicElements['group']
 
   // todo: take parts out of hover group that dont want to change color
   // todo: undo button
+
+  //todo: onClick of skateboard or part name:
+  // save part to store
+  // add name to part
+  // update SelectedPart() in store which will rerender componet
+
+  // todo: onClick of color. ue that changes color of
+  // change color
+  // ue will catch changes to selectedColor in model file and will trigger SelectedModel saved in store to === that color
+  // add transition to select color text
+
   return (
     <group
       dispose={ null }
@@ -69,26 +92,25 @@ const SkateboardModel = ({ hovered, setHovered }: JSX.IntrinsicElements['group']
           {/* <group rotation={ [Math.PI / 2, 0, 0] }> */ }
           {/* Parts that can be modified */ }
           <group
-            onPointerOver={ (e) => (e.stopPropagation(), setHoveredElement(e.object.material.name), setHovered(true))
-            }
-            onPointerOut={ (e) => e.intersections.length === 0 && setHoveredElement(null), setHovered(false) }
-            // onPointerMissed={ () => (state.current = null) }
+            // onPointerOver={ (e) => (e.stopPropagation(), setHoveredElement(e.object.material.name), setHovered(true))}
+            // onPointerOut={ (e) => e.intersections.length === 0 && setHoveredElement(null), setHovered(false) }
+            onPointerMissed={ (e) => (e.stopPropagation(), console.log(`Here`), updatePart('No Part Selected'), setSelectedElement(null)) }
             // onClick={ (e) => (e.stopPropagation(), (state.current = e.object.material.name)) }
-            onClick={ (e) => (e.stopPropagation(), e.object.material.color.set(selectedColor)) }>
+            onClick={ (e) => (e.stopPropagation(), setSelectedElement(e.object), updatePart(e.object.name), handleClick(e)) }>
             <group position={ [-0.44, 53.71, -0.03] }
               rotation={ [-1.58, 0, -Math.PI / 2] } scale={ 100 }>
-              <mesh castShadow receiveShadow geometry={ nodes.board_bottom.geometry }  >
+              <mesh name={ 'Deck' } castShadow receiveShadow geometry={ nodes.board_bottom.geometry }  >
                 <meshStandardMaterial color={ '#0693E3' } />
               </mesh>
             </group>
             {/* wheels */ }
             <group position={ [-45.94, 17.76, -135.91] } rotation={ [-0.01, -Math.PI / 2, 0] } scale={ 17.76 }>
-              <mesh castShadow receiveShadow geometry={ nodes.Circle004_SKATE_TEXTURE_0.geometry }  >
+              <mesh name={ 'Front Wheels' } castShadow receiveShadow geometry={ nodes.Circle004_SKATE_TEXTURE_0.geometry }  >
                 <meshStandardMaterial color={ "#00D084" } />
               </mesh>
             </group>
             <group position={ [-45.94, 17.76, 135.38] } rotation={ [-0.01, -Math.PI / 2, 0] } scale={ 17.76 }>
-              <mesh castShadow receiveShadow geometry={ nodes.Circle013_SKATE_TEXTURE_0.geometry }  >
+              <mesh name={ 'Rear Wheels' } castShadow receiveShadow geometry={ nodes.Circle013_SKATE_TEXTURE_0.geometry }  >
                 <meshStandardMaterial color={ "#F78DA7" } />
               </mesh>
             </group>

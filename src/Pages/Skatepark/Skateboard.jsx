@@ -1,12 +1,11 @@
-import React, { useRef, Suspense, useEffect, useState } from 'react';
+import React, { useRef, Suspense, useState } from 'react';
 import * as three from 'three';
-import { OrbitControls } from '@react-three/drei';
-import { useThree, useFrame } from '@react-three/fiber';
+import { } from '@react-three/drei';
+import { useFrame } from '@react-three/fiber';
 import { useControls, folder } from 'leva';
 import { PresentationControls } from '@react-three/drei';
 import './styles/skateboard.css'
 // * Components
-import Floor from './Floor'
 import SkateboardModel from './SkateboardModel'
 
 

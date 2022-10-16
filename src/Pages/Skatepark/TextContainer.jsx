@@ -1,64 +1,62 @@
 import React from 'react';
-import * as three from 'three';
-import { Plane, Text } from '@react-three/drei';
-import { useThree } from '@react-three/fiber';
+import './styles/skateboard.css'
+
 
 const TextContainer = () => {
 
+    const Container_Styles = {
+        position: 'relative',
+        zIndex: 10,
+        width: '100%',
+        height: '100vh',
+        pointerEvents: "none",
+        top: '7%'
+    }
 
+    const Wraper_Styles = {
+        textAlign: 'center',
+    }
+
+    const Title_Styles = {
+        color: 'white',
+        fontSize: '7rem',
+        letterSpacing: '1rem',
+        fontWeight: 'normal'
+
+    }
+
+    const Subtitle_Styles = {
+        color: 'white',
+        fontSize: '10rem',
+        marginTop: '1.2rem',
+        // letterSpacing: '2rem',
+        fontWeight: 'normal'
+    }
+
+    const title = getTitle()
 
     return (
-        <group>
-            <group position={[0, 5.5, 0]}>
-                <mesh position={[0, 0, 0]} >
-                    <Text
-                        font={'/fonts/skatepark/Skateboard.ttf'}
-                        fontSize={.85}
-                        letterSpacing={.4}
-                        transparent={true}
-                        outlineOffsetX={'10%'}
-                        outlineOffsetY={'10%'}
-                        outlineBlur={'30%'}
-                        outlineOpacity={0.1}
-                        outlineColor="#ffffff"
-                        color="#ffffff"
+        <div style={Container_Styles}>
+            <div style={Wraper_Styles}>
 
-                    >Skate-Factory
-                    </Text>
-                    <meshBasicMaterial
-                        color={'white'}
-
-
-                    />
-                </mesh>
-                <mesh position={[0, -1.2, 0]} >
-                    <Text
-                        fontSize={1.3}
-                        font={'/fonts/skatepark/Ventilla.ttf'}
-                    >Custom Boards
-                    </Text>
-                    <meshBasicMaterial color={'white'} />
-                </mesh>
-            </group>
-            {/* <group position={[0, 4, 0]}>
-                <mesh position={[-6.5, 0, 0]} >
-                    <Text
-                        fontSize={.3}
-                    >Color
-                    </Text>
-                    <meshBasicMaterial color={'white'} />
-                </mesh>
-                <mesh position={[6.5, 0, 0]} >
-                    <Text
-                        fontSize={.3}
-                    >Parts
-                    </Text>
-                    <meshBasicMaterial color={'white'} />
-                </mesh>
-            </group> */}
-
-        </group>
+                <h1 className="titleSB" style={Title_Styles}>{title}</h1>
+                <h2 className="subtitleSB" style={Subtitle_Styles}>Custom Boards</h2>
+            </div>
+        </div>
     )
+}
+
+const getTitle = () => {
+    const opacity = 1
+    const title = []
+    const name = 'Skate-Factory'
+    const colors = [`rgba(255,105,0,${opacity})`, `rgba(85,255,225,${opacity})`, `rgba(6,147,227,${opacity})`, `rgba(0,208,132,${opacity})`, `rgba(166,253,41,${opacity})`, `rgba(247,141,167,${opacity})`, `rgba(153,0,239,${opacity})`, `rgba(235,20,76,${opacity})`, `rgba(255,59,148,${opacity})`]
+    for (let i = 0; i < 13; i++) {
+        title.push(<span key={i} style={{ textShadow: `0px 0px 70px ${colors[i % colors.length]}`, color: `${colors[i % colors.length]}` }}>{name[i]}</span>)
+    }
+
+
+    return title
 }
 
 export default TextContainer;

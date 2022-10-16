@@ -2,10 +2,9 @@
     justify-content: center;
 }
 
+
 .titleSB {
     font-family: 'Skateboard';
-    text-shadow: 10px 10px 20px rgba(256, 256, 256, .3);
-    /* text-shadow: 10px 10px 20px rgba(255, 170, 214, 0.901); */
 }
 
 .subtitleSB {
