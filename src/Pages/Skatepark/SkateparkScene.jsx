@@ -2,7 +2,7 @@ import React, { Suspense } from 'react';
 import * as three from 'three';
 import { Loader, OrbitControls, Preload } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
-import { useControls, folder } from 'leva';
+import { useControls, folder, Leva } from 'leva';
 // * Components
 import Skateboard from './Skateboard'
 import ColorPicker from './ColorPicker'
@@ -27,6 +27,7 @@ const Scene = () => {
     return (
         <>
             <div style={{ width: '100%', height: '100vh', position: 'fixed', top: 0, left: 0, outline: 'none' }} >
+                <Leva hidden />
                 <Canvas
                     gl={{
                         antialias: true,
