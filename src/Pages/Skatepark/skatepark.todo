@@ -47,22 +47,22 @@ Tasks:
         ✔ position @done(22-10-06 19:25)
         ✔ recieve shadows @done(22-10-06 19:25)
         ✘ apply texture to plane @cancelled(22-10-12 13:51)
-        ☐ Position camera correctly
-        ☐ put in 2 lights
-            ☐ white circles
-            ☐ lights shinning at angle
-            ☐ hallo/shine effect of light where circle white is
-        ☐ add stage
+        ✔ Position camera correctly @done(22-10-16 16:52)
+        ✘ put in 2 lights @cancelled(22-10-16 16:52)
+            ✘ white circles @cancelled(22-10-16 16:51)
+            ✘ lights shinning at angle @cancelled(22-10-16 16:52)
+            ✘ hallo/shine effect of light where circle white is @cancelled(22-10-16 16:52)
+        ✘ add stage @cancelled(22-10-16 16:52)
 
 
     
 
     Customize Skateboard:
         
-        ☐ add state management
-        ☐ create events on griptape, bottom, wheels
-        ☐ add color picker 
-        ☐ hook up color change events to color picker
+        ✔ add state management @done(22-10-16 16:49)
+        ✔ create events on griptape, bottom, wheels @done(22-10-16 16:49)
+        ✔ add color picker @done(22-10-16 16:49)
+        ✔ hook up color change events to color picker @done(22-10-16 16:49)
         ☐ find textures
         ☐ add texture bar that pops up when bottom of skateboard is clicked
         ☐ apply textures when clicked on
@@ -76,13 +76,13 @@ Tasks:
     
     Content:
 
-        ☐ Find font title
-        ☐ Find font Subtitle
-        ☐ Decide on name and what subtitle will say
-        ☐ use drei text and put on screen
-        ☐ Apply font
-        ☐ Position and size
-        ☐ play with different colors
+        ✔ Find font title @done(22-10-16 16:51)
+        ✔ Find font Subtitle @done(22-10-16 16:51)
+        ✔ Decide on name and what subtitle will say @done(22-10-16 16:51)
+        ✘ use drei text and put on screen @cancelled(22-10-16 16:51)
+        ✔ Apply font @done(22-10-16 16:51)
+        ✔ Position and size @done(22-10-16 16:51)
+        ✔ play with different colors @done(22-10-16 16:51)
 
     
     End:
@@ -98,6 +98,7 @@ Tasks:
 
         ☐ add a price thing 
         ☐ add ability to order component
+        ☐ undo button
 
     Names:
 

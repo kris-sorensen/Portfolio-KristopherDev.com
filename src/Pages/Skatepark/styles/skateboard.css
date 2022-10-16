@@ -1,5 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap');
+
 .circle-picker {
     justify-content: center;
+
+}
+
+.circle-picker span div {
+    /* background-color: white; */
+    background-color: none;
+    box-shadow: rgba(255, 255, 255, .055) 0px 0px 20px 13px;
+    border-radius: 50%
+}
+
+.circle-picker span div:hover {
+    scale: 1.1;
 }
 
 
@@ -9,4 +23,18 @@
 
 .subtitleSB {
     font-family: "Ventilla"
+}
+
+.ColorSelect {
+    font-family: 'Kanit', sans-serif;
+    letter-spacing: 7px;
+    text-decoration: #bbbbbb solid underline;
+    text-underline-offset: 11px;
+    color: #bbbbbb;
+}
+
+.Cursor {
+    font-family: 'Kanit', sans-serif;
+    letter-spacing: 3px;
+
 }

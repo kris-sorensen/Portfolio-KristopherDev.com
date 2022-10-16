@@ -1,7 +1,7 @@
 import React from 'react';
 import useSkateboardStore from './../../stores/useSkateboardStore';
 import { useMousePosition } from './../../hooks/useMousePosition';
-
+import './styles/skateboard.css'
 
 const CursorHTML = () => {
 
@@ -17,7 +17,7 @@ const CursorHTML = () => {
         zIndex: 400,
         left: x + 15,
         top: y + 15,
-        fontSize: 12,
+        fontSize: 8,
         pointerEvents: "none",
     }
 
@@ -26,7 +26,7 @@ const CursorHTML = () => {
 
     return (
         <div style={Cursor_Styles}>
-            <h1>{selectedPart}</h1>
+            <h1 className="Cursor" >{selectedPart}</h1>
         </div>
     )
 }

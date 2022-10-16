@@ -63,20 +63,6 @@ function Lights() {
                 attenuation={attenuation}
                 castShadow
             />
-            {/* <SpotLight
-                position={[-x, y, Z]}
-                intensity={intensity}
-                penumbra={penumbra}
-                distance={distance}
-                angle={angle}
-                decay={decay}
-                color={'#ffffff'}
-                // color={'#8066c0'}
-                // color={"#F78DA7"}
-                // target-position={new three.Vector3(0, -2, 0)}
-                anglePower={anglePower}
-                attenuation={attenuation}
-            /> */}
             <ContactShadows
                 opacity={1}
                 scale={10}

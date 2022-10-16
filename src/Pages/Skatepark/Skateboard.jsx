@@ -11,7 +11,6 @@ import SkateboardModel from './SkateboardModel'
 
 
 const Skateboard = () => {
-    const [hovered, setHovered] = useState(false);
     const skateboard = useRef(null)
 
     useFrame((state) => {
@@ -30,6 +29,7 @@ const Skateboard = () => {
             rotationX: { value: 2.11, min: 0, max: Math.PI * 2, step: .01 },
             rotationY: { value: 2.48, min: 0, max: Math.PI * 2, step: .01 },
             rotationZ: { value: 2.28, min: 0, max: Math.PI * 2, step: .01 },
+            speed: { value: 5, min: 0, max: 30, step: .01 }
         })
     });
 
@@ -41,9 +41,10 @@ const Skateboard = () => {
 
             <PresentationControls
                 global={true}
-                cursor={hovered ? false : true}
+                // cursor={hovered ? false : true}
+                cursor={false}
                 snap={false}
-                speed={4}
+                speed={params.speed}
                 zoom={1}
                 rotation={[params.rotationX, params.rotationY, params.rotationZ]} // Default rotation
                 polar={[-Infinity, Infinity]}
@@ -58,8 +59,6 @@ const Skateboard = () => {
                         position={[params.x, params.y, params.z]}
                     >
                         <SkateboardModel
-                            hovered={hovered}
-                            setHovered={setHovered}
                         />
                     </group>
                 </Suspense>

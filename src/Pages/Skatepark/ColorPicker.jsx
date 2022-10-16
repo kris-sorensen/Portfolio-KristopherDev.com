@@ -10,6 +10,12 @@ const ColorPicker = () => {
 
     const [mistakeCount, setMistakeCount] = useState(0)
 
+    useEffect(() => {
+        if (selectedPart !== noPart && selectedPart !== warning1 && selectedPart !== defaultWarning && selectedPart !== finalWarning) {
+            setMistakeCount(0)
+        }
+    }, [selectedPart])
+
     const picker = useRef(null)
 
     const defaultWarning = 'Select Part'
@@ -31,11 +37,7 @@ const ColorPicker = () => {
 
     }
 
-    useEffect(() => {
-        if (selectedPart !== noPart && selectedPart !== warning1 && selectedPart !== defaultWarning && selectedPart !== finalWarning) {
-            setMistakeCount(0)
-        }
-    }, [selectedPart])
+
 
     const { left, top } = useControls({
         ColorPicker: folder({
@@ -44,21 +46,23 @@ const ColorPicker = () => {
         })
 
     });
+
     return (
         <>
             {selectedPart !== noPart && selectedPart !== warning1 && selectedPart !== defaultWarning && selectedPart !== finalWarning ? <div
+                className="ColorSelect"
                 style={{
                     color: 'white',
-                    marginBottom: '20',
-                    fontSize: '3rem',
+                    fontSize: '2.2rem',
                     left: `${left}%`,
-                    top: `${top - 6.5}%`,
+                    top: `${top - 8.5}%`,
                     position: 'absolute',
                     transform: "translate(-50%, -50%)",
                     textAlign: 'center',
-                    transition: "all 2s"
+                    transition: "all 2s",
+                    pointerEvents: "none",
                 }}
-            >Select A Color</div> : null
+            >Select Color</div> : null
             }
 
             <div
