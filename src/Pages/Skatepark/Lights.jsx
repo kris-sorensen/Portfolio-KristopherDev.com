@@ -17,7 +17,7 @@ function Lights() {
     const { dlX, dlY, dlZ, dlIntensity } = useControls({
         directionalLight: folder({
             dlX: { value: .49, min: -10, max: 10, step: .01 },
-            dlY: { value: -6.2, min: -10, max: 10, step: .01 },
+            dlY: { value: -1.1, min: -10, max: 10, step: .01 },
             dlZ: { value: 7.1, min: -10, max: 10, step: .01 },
             dlIntensity: { value: 1.55, min: 0, max: 10, step: .01 },
         })
