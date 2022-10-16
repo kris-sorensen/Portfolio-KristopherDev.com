@@ -34,7 +34,7 @@ function AboutCanvas() {
                 top: 0,
                 left: 0,
                 outline: 'none',
-                overflow: "scroll"
+                overflow: "hidden"
             } }
         >
             <Canvas>
