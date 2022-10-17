@@ -21,16 +21,13 @@ const TextContainer = () => {
         color: 'white',
         fontSize: '7rem',
         letterSpacing: '1rem',
-        fontWeight: 'normal',
-
-
+        fontWeight: 'normal'
     }
 
     const Subtitle_Styles = {
         color: 'white',
         fontSize: '9.5rem',
-        marginTop: '1.2rem',
-        // letterSpacing: '2rem',
+        marginTop: '1.3rem',
         fontWeight: 'normal'
     }
 
@@ -39,6 +36,7 @@ const TextContainer = () => {
     return (
         <div style={Container_Styles}>
             <div style={Wraper_Styles}>
+
                 <h1 className="titleSB" style={Title_Styles}>{title}</h1>
                 <h2 className="subtitleSB" style={Subtitle_Styles}>Custom Boards</h2>
             </div>

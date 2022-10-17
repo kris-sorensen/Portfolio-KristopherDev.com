@@ -6,6 +6,7 @@ import './styles/skateboard.css'
 const ColorPicker = () => {
     const updateColor = useSkateboardStore((state) => state.updateColor);
     const updatePart = useSkateboardStore((state) => state.updatePart);
+    const updateTexture = useSkateboardStore((state) => state.updateTexture);
     const { selectedPart } = useSkateboardStore()
 
     const [mistakeCount, setMistakeCount] = useState(0)
@@ -34,7 +35,10 @@ const ColorPicker = () => {
                 setMistakeCount(mistakeCount + 1)
                 updatePart(finalWarning)
             }
-        } else updateColor(color)
+        } else {
+            updateColor(color)
+            // updateTexture('none')
+        }
 
     }
 
@@ -48,6 +52,18 @@ const ColorPicker = () => {
 
     });
 
+    const Texture_Style = {
+        width: '30px',
+        height: '30px',
+        // background: 'none',
+        borderRadius: '50%',
+        border: '2px solid white',
+        marginTop: '3.5rem',
+        pointerEvents: "auto",
+        cursor: 'pointer',
+        marginLeft: '2rem'
+    }
+
     return (
         <>
             {selectedPart !== noPart && selectedPart !== warning1 && selectedPart !== defaultWarning && selectedPart !== finalWarning ? <div
@@ -60,10 +76,10 @@ const ColorPicker = () => {
                     position: 'absolute',
                     transform: "translate(-50%, -50%)",
                     textAlign: 'center',
-                    transition: "all 2s",
+                    transition: "all .5s ease",
                     pointerEvents: "none",
                 }}
-            >Select Color</div> : null
+            >Colors</div> : null
             }
 
             <div
@@ -81,6 +97,27 @@ const ColorPicker = () => {
                     onChange={(e) => handleChange(e.hex)}
                     ref={picker} />
             </div>
+            {selectedPart === 'Deck' ? <div
+                className="textureSelect"
+                style={{
+                    left: `${left + 30}%`,
+                    top: `${top - 40}%`,
+                    position: 'absolute',
+                    transform: "translate(-50%, -50%)",
+                    textAlign: 'center',
+                    color: 'white',
+                    fontSize: '2.2rem',
+                    pointerEvents: "none",
+                }}>Textures
+                <div style={{
+                    width: '100%',
+                    display: 'flex',
+
+                }}>
+                    <div className="texture" onClick={() => updateTexture('none')} style={Texture_Style}></div>
+                    <div onClick={() => updateTexture('checkered')} className="texture checkered" style={Texture_Style}></div>
+                </div>
+            </div> : null}
         </>
     )
 }

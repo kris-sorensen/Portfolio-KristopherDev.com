@@ -33,8 +33,33 @@
     color: #bbbbbb;
 }
 
+.textureSelect {
+    font-family: 'Kanit', sans-serif;
+    letter-spacing: 7px;
+    text-decoration: #bbbbbb solid underline;
+    text-underline-offset: 11px;
+    color: #bbbbbb;
+    transition: "all .5s ease";
+
+
+}
+
+.texture:hover {
+    scale: 1.15;
+    cursor: 'pointer',
+}
+
+
 .Cursor {
     font-family: 'Kanit', sans-serif;
     letter-spacing: 3px;
+
+}
+
+.checkered {
+    background-color: #FFF;
+    background-size: 8px 8px;
+    background-image: linear-gradient(45deg, #000000 25%, transparent 25%), linear-gradient(-45deg, #000000 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #000000 75%), linear-gradient(-45deg, transparent 75%, #000000 75%);
+    transform: rotate(45deg);
 
 }

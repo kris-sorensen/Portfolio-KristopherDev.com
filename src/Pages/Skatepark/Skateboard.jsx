@@ -34,19 +34,16 @@ const Skateboard = () => {
     });
 
 
-
     return (
         <>
-            {/* <ambientLight intensity={.1} /> */}
 
             <PresentationControls
                 global={true}
-                // cursor={hovered ? false : true}
                 cursor={false}
                 snap={false}
                 speed={params.speed}
                 zoom={1}
-                rotation={[params.rotationX, params.rotationY, params.rotationZ]} // Default rotation
+                rotation={[params.rotationX, params.rotationY, params.rotationZ]}// Default rotation
                 polar={[-Infinity, Infinity]}
                 azimuth={[-Infinity, Infinity]}
                 config={{ mass: 1, tension: 10, friction: 8 }}
@@ -57,6 +54,8 @@ const Skateboard = () => {
                         ref={skateboard}
                         scale={.007}
                         position={[params.x, params.y, params.z]}
+                    // todo: need to fix how pres controls make model spin on first click. maybe do rotation here and then a little farther with pres controls so it moves a little on first click
+                    // rotation={[params.rotationX, params.rotationY, params.rotationZ]}
                     >
                         <SkateboardModel
                         />

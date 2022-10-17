@@ -8,7 +8,6 @@ import Skateboard from './Skateboard'
 import ColorPicker from './ColorPicker'
 import Lights from './Lights'
 import TextContainer from './TextContainer'
-import Cursor from './Cursor';
 import BackgroundGrad from './BackgroundGrad'
 import CursorHTML from './Cursor2';
 
@@ -44,15 +43,14 @@ const Scene = () => {
                         maxDistance={7.5}
                         minDistance={4.8}
                         enablePan={false}
+
                     />
                     <Suspense fallback={null}>
                         <Preload all />
                         {/* <OrbitControls /> */}
                         <Skateboard />
                         <BackgroundGrad />
-                        {/* <Floor /> */}
                         <Lights />
-                        {/* <Cursor /> */}
                     </Suspense>
                 </Canvas>
                 <Loader />
