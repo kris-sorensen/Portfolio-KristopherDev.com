@@ -3,11 +3,13 @@ import useSkateboardStore from './../../stores/useSkateboardStore';
 import { CirclePicker } from 'react-color';
 import { useControls, folder } from 'leva';
 import './styles/skateboard.css'
+import useWindowSize from './../../hooks/useWindowSize';
 const ColorPicker = () => {
     const updateColor = useSkateboardStore((state) => state.updateColor);
     const updatePart = useSkateboardStore((state) => state.updatePart);
     const updateTexture = useSkateboardStore((state) => state.updateTexture);
     const { selectedPart } = useSkateboardStore()
+    const { width } = useWindowSize();
 
     const [mistakeCount, setMistakeCount] = useState(0)
 
@@ -72,12 +74,13 @@ const ColorPicker = () => {
                     color: 'white',
                     fontSize: '2.2rem',
                     left: `${left}%`,
-                    top: `${top - 8.5}%`,
+                    top: width > 600 ? `${top - 8.5}%` : `${top - 13}%`,
                     position: 'absolute',
                     transform: "translate(-50%, -50%)",
                     textAlign: 'center',
                     transition: "all .5s ease",
                     pointerEvents: "none",
+
                 }}
             >Colors</div> : null
             }
@@ -100,8 +103,10 @@ const ColorPicker = () => {
             {selectedPart === 'Deck' ? <div
                 className="textureSelect"
                 style={{
-                    left: `${left + 30}%`,
-                    top: `${top - 40}%`,
+                    left: width > 600 ? `${left + 30}%` : `${left}%`,
+                    // left: `${left}%`,
+                    top: width > 600 ? `${top - 40}%` : `${top - 55}%`,
+                    // top: `${top - 55}%`,
                     position: 'absolute',
                     transform: "translate(-50%, -50%)",
                     textAlign: 'center',

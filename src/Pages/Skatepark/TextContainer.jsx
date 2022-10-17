@@ -1,8 +1,11 @@
 import React from 'react';
 import './styles/skateboard.css'
+import useWindowSize from './../../hooks/useWindowSize';
 
 
 const TextContainer = () => {
+
+    const { width } = useWindowSize();
 
     const Container_Styles = {
         position: 'relative',
@@ -19,14 +22,17 @@ const TextContainer = () => {
 
     const Title_Styles = {
         color: 'white',
-        fontSize: '7rem',
-        letterSpacing: '1rem',
+        fontSize: width > 600 ? '7rem' : '4rem',
+        // fontSize: '4rem',
+        letterSpacing: width > 600 ? '1rem' : '.6rem',
+        // letterSpacing: '.6rem',
         fontWeight: 'normal'
     }
 
     const Subtitle_Styles = {
         color: 'white',
-        fontSize: '9.5rem',
+        fontSize: width > 600 ? '9.5rem' : '6rem',
+        // fontSize: '6rem',
         marginTop: '1.3rem',
         fontWeight: 'normal'
     }
