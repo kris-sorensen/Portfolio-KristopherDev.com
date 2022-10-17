@@ -113,7 +113,7 @@ const SkateboardModel = (): JSX.IntrinsicElements['group'] => {
             {/* wheels */ }
             <group position={ [-45.94, 17.76, -135.91] } rotation={ [-0.01, -Math.PI / 2, 0] } scale={ 17.76 }>
               <mesh name={ 'Front Wheels' } castShadow receiveShadow geometry={ nodes.Circle004_SKATE_TEXTURE_0.geometry }  >
-                <meshStandardMaterial color={ "#a6fd29" } />
+                <meshStandardMaterial color={ "#0693E3" } />
               </mesh>
             </group>
             <group position={ [-45.94, 17.76, 135.38] } rotation={ [-0.01, -Math.PI / 2, 0] } scale={ 17.76 }>

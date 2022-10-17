@@ -55,7 +55,7 @@ const Skateboard = () => {
                         scale={.007}
                         position={[params.x, params.y, params.z]}
                     // todo: need to fix how pres controls make model spin on first click. maybe do rotation here and then a little farther with pres controls so it moves a little on first click
-                    // rotation={[params.rotationX, params.rotationY, params.rotationZ]}
+                    // rotation={[params.rotationX - params.rotationX, params.rotationY - params.rotationY, - params.rotationZ]}
                     >
                         <SkateboardModel
                         />
