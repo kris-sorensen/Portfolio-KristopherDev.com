@@ -28,7 +28,7 @@ const TextContainer = () => {
 
     const Subtitle_Styles = {
         color: 'white',
-        fontSize: '10rem',
+        fontSize: '9.5rem',
         marginTop: '1.2rem',
         // letterSpacing: '2rem',
         fontWeight: 'normal'

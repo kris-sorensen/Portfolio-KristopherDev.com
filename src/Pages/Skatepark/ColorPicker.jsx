@@ -14,6 +14,7 @@ const ColorPicker = () => {
         if (selectedPart !== noPart && selectedPart !== warning1 && selectedPart !== defaultWarning && selectedPart !== finalWarning) {
             setMistakeCount(0)
         }
+        updateColor(null)
     }, [selectedPart])
 
     const picker = useRef(null)
@@ -21,17 +22,17 @@ const ColorPicker = () => {
     const defaultWarning = 'Select Part'
     const warning1 = 'Select Part First'
     const noPart = 'No Part Selected'
-    const finalWarning = 'Tap On Skateboard Wheels or Deck to Modify'
+    const finalWarning = 'Tap On Skateboard to Select Part'
 
     const handleChange = (color) => {
 
         if (selectedPart === noPart || selectedPart === warning1 || selectedPart === defaultWarning || selectedPart === finalWarning) {
             if (mistakeCount < 1) {
                 setMistakeCount(mistakeCount + 1)
-                updatePart('Select Part First')
+                updatePart(warning1)
             } else {
                 setMistakeCount(mistakeCount + 1)
-                updatePart('Tap On Skateboard Wheels or Deck to Modify')
+                updatePart(finalWarning)
             }
         } else updateColor(color)
 
