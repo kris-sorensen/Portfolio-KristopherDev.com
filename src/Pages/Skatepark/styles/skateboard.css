@@ -45,6 +45,10 @@
 
 }
 
+.texture {
+    overflow: hidden
+}
+
 .texture:hover {
     scale: 1.15;
     cursor: 'pointer',
@@ -57,10 +61,28 @@
 
 }
 
+/* texture icons */
 .checkered {
     background-color: #FFF;
     background-size: 8px 8px;
     background-image: linear-gradient(45deg, #000000 25%, transparent 25%), linear-gradient(-45deg, #000000 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #000000 75%), linear-gradient(-45deg, transparent 75%, #000000 75%);
     transform: rotate(45deg);
 
+}
+
+.pokadot {
+    /* width: 240px;
+    height: 240px; */
+    background-color: #fff;
+    background-image: radial-gradient(#000 19%, transparent 20%),
+        radial-gradient(#000 19%, transparent 20%);
+    background-size: 10px 10px;
+    /* background-position: 0 0, 30px 30px; */
+    /* background-repeat: repeat; */
+}
+
+.ghost {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
 }

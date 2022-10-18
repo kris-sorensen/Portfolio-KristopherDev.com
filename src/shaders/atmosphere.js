@@ -24,7 +24,7 @@ const AtmosphereMaterial = shaderMaterial(
     varying vec3 vertexNormal;
 
     void main() {
-        // intesity of atmospheric effect
+        // intensity of atmospheric effect
         float intensity = 1.25 - dot(vertexNormal, vec3(0.3, 0.6, 1.0));
         // atmospheric glow
         vec3 atmosphere = vec3(0.3,0.6,1.0)* pow(intensity, 1.5);

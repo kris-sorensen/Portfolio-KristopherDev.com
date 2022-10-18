@@ -22,8 +22,8 @@ const OuterAtmosphereMaterial: typeof THREE.ShaderMaterial = shaderMaterial(
     varying vec3 vertexNormal;
 
     void main() {
-        // intesity of atmospheric effect
-        float intensity = pow(.2 - dot(vertexNormal, vec3(0.0, 0.0, 1.0)),2.0);
+        // intensity of atmospheric effect
+        float intensity = pow(.2 - dot(vertexNormal, vec3(0.0, 0.0, 1.0)),2.);
         // atmospheric glow
         vec3 atmosphere = vec3(0.3,0.6,1.0)* pow(intensity, 1.0);
 

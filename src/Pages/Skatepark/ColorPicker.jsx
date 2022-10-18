@@ -121,6 +121,10 @@ const ColorPicker = () => {
                 }}>
                     <div className="texture" onClick={() => updateTexture('none')} style={Texture_Style}></div>
                     <div onClick={() => updateTexture('checkered')} className="texture checkered" style={Texture_Style}></div>
+                    <div onClick={() => updateTexture('pokadot')} className="texture pokadot" style={Texture_Style}></div>
+                    {/* <div onClick={() => updateTexture('ghost')} className="texture ghost" style={Texture_Style}>
+                        <img className="" src={'/skatepark/skateboard/textures/ghostIcon.jpg'} alt="Ghost Texture" />
+                    </div> */}
                 </div>
             </div> : null}
         </>

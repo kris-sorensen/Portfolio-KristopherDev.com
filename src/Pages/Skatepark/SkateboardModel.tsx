@@ -60,6 +60,12 @@ const SkateboardModel = (): JSX.IntrinsicElements['group'] => {
     else if(selectedTexture === 'checkered') {
       deck.current.map = checkered;
     }
+    else if(selectedTexture === 'pokadot') {
+      deck.current.map = pokadot;
+    }
+    else if(selectedTexture === 'ghost') {
+      deck.current.map = ghost;
+    }
     deck.current.needsUpdate = true;
   }, [selectedTexture]);
 
@@ -81,10 +87,15 @@ const SkateboardModel = (): JSX.IntrinsicElements['group'] => {
     checkered.wrapT = THREE.RepeatWrapping;
     checkered.repeat.set(4, 4);
   });
-  const [del] = useTexture(['/skatepark/skateboard/textures/checkerBW.png'], ([checkered]) => {
-    checkered.wrapS = THREE.RepeatWrapping;
-    checkered.wrapT = THREE.RepeatWrapping;
-    checkered.repeat.set(4, 4);
+  const [pokadot] = useTexture(['/skatepark/skateboard/textures/pokadot.png'], ([pokadot]) => {
+    pokadot.wrapS = THREE.RepeatWrapping;
+    pokadot.wrapT = THREE.RepeatWrapping;
+    pokadot.repeat.set(5, 5);
+  });
+  const [ghost] = useTexture(['/skatepark/skateboard/textures/ghost.png'], ([ghost]) => {
+    // ghost.wrapS = THREE.RepeatWrapping;
+    // ghost.wrapT = THREE.RepeatWrapping;
+    // ghost.repeat.set(2, 2);
   });
 
   const deck = useRef(null);
@@ -107,18 +118,18 @@ const SkateboardModel = (): JSX.IntrinsicElements['group'] => {
 
               rotation={ [-1.58, 0, -Math.PI / 2] } scale={ 100 }>
               <mesh name={ 'Deck' } castShadow receiveShadow geometry={ nodes.board_bottom.geometry }  >
-                <meshStandardMaterial ref={ deck } color={ "#F78DA7" } />
+                <meshStandardMaterial ref={ deck } color={ "#ffffff" } />
               </mesh>
             </group>
             {/* wheels */ }
             <group position={ [-45.94, 17.76, -135.91] } rotation={ [-0.01, -Math.PI / 2, 0] } scale={ 17.76 }>
               <mesh name={ 'Front Wheels' } castShadow receiveShadow geometry={ nodes.Circle004_SKATE_TEXTURE_0.geometry }  >
-                <meshStandardMaterial color={ "#0693E3" } />
+                <meshStandardMaterial color={ "#55ffe1" } />
               </mesh>
             </group>
             <group position={ [-45.94, 17.76, 135.38] } rotation={ [-0.01, -Math.PI / 2, 0] } scale={ 17.76 }>
               <mesh name={ 'Rear Wheels' } castShadow receiveShadow geometry={ nodes.Circle013_SKATE_TEXTURE_0.geometry }  >
-                <meshStandardMaterial color={ "#a6fd29" } />
+                <meshStandardMaterial color={ "#55ffe1" } />
               </mesh>
             </group>
           </group>

@@ -35,10 +35,10 @@ const FireworkMaterial =
             
 
             void main(){
-            /*
-            * Position
-            */
-            vec4 modelPosition = modelMatrix * vec4(position, 1.0);
+                /*
+                * Position
+                */
+                vec4 modelPosition = modelMatrix * vec4(position, 1.0);
                 vVelocity = aVelocities;
 
                 //save original positions for place correction
@@ -66,16 +66,16 @@ const FireworkMaterial =
                 gl_Position = projectedPosition;
 
 
-            /*
-            * Size
-            */
-            gl_PointSize = uSize;
+                /*
+                * Size
+                */
+                gl_PointSize = uSize;
 
-            /*
-            * Color
-            */
-            vColor = color;
-            vuv = uv;
+                /*
+                * Color
+                */
+                vColor = color;
+                vuv = uv;
         }`,
         // fragment shader
         glsl`
@@ -90,13 +90,13 @@ const FireworkMaterial =
 
             void main(){
 
-                 //Light point pattren (difuse point that fades faster)
+                 //Light point pattern (diffuse point that fades faster)
                 float strength = distance(gl_PointCoord, vec2(.5));
                 strength = 1. - strength;
                 strength = pow(strength, 2.);
                 
 
-                // Inital color flashes white and then goes to color
+                // Initial color flashes white and then goes to color
                 float transitionColor = smoothstep(.25, .1, uTime);
 
                 // Color
