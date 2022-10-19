@@ -1,23 +1,13 @@
-import React, { useRef, Suspense, useState } from 'react';
+import React, { useRef } from 'react';
 import * as three from 'three';
-import { } from '@react-three/drei';
-import { useFrame } from '@react-three/fiber';
 import { useControls, folder } from 'leva';
 import { PresentationControls } from '@react-three/drei';
 import './styles/skateboard.css'
 // * Components
 import SkateboardModel from './SkateboardModel'
 
-
-
 const Skateboard = () => {
     const skateboard = useRef(null)
-
-    // useFrame((state) => {
-    //     const t = state.clock.getElapsedTime()
-    //     if (skateboard.current == null) return
-
-    // })
 
     const params = useControls({
         skateboard: folder({
@@ -34,34 +24,25 @@ const Skateboard = () => {
 
     return (
         <>
-
             <PresentationControls
                 global={true}
                 cursor={false}
                 snap={false}
                 speed={params.speed}
                 zoom={1}
-                rotation={[params.rotationX, params.rotationY, params.rotationZ]}// Default rotation
+                rotation={[params.rotationX, params.rotationY, params.rotationZ]}
                 polar={[-Infinity, Infinity]}
                 azimuth={[-Infinity, Infinity]}
                 config={{ mass: 1, tension: 10, friction: 8 }}
             >
-
-                <Suspense fallback={null} >
-                    <group
-                        ref={skateboard}
-                        scale={.007}
-                        position={[params.x, params.y, params.z]}
-
-                    // todo: need to fix how pres controls make model spin on first click. maybe do rotation here and then a little farther with pres controls so it moves a little on first click
-                    // rotation={[params.rotationX, params.rotationY, params.rotationZ]}
-                    >
-                        <SkateboardModel
-                        />
-                    </group>
-                </Suspense>
+                <group
+                    ref={skateboard}
+                    scale={.007}
+                    position={[params.x, params.y, params.z]}
+                >
+                    <SkateboardModel />
+                </group>
             </PresentationControls>
-
         </>
     )
 }

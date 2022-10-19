@@ -7,9 +7,9 @@ import { Canvas } from '@react-three/fiber';
 import Skateboard from './Skateboard'
 import ColorPicker from './ColorPicker'
 import Lights from './Lights'
-import TextContainer from './TextContainer'
+import TextContainer from './HTMLContainer'
 import BackgroundGrad from './BackgroundGrad'
-import CursorHTML from './Cursor2';
+import CursorHTML from './Cursor';
 
 const Scene = () => {
 
@@ -23,43 +23,36 @@ const Scene = () => {
 
     return (
         <>
-            <Suspense fallback={null}>
-                <div style={{ width: '100%', height: '100vh', position: 'fixed', top: 0, left: 0, outline: 'none', overflow: "hidden" }} >
-                    <Leva hidden />
-                    <Canvas
-                        gl={{
-                            antialias: true,
-                            toneMapping: three.NoToneMapping
-                        }}
-                        dpr={2}
-                        shadows
-                        color='white'
-                        camera={{
-                            fov: 75,
-                            position: [cameraParams.cameraX, cameraParams.cameraY, cameraParams.cameraZ]
-                        }}
-                    >
-                        <OrbitControls
-                            enableRotate={false}
-                            maxDistance={7.5}
-                            minDistance={3.8}
-                            enablePan={false}
 
-                        />
-                        {/* <Suspense fallback={null}> */}
-                        <Preload all />
-                        {/* <OrbitControls /> */}
-                        <Skateboard />
-                        <BackgroundGrad />
-                        <Lights />
-                        {/* </Suspense> */}
-                    </Canvas>
-                </div>
-                <CursorHTML />
-                <ColorPicker />
-                <TextContainer />
-            </Suspense>
-            <Loader />
+            <div style={{ width: '100%', height: '100vh', position: 'fixed', top: 0, left: 0, outline: 'none', overflow: "hidden" }} >
+                <Leva hidden />
+                <Canvas
+                    gl={{
+                        antialias: true,
+                        toneMapping: three.NoToneMapping
+                    }}
+                    dpr={2}
+                    shadows
+                    color='white'
+                    camera={{
+                        fov: 75,
+                        position: [cameraParams.cameraX, cameraParams.cameraY, cameraParams.cameraZ]
+                    }}
+                >
+                    <OrbitControls
+                        enableRotate={false}
+                        maxDistance={7.5}
+                        minDistance={3.8}
+                        enablePan={false}
+
+                    />
+                    <Preload all />
+                    {/* <OrbitControls /> */}
+                    <Skateboard />
+                    <BackgroundGrad />
+                    <Lights />
+                </Canvas>
+            </div>
         </>
     )
 }

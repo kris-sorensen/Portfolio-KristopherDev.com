@@ -7,42 +7,23 @@ import * as THREE from 'three';
 import React, { useState, useLayoutEffect, useRef, useEffect } from 'react';
 import { useGLTF, useTexture, useCursor } from '@react-three/drei';
 import { GLTF } from 'three-stdlib';
-
+// * Store
 import useSkateboardStore from '../../stores/useSkateboardStore';
-
-//* textures
+//* Textures
 import useSkateboardTexturesStore from '../../stores/useSkateboardTexturesStore';
-
-
-// Other MVP
-
-// todo: add textures
-
-// todo: textures just slightly up higher than colors/ disapear if not right one
-
-
-/**
- * Textures
- * Have a map function that positions possible textures/ adding to there y position. build on right side
-
- */
-
-
 
 
 
 const SkateboardModel = (): JSX.IntrinsicElements['group'] => {
+  // * State
   const [selectedElement, setSelectedElement] = useState(null);
+  const [hovered, set] = useState(false);
+  useCursor(hovered, 'pointer', 'grab');
+  // * Stores
   const selectedColor = useSkateboardStore((state) => state.selectedColor);
   const selectedTexture = useSkateboardStore((state) => state.selectedTexture);
-
-
-
   const updatePart = useSkateboardStore((state) => state.updatePart);
 
-  const [hovered, set] = useState(false);
-
-  useCursor(hovered, 'pointer', 'grab');
 
   useLayoutEffect(() => {
     // selectedElement.set(selectedColor);
@@ -72,7 +53,6 @@ const SkateboardModel = (): JSX.IntrinsicElements['group'] => {
   // * Model
   const { nodes, materials } = useGLTF('/models/skateboard/modifiedSkateboard-transformed.glb') as GLTFResult;
   // * Texture Grip Tape
-
   const { griptapeUrls, displacementScale } = useSkateboardTexturesStore();
   const [gtColor] = useTexture(griptapeUrls, ([gtColor]) => {
     gtColor.wrapS = THREE.RepeatWrapping;
@@ -107,7 +87,6 @@ const SkateboardModel = (): JSX.IntrinsicElements['group'] => {
     <group dispose={ null }>
       <group rotation={ [-Math.PI / 2, 0, 0] }>
         <group rotation={ [Math.PI / 2, 0, 0] }>
-          {/* <group rotation={ [Math.PI / 2, 0, 0] }> */ }
           {/* Parts that can be modified */ }
           <group
             onPointerOver={ () => set(true) } onPointerOut={ () => set(false) }
@@ -133,7 +112,7 @@ const SkateboardModel = (): JSX.IntrinsicElements['group'] => {
               </mesh>
             </group>
           </group>
-          {/* end  */ }
+          {/* non-modifiable parts  */ }
           <group position={ [-0.44, 53.71, -0.03] }
             rotation={ [-1.58, 0, -Math.PI / 2] } scale={ 100 }>
             <mesh geometry={ nodes.board_woodsides.geometry } material-color={ 'tan' } />
@@ -147,11 +126,6 @@ const SkateboardModel = (): JSX.IntrinsicElements['group'] => {
               />
             </mesh>
           </group>
-
-
-
-
-
           <group position={ [-52.78, 17.76, 135.49] } rotation={ [-0.01, -Math.PI / 2, 0] } scale={ [17.52, 17.52, 14.67] }>
             <mesh castShadow receiveShadow geometry={ nodes.Circle001_SKATE_TEXTURE_0.geometry } material={ materials.SKATE_TEXTURE } />
           </group>

@@ -1,14 +1,15 @@
 import React from 'react';
-import useSkateboardStore from './../../stores/useSkateboardStore';
-import { useMousePosition } from './../../hooks/useMousePosition';
 import './styles/skateboard.css'
-import useWindowSize from './../../hooks/useWindowSize';
+// * Stores
+import useSkateboardStore from '../../stores/useSkateboardStore';
+// * Hooks
+import { useMousePosition } from '../../hooks/useMousePosition';
+import useWindowSize from '../../hooks/useWindowSize';
 
-const CursorHTML = () => {
+const Cursor = () => {
 
     const { selectedPart } = useSkateboardStore()
     const { width } = useWindowSize();
-
     const { x, y } = useMousePosition()
 
     const Cursor_Styles = {
@@ -24,8 +25,6 @@ const CursorHTML = () => {
     }
 
 
-
-
     return (
         <div style={Cursor_Styles}>
             <h1 className="Cursor" >{selectedPart}</h1>
@@ -34,4 +33,4 @@ const CursorHTML = () => {
 }
 
 
-export default CursorHTML;
+export default Cursor;

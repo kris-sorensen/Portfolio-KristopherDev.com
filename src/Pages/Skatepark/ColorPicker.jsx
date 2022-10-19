@@ -1,9 +1,32 @@
 import React, { useEffect, useRef, useState } from 'react'
-import useSkateboardStore from './../../stores/useSkateboardStore';
-import { CirclePicker } from 'react-color';
 import { useControls, folder } from 'leva';
+import { CirclePicker } from 'react-color';
 import './styles/skateboard.css'
+// * Stores
+import useSkateboardStore from './../../stores/useSkateboardStore';
+// * Hooks
 import useWindowSize from './../../hooks/useWindowSize';
+
+
+
+//todo: need to make the whole experience
+// [ ] double flash when you select the part.
+// [ ] bottom of screen will have 2 selection above the colors. one for textures and one for colors. darker grey coloring.
+// maybe squares on mobile
+// create a portal that launches first.
+// says something like "Customize and create the perfect skateboard. " w/ a btn saying [ Create ] or customize taht will release the portal and open the page. 
+
+// make rotate and have a portal that pops up to turn it 360 degrees
+
+// endless scroll for colors right and left. Have it loop?
+
+// parts listed across the top in endless scroll  and icon next to word. maybe no words but a big enough gap so it is easy to select
+
+// have a btn [see board in action up side] like skateboard alphabet. it would take you to a page where you could see the skateboard do a trick and show the back side
+
+// could you add the ability to add your own texture? 
+
+
 const ColorPicker = () => {
     const updateColor = useSkateboardStore((state) => state.updateColor);
     const updatePart = useSkateboardStore((state) => state.updatePart);

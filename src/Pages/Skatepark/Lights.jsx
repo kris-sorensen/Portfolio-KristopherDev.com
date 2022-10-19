@@ -1,11 +1,10 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import * as three from 'three';
 import { ContactShadows, SpotLight } from '@react-three/drei';
 import { useControls, folder } from 'leva';
 
 
 function Lights() {
-    const light = useRef(null)
 
     //* Parameters
     const { shadowY } = useControls({

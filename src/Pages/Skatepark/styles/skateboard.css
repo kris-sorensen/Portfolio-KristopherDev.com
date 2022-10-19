@@ -1,5 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap');
 
+/* Title */
+.titleSB {
+    font-family: 'Skateboard';
+}
+
+/* SubTitle */
+.subtitleSB {
+    font-family: "Ventilla"
+}
+
+/* ColorPicker */
 .circle-picker {
     justify-content: center;
 
@@ -17,15 +28,6 @@
 
 }
 
-
-.titleSB {
-    font-family: 'Skateboard';
-}
-
-.subtitleSB {
-    font-family: "Ventilla"
-}
-
 .ColorSelect {
     font-family: 'Kanit', sans-serif;
     letter-spacing: 7px;
@@ -41,8 +43,6 @@
     text-underline-offset: 11px;
     color: #bbbbbb;
     transition: "all .5s ease";
-
-
 }
 
 .texture {
@@ -52,13 +52,6 @@
 .texture:hover {
     scale: 1.15;
     cursor: 'pointer',
-}
-
-
-.Cursor {
-    font-family: 'Kanit', sans-serif;
-    letter-spacing: 3px;
-
 }
 
 /* texture icons */
@@ -85,4 +78,11 @@
     width: 30px;
     height: 30px;
     border-radius: 50%;
+}
+
+/* Cursor */
+.Cursor {
+    font-family: 'Kanit', sans-serif;
+    letter-spacing: 3px;
+
 }
