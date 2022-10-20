@@ -13,22 +13,18 @@ const Cursor = () => {
     const { x, y } = useMousePosition()
 
     const Cursor_Styles = {
-        // width: "100%",
-        height: "5rem",
-        color: "white",
-        position: "absolute",
-        zIndex: 400,
-        left: width > 600 ? x + 15 : '60%',
-        top: width > 600 ? y + 15 : '65%',
-        fontSize: 8,
-        pointerEvents: "none",
+        left: width > 600 ? x + 15 : '40%',
+        top: width > 600 ? y + 15 : '20%',
     }
 
 
     return (
-        <div style={Cursor_Styles}>
-            <h1 className="Cursor" >{selectedPart}</h1>
-        </div>
+        <>
+            {width > 600 &&
+                <div className="cursor-container" style={Cursor_Styles}>
+                    <h1 className="Cursor" >{selectedPart}</h1>
+                </div>}
+        </>
     )
 }
 

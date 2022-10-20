@@ -27,6 +27,10 @@ function Navbar({ color }: any) {
                                 <li><a onClick={ () => navigate('/') }>Home</a></li>
                                 <li><a onClick={ () => navigate('/about') }>About</a></li>
                                 <li><a onClick={ () => navigate('/connect') }>Connect</a></li>
+                                <ul><a>Work</a>
+                                    <li style={ { marginLeft: '3rem', fontSize: '1rem' } }><a onClick={ () => navigate('/skatepark') }>Skate Factory</a></li>
+                                </ul>
+
 
                             </ul>
                         </div>

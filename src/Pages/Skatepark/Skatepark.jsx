@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
+import { Loader } from '@react-three/drei';
 // * Components
 import Scene from './SkateparkScene'
-import { Loader } from '@react-three/drei';
 import HTMLContainer from './HTMLContainer';
 
 
@@ -12,7 +12,7 @@ const Skatepark = () => {
             <Suspense fallback={null}>
                 <Scene />
                 <HTMLContainer />
-            </Suspense >
+            </Suspense>
             <Loader />
         </>
     )

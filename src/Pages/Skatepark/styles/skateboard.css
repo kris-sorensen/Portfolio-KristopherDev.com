@@ -1,14 +1,42 @@
 @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap');
 
+/* Html Container */
+
+.container-skatepark {
+    position: absolute;
+    z-Index: 250;
+    width: 100%;
+    height: 100vh;
+    pointer-Events: none;
+    top: 7%
+}
+
+.wrapper-skatepark {
+    text-Align: center;
+}
+
+
 /* Title */
 .titleSB {
     font-family: 'Skateboard';
+    color: white;
+    font-Size: 7rem;
+    letter-Spacing: 1rem;
+    font-Weight: normal;
 }
+
+
 
 /* SubTitle */
 .subtitleSB {
-    font-family: "Ventilla"
+    font-family: "Ventilla";
+    color: white;
+    font-Size: 9.5rem;
+    margin-Top: 1.3rem;
+    font-Weight: normal
 }
+
+
 
 /* ColorPicker */
 .circle-picker {
@@ -31,10 +59,38 @@
 .ColorSelect {
     font-family: 'Kanit', sans-serif;
     letter-spacing: 7px;
-    text-decoration: #bbbbbb solid underline;
-    text-underline-offset: 11px;
+    /* text-decoration: #bbbbbb solid underline; */
+    /* text-underline-offset: 11px; */
     color: #bbbbbb;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    text-Align: center;
+    transition: all .5s ease;
+    color: white;
+    font-Size: 1.8rem;
+    left: 50;
+    top: 90;
+
 }
+
+.swiper {
+    overflow: visible;
+    /* max-width: 500px; */
+    /* text-align: center; */
+    padding: 10px
+}
+
+
+
+.color-slider:hover {
+    scale: 1.15;
+}
+
+.swiper-slide {
+    cursor: 'auto',
+}
+
+
 
 .textureSelect {
     font-family: 'Kanit', sans-serif;
@@ -46,12 +102,12 @@
 }
 
 .texture {
-    overflow: hidden
+    /* overflow: hidden */
 }
 
 .texture:hover {
     scale: 1.15;
-    cursor: 'pointer',
+    /* cursor: 'pointer', */
 }
 
 /* texture icons */
@@ -81,8 +137,75 @@
 }
 
 /* Cursor */
+
+.cursor-container {
+    height: 5rem;
+    color: white;
+    position: absolute;
+    z-Index: 400;
+    font-Size: 8;
+    pointer-Events: none;
+}
+
 .Cursor {
     font-family: 'Kanit', sans-serif;
     letter-spacing: 3px;
 
+}
+
+/* Slides */
+
+.slide {
+    text-align: center;
+    height: 320px;
+    line-height: 320px;
+    background: #364d79;
+    overflow: hidden;
+}
+
+
+
+@media screen and (max-width: 600px) {
+
+    .container-skatepark {
+        top: 2.65%;
+        position: fixed;
+    }
+
+    .wrapper-skatepark {
+        text-Align: left;
+    }
+
+    .titleSB {
+        font-Size: 3rem;
+        letter-Spacing: .6rem;
+        margin-left: 21%;
+    }
+
+    .subtitleSB {
+        font-size: 7.5rem;
+        position: relative;
+        text-align: center;
+        margin-Top: 6rem;
+        width: 70%;
+        height: 70%;
+        margin-left: auto;
+        margin-right: auto;
+        /* background-color: #555 */
+        /* margin-left: 3rem; */
+        text-decoration: 3px #ddd solid underline;
+        text-underline-offset: 4;
+    }
+
+    .ColorSelect {
+        top: 77%
+    }
+
+}
+
+@media screen and (min-width: 700px) {
+
+    .swiper-wrapper {
+        justify-content: center;
+    }
 }

@@ -6,9 +6,18 @@ import './styles/skateboard.css'
 import useSkateboardStore from './../../stores/useSkateboardStore';
 // * Hooks
 import useWindowSize from './../../hooks/useWindowSize';
+import { Swiper, SwiperSlide } from "swiper/react";
+import SwiperCore, {
+    Navigation,
+    Pagination,
+    Autoplay,
+    Virtual,
+} from "swiper/core";
+import "swiper/swiper-bundle.css";
+import ColorSlider from './ColorSlider';
+import TextureSlider from './TextureSlider';
 
-
-
+console.log('swiper', SwiperSlide)
 //todo: need to make the whole experience
 // [ ] double flash when you select the part.
 // [ ] bottom of screen will have 2 selection above the colors. one for textures and one for colors. darker grey coloring.
@@ -30,11 +39,12 @@ import useWindowSize from './../../hooks/useWindowSize';
 const ColorPicker = () => {
     const updateColor = useSkateboardStore((state) => state.updateColor);
     const updatePart = useSkateboardStore((state) => state.updatePart);
-    const updateTexture = useSkateboardStore((state) => state.updateTexture);
+    // const updateTexture = useSkateboardStore((state) => state.updateTexture);
     const { selectedPart } = useSkateboardStore()
     const { width } = useWindowSize();
 
     const [mistakeCount, setMistakeCount] = useState(0)
+    const [colorTextureToggle, setColorTextureToggle] = useState('colors')
 
     useEffect(() => {
         if (selectedPart !== noPart && selectedPart !== warning1 && selectedPart !== defaultWarning && selectedPart !== finalWarning) {
@@ -51,7 +61,7 @@ const ColorPicker = () => {
     const finalWarning = 'Tap On Skateboard to Select Part'
 
     const handleChange = (color) => {
-
+        // console.log(`color`, color)
         if (selectedPart === noPart || selectedPart === warning1 || selectedPart === defaultWarning || selectedPart === finalWarning) {
             if (mistakeCount < 1) {
                 setMistakeCount(mistakeCount + 1)
@@ -64,7 +74,6 @@ const ColorPicker = () => {
             updateColor(color)
             // updateTexture('none')
         }
-
     }
 
 
@@ -77,79 +86,87 @@ const ColorPicker = () => {
 
     });
 
-    const Texture_Style = {
-        width: '30px',
-        height: '30px',
-        // background: 'none',
-        borderRadius: '50%',
-        border: '2px solid white',
-        marginTop: '3.5rem',
-        pointerEvents: "auto",
-        cursor: 'pointer',
-        marginLeft: '2rem'
-    }
+
 
     return (
         <>
-            {selectedPart !== noPart && selectedPart !== warning1 && selectedPart !== defaultWarning && selectedPart !== finalWarning ? <div
+            <div
+                className="ColorSelect"
+                onClick={() => setColorTextureToggle('colors')}
+                style={{
+                    left: width > 960 ? '42%' : "30%",
+                    top: width > 960 ? `${top - 3}%` : `${top - 3}%`,
+                    padding: '7px',
+                    background: colorTextureToggle === 'colors' ? '#F78DA7' : 'none',
+                    paddingRight: '.8px',
+
+                    maxWidth: '300px'
+                }}
+            >Colors</div>
+            <div
+                onClick={() => setColorTextureToggle('textures')}
                 className="ColorSelect"
                 style={{
-                    color: 'white',
-                    fontSize: '2.2rem',
-                    left: `${left}%`,
-                    top: width > 600 ? `${top - 8.5}%` : `${top - 13}%`,
-                    position: 'absolute',
-                    transform: "translate(-50%, -50%)",
+                    left: width > 960 ? '58%' : "70%",
+                    top: width > 960 ? `${top - 3}%` : `${top - 3}%`,
+                    padding: '7px',
+                    background: colorTextureToggle === 'textures' ? '#0693E3' : 'none',
                     textAlign: 'center',
-                    transition: "all .5s ease",
-                    pointerEvents: "none",
-
+                    whiteSpace: 'nowrap',
+                    paddingRight: '.8px'
                 }}
-            >Colors</div> : null
-            }
+            >Textures</div>
+
 
             <div
-                style={{
-                    left: `${left}%`,
-                    top: `${top}%`,
-                    position: 'absolute',
-                    transform: "translate(-50%, -50%)",
-                    textAlign: 'center',
-                }}>
+            // style={{
+            //     left: `${left}%`,
+            //     top: `${top}%`,
+            //     position: 'absolute',
+            //     transform: "translate(-50%, -50%)",
+            //     textAlign: 'center',
+            //     zIndex: '400'
+            // }},
+            >
+                {colorTextureToggle === 'colors' && <ColorSlider handleChange={handleChange} />}
 
-                <CirclePicker
-                    colors={['#000000', '#ffffff', "#FF6900", "#55ffe1", "#0693E3", "#00D084", "#a6fd29", "#F78DA7", "#ff3b94", "#EB144C", "#9900EF", '#37013a']}
-                    width={window.innerWidth}
-                    onChange={(e) => handleChange(e.hex)}
-                    ref={picker} />
+                {colorTextureToggle === 'textures' && <TextureSlider />}
+
+
+
             </div>
-            {selectedPart === 'Deck' ? <div
-                className="textureSelect"
-                style={{
-                    left: width > 600 ? `${left + 30}%` : `${left}%`,
-                    // left: `${left}%`,
-                    top: width > 600 ? `${top - 40}%` : `${top - 55}%`,
-                    // top: `${top - 55}%`,
-                    position: 'absolute',
-                    transform: "translate(-50%, -50%)",
-                    textAlign: 'center',
-                    color: 'white',
-                    fontSize: '2.2rem',
-                    pointerEvents: "none",
-                }}>Textures
-                <div style={{
-                    width: '100%',
-                    display: 'flex',
 
-                }}>
-                    <div className="texture" onClick={() => updateTexture('none')} style={Texture_Style}></div>
-                    <div onClick={() => updateTexture('checkered')} className="texture checkered" style={Texture_Style}></div>
-                    <div onClick={() => updateTexture('pokadot')} className="texture pokadot" style={Texture_Style}></div>
-                    {/* <div onClick={() => updateTexture('ghost')} className="texture ghost" style={Texture_Style}>
+
+
+            {/* {
+                selectedPart === 'f' ? <div
+                    className="textureSelect"
+                    style={{
+                        left: width > 600 ? `${left + 30}%` : `${left}%`,
+                        // left: `${left}%`,
+                        top: width > 600 ? `${top - 40}%` : `${top - 55}%`,
+                        // top: `${top - 55}%`,
+                        position: 'absolute',
+                        transform: "translate(-50%, -50%)",
+                        textAlign: 'center',
+                        color: 'white',
+                        fontSize: '2.2rem',
+                        pointerEvents: "none",
+                    }}>Textures */}
+            {/* <div style={{
+                        width: '100%',
+                        display: 'flex',
+
+                    }}> */}
+            {/* <div className="texture" onClick={() => updateTexture('none')} style={Texture_Style}></div>
+                        <div onClick={() => updateTexture('checkered')} className="texture checkered" style={Texture_Style}></div>
+                        <div onClick={() => updateTexture('pokadot')} className="texture pokadot" style={Texture_Style}></div> */}
+            {/* <div onClick={() => updateTexture('ghost')} className="texture ghost" style={Texture_Style}>
                         <img className="" src={'/skatepark/skateboard/textures/ghostIcon.jpg'} alt="Ghost Texture" />
                     </div> */}
-                </div>
-            </div> : null}
+            {/* </div> */}
+            {/* </div> : null */}
+            {/* } */}
         </>
     )
 }
