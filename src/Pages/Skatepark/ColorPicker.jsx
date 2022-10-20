@@ -99,6 +99,8 @@ const ColorPicker = () => {
                     padding: '7px',
                     background: colorTextureToggle === 'colors' ? '#F78DA7' : 'none',
                     paddingRight: '.8px',
+                    cursor: 'pointer',
+                    pointerEvents: 'auto',
 
                     maxWidth: '300px'
                 }}
@@ -107,6 +109,8 @@ const ColorPicker = () => {
                 onClick={() => setColorTextureToggle('textures')}
                 className="ColorSelect"
                 style={{
+                    cursor: 'pointer',
+                    pointerEvents: 'auto',
                     left: width > 960 ? '58%' : "70%",
                     top: width > 960 ? `${top - 3}%` : `${top - 3}%`,
                     padding: '7px',
