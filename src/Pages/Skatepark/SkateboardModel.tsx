@@ -104,7 +104,7 @@ const SkateboardModel = (): JSX.IntrinsicElements['group'] => {
     console.log(`texture saved`, texture);
     object.material.color.set('#ff0000');
     await sleep(200);
-    object.material.color.set('#ffffff');
+    object.material.color.set(new THREE.Color(r, g, b));
     await sleep(200);
     object.material.color.set('#ff0000');
     await sleep(200);
